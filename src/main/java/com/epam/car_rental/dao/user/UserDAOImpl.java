@@ -1,6 +1,6 @@
 package com.epam.car_rental.dao.user;
 
-import com.epam.car_rental.DAOException;
+import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.dao.EntityExistException;
 import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.User;

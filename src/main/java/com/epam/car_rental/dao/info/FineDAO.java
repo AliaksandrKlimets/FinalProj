@@ -1,6 +1,6 @@
 package com.epam.car_rental.dao.info;
 
-import com.epam.car_rental.DAOException;
+import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.entity.Fine;
 import com.epam.car_rental.service.info.FineNotFoundException;
 

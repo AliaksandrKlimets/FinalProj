@@ -1,6 +1,6 @@
 package com.epam.car_rental.dao.car;
 
-import com.epam.car_rental.DAOException;
+import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.entity.Car;
 import com.epam.car_rental.service.car.CarExistException;
 
