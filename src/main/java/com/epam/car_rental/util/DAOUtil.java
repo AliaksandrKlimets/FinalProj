@@ -4,6 +4,8 @@ import com.epam.car_rental.entity.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -225,6 +227,12 @@ public class DAOUtil {
         }
         password = code.toString();
         return password;
+    }
+
+    public static void deleteEntity(int id, String query, Connection connection) throws SQLException{
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,id);
+        statement.executeUpdate();
     }
 
 }

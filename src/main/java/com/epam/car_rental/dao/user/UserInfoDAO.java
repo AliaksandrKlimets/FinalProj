@@ -4,10 +4,10 @@ import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.entity.UserInfo;
 import com.epam.car_rental.service.user.UserExistException;
 
-import java.util.Date;
+import java.sql.Date;
 
 public interface UserInfoDAO {
-    UserInfo getUserInfo(String login, String password) throws DAOException;
+    UserInfo getUserInfo(int userId) throws DAOException;
 
     void changeName(int id, String name) throws DAOException;
 
@@ -19,5 +19,5 @@ public interface UserInfoDAO {
 
     void deleteUserInfo(int id) throws DAOException;
 
-    void addUserInfo(String name, String surname, String email, String phone, Date birthDate, Date registrationDate) throws DAOException,UserExistException;
+    void addUserInfo(int userId,String name, String surname, String email, String phone, Date birthDate) throws DAOException;
 }

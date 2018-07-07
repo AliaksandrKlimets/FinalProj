@@ -3,7 +3,7 @@ package com.epam.car_rental.entity;
 import com.epam.car_rental.service.info.OrderService;
 import com.sun.org.apache.xpath.internal.operations.Or;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Order {
