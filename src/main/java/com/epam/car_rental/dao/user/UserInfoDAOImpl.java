@@ -68,7 +68,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         try {
             connection = connectionPool.getConnection();
             String changeName = bundle.getString(USER_INFO_CHANGE_NAME);
-            changeInDB(id, name, changeName, connection);
+            DAOUtil.changeInDB(id, name, changeName, connection);
         } catch (SQLException e) {
             throw new DAOException("Cannot change user name");
         } finally {
@@ -82,7 +82,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         try {
             connection = connectionPool.getConnection();
             String changeSurname = bundle.getString(USER_INFO_CHANGE_SURNAME);
-            changeInDB(id, surname, changeSurname, connection);
+            DAOUtil.changeInDB(id, surname, changeSurname, connection);
         } catch (SQLException e) {
             throw new DAOException("Cannot change user surname");
         } finally {
@@ -96,7 +96,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         try {
             connection = connectionPool.getConnection();
             String changeEmail = bundle.getString(USER_INFO_CHANGE_EMAIL);
-            changeInDB(id, email, changeEmail, connection);
+            DAOUtil.changeInDB(id, email, changeEmail, connection);
         } catch (SQLException e) {
             throw new DAOException("Cannot change user email");
         } finally {
@@ -110,7 +110,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         try {
             connection = connectionPool.getConnection();
             String changePhone = bundle.getString(USER_INFO_CHANGE_PHONE);
-            changeInDB(id, phone, changePhone, connection);
+            DAOUtil.changeInDB(id, phone, changePhone, connection);
         } catch (SQLException e) {
             throw new DAOException("Cannot change user phone");
         } finally {
@@ -132,10 +132,5 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         }
     }
 
-    private void changeInDB(int id, String value, String query, Connection connection) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, value);
-        statement.setInt(2, id);
-        statement.executeUpdate();
-    }
+
 }

@@ -75,10 +75,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = connectionPool.getConnection();
             String change = bundle.getString(USER_UPDATE_LOGIN);
-            PreparedStatement statement = connection.prepareStatement(change);
-            statement.setString(1, login);
-            statement.setInt(2, userId);
-            statement.executeUpdate();
+            DAOUtil.changeInDB(userId,login,change,connection);
         } catch (SQLException e) {
             throw new DAOException("Cannot update users login");
         } finally {
@@ -92,11 +89,8 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = connectionPool.getConnection();
             String changePass = bundle.getString(USER_UPDATE_PASSWORD);
-            PreparedStatement statement = connection.prepareStatement(changePass);
             newPassword = DAOUtil.createPassword(newPassword);
-            statement.setString(1, newPassword);
-            statement.setInt(2, userId);
-            statement.executeUpdate();
+            DAOUtil.changeInDB(userId,newPassword,changePass,connection);
         } catch (SQLException e) {
             throw new DAOException("Cannot update users password");
         } catch (NoSuchAlgorithmException e) {

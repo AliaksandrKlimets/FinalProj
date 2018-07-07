@@ -127,10 +127,10 @@ public class DAOUtil {
             order.setDeclineReason(resultSet.getString(column++));
             order.setPaymentState(resultSet.getString(column).toUpperCase());
         }
-    return order;
+        return order;
     }
 
-    public static List<Order> createOrderListFromDB(ResultSet resultSet) throws SQLException{
+    public static List<Order> createOrderListFromDB(ResultSet resultSet) throws SQLException {
         List<Order> orderList = new ArrayList<>();
         while (resultSet.next()) {
             int column = 1;
@@ -152,24 +152,24 @@ public class DAOUtil {
         return orderList;
     }
 
-    public static Fine createFineFromDB(ResultSet resultSet) throws SQLException{
+    public static Fine createFineFromDB(ResultSet resultSet) throws SQLException {
         Fine fine = new Fine();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int column = 1;
-         fine.setFineId(resultSet.getInt(column++));
-         fine.setUserId(resultSet.getInt(column++));
-         fine.setCarId(resultSet.getInt(column++));
-         fine.setCause(resultSet.getString(column++));
-         fine.setRepairBill(resultSet.getDouble(column++));
-         fine.setState(resultSet.getString(column++).toUpperCase());
-         fine.setDueDate(resultSet.getDate(column));
+            fine.setFineId(resultSet.getInt(column++));
+            fine.setUserId(resultSet.getInt(column++));
+            fine.setCarId(resultSet.getInt(column++));
+            fine.setCause(resultSet.getString(column++));
+            fine.setRepairBill(resultSet.getDouble(column++));
+            fine.setState(resultSet.getString(column++).toUpperCase());
+            fine.setDueDate(resultSet.getDate(column));
         }
         return fine;
     }
 
-    public static List<Fine> createFineListFromDB(ResultSet resultSet) throws SQLException{
+    public static List<Fine> createFineListFromDB(ResultSet resultSet) throws SQLException {
         List<Fine> fineList = new ArrayList<>();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int column = 1;
             Fine fine = new Fine();
             fine.setFineId(resultSet.getInt(column++));
@@ -184,10 +184,10 @@ public class DAOUtil {
         return fineList;
     }
 
-    public static List<OrderedCar> createOrderedCarListFromDB(ResultSet resultSet) throws SQLException{
+    public static List<OrderedCar> createOrderedCarListFromDB(ResultSet resultSet) throws SQLException {
         List<OrderedCar> orderedCarList = new ArrayList<>();
-        while(resultSet.next()){
-            int column =1;
+        while (resultSet.next()) {
+            int column = 1;
             OrderedCar orderedCar = new OrderedCar();
             orderedCar.setCarOrderId(resultSet.getInt(column++));
             orderedCar.setCarId(resultSet.getInt(column++));
@@ -199,9 +199,9 @@ public class DAOUtil {
         return orderedCarList;
     }
 
-    public static List<Service> createServiceListFromDB(ResultSet resultSet)throws SQLException{
+    public static List<Service> createServiceListFromDB(ResultSet resultSet) throws SQLException {
         List<Service> serviceList = new ArrayList<>();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int column = 1;
             Service service = new Service();
             service.setServiceId(resultSet.getInt(column++));
@@ -229,9 +229,16 @@ public class DAOUtil {
         return password;
     }
 
-    public static void deleteEntity(int id, String query, Connection connection) throws SQLException{
+    public static void deleteEntity(int id, String query, Connection connection) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1,id);
+        statement.setInt(1, id);
+        statement.executeUpdate();
+    }
+
+    public static void changeInDB(int id, String value, String query, Connection connection) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, value);
+        statement.setInt(2, id);
         statement.executeUpdate();
     }
 
