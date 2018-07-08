@@ -17,8 +17,8 @@ public class Fine {
 
     }
 
-    enum State {
-        PAYDED("Оплачено"), NOT_PAYDED("Не оплачено");
+    public enum State {
+        PAID("Оплачено"), UNPAID("Не оплачено");
 
         State(String value) {
             this.value = value;

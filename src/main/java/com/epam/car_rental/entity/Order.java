@@ -36,7 +36,7 @@ public class Order {
     }
 
     public enum PaymentState {
-        PAYDED("Оплачено"), NOT_PAYDED("Не оплачено");
+        PAID("Оплачено"), UNPAID("Не оплачено");
 
         PaymentState(String value) {
             this.value = value;

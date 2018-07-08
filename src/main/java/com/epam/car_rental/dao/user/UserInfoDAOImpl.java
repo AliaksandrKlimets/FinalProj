@@ -126,7 +126,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
             String delete = bundle.getString(USER_INFO_DELETE_INFO);
             DAOUtil.deleteEntity(id,delete,connection);
         } catch (SQLException e) {
-            throw new DAOException("Cannot delete user info");
+            throw new DAOException("Error while deleting user info");
         } finally {
             connectionPool.closeConnection(connection);
         }
