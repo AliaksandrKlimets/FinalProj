@@ -38,4 +38,17 @@ public class SQLQuery {
     public static final String FINE_DELETE_FINE = "fine.delete.fine";
     public static final String FINE_ADD_FINE = "fine.add.fine";
 
+    public static final String ORDER_GET_ORDER = "order.get.order";
+    public static final String ORDER_GET_ORDERS = "order.get.orders";
+    public static final String ORDER_GET_USER_ORDERS = "order.get.user.orders";
+    public static final String ORDER_CHANGE_PAYMENT_STATE = "order.change.payment.state";
+    public static final String ORDER_CHANGE_ORDER_STATE = "order.change.order.state";
+    public static final String ORDER_ADD_DECLINE_REASON = "order.add.decline.reason";
+    public static final String ORDER_ADD_ORDER = "order.add.order";
+    public static final String ORDER_DELETE_ORDER = "order.delete.order";
+
+    public static final String SERVICE_GET_SERVICES ="service.get.services";
+    public static final String SERVICE_ADD_SERVICE ="service.add.service";
+    public static final String SERVICE_DELETE_SERVICES ="service.delete.service";
+    public static final String SERVICE_GET_CARS_BY_SERVICE ="service.get.cars.by.service";
 }

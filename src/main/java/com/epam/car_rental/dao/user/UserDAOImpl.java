@@ -6,6 +6,7 @@ import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.User;
 import com.epam.car_rental.service.user.UserExistException;
 import com.epam.car_rental.util.DAOUtil;
+import org.apache.log4j.Logger;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
 import static com.epam.car_rental.dao.SQLQuery.*;
 
 public class UserDAOImpl implements UserDAO {
-
+    private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
     private ResourceBundle bundle = ResourceBundle.getBundle("query.user");
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
@@ -54,14 +55,17 @@ public class UserDAOImpl implements UserDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (!resultSet.isBeforeFirst()) {
+                LOGGER.error("Cannot find user");
                 throw new EntityNotFoundException("Cannot find user");
             }
 
             return DAOUtil.createUserFromDB(resultSet);
 
         } catch (SQLException e) {
+            LOGGER.error("SQL error while search users",e);
             throw new DAOException("SQL error while search users");
         } catch (NoSuchAlgorithmException e) {
+            LOGGER.error("Cannot convert password",e);
             throw new DAOException("Cannot convert password");
         } finally {
             connectionPool.closeConnection(connection);
@@ -77,6 +81,7 @@ public class UserDAOImpl implements UserDAO {
             String change = bundle.getString(USER_UPDATE_LOGIN);
             DAOUtil.changeInDB(userId,login,change,connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot update users login",e);
             throw new DAOException("Cannot update users login");
         } finally {
             connectionPool.closeConnection(connection);
@@ -92,8 +97,10 @@ public class UserDAOImpl implements UserDAO {
             newPassword = DAOUtil.createPassword(newPassword);
             DAOUtil.changeInDB(userId,newPassword,changePass,connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot update users password",e);
             throw new DAOException("Cannot update users password");
         } catch (NoSuchAlgorithmException e) {
+            LOGGER.error("Cannot convert password",e);
             throw new DAOException("Cannot convert password");
         } finally {
             connectionPool.closeConnection(connection);
@@ -111,14 +118,17 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.isBeforeFirst()) {
+                LOGGER.error("User exist");
                 throw new UserExistException("User exist");
             }
 
             password = DAOUtil.createPassword(password);
             addUserToDB(login,password, role, connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot add user to DB",e);
             throw new DAOException("Cannot add user to DB");
         } catch (NoSuchAlgorithmException e) {
+            LOGGER.error("Cannot convert password",e);
             throw new DAOException("Cannot convert password");
         } finally {
             connectionPool.closeConnection(connection);
@@ -144,6 +154,7 @@ public class UserDAOImpl implements UserDAO {
             String delete = bundle.getString(USER_DELETE_USER);
             DAOUtil.deleteEntity(id,delete,connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot delete user",e);
             throw new DAOException("Cannot delete user");
         } finally {
             connectionPool.closeConnection(connection);

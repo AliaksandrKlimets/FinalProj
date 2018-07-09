@@ -21,7 +21,7 @@ public class Order {
     private PaymentState paymentState;
 
 
-    enum OrderState {
+    public enum OrderState {
         WAITING("В обработке"), ACCEPT("Одобрено"), DECLINE("Отклонено");
 
         OrderState(String value) {

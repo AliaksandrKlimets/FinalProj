@@ -5,6 +5,7 @@ import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.Fine;
 import com.epam.car_rental.service.info.FineNotFoundException;
 import com.epam.car_rental.util.DAOUtil;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.util.ResourceBundle;
 import static com.epam.car_rental.dao.SQLQuery.*;
 
 public class FineDAOImpl implements FineDAO {
+    private static final Logger LOGGER = Logger.getLogger(FineDAOImpl.class);
     private ResourceBundle bundle = ResourceBundle.getBundle("query.info.fine");
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
@@ -28,6 +30,7 @@ public class FineDAOImpl implements FineDAO {
             String getUnpaidFines = bundle.getString(FINE_GET_FINES_UNPAID);
             return DAOUtil.createFineListFromDB(getFineSet(getUnpaidFines, connection));
         } catch (SQLException e) {
+            LOGGER.error("Cannot get unpaid fine list",e);
             throw new DAOException("Cannot get unpaid fine list");
         } finally {
             connectionPool.closeConnection(connection);
@@ -42,6 +45,7 @@ public class FineDAOImpl implements FineDAO {
             String getFines = bundle.getString(FINE_GET_FINES);
             return DAOUtil.createFineListFromDB(getFineSet(getFines, connection));
         } catch (SQLException e) {
+            LOGGER.error("Cannot get fine list",e);
             throw new DAOException("Cannot get fine list");
         } finally {
             connectionPool.closeConnection(connection);
@@ -64,11 +68,13 @@ public class FineDAOImpl implements FineDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (!resultSet.isBeforeFirst()) {
+                LOGGER.error("Cannot find fine by id");
                 throw new FineNotFoundException("Cannot find fine by id");
             }
 
             return DAOUtil.createFineFromDB(resultSet);
         } catch (SQLException e) {
+            LOGGER.error("Error while getting fine by id",e);
             throw new DAOException("Error while getting fine by id");
         } finally {
             connectionPool.closeConnection(connection);
@@ -86,6 +92,7 @@ public class FineDAOImpl implements FineDAO {
             ResultSet resultSet = statement.executeQuery();
             return DAOUtil.createFineListFromDB(resultSet);
         } catch (SQLException e) {
+            LOGGER.error("Error while getting fine list by user id",e);
             throw new DAOException("Error while getting fine list by user id");
         } finally {
             connectionPool.closeConnection(connection);
@@ -95,13 +102,14 @@ public class FineDAOImpl implements FineDAO {
     @Override
     public void changePaymentState(int fineId, Fine.State state) throws DAOException {
         Connection connection = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             String change = bundle.getString(FINE_CHANGE_PAYMENT_STATE);
-            DAOUtil.changeInDB(fineId,state.toString(),change,connection);
-        }catch (SQLException e){
+            DAOUtil.changeInDB(fineId, state.toString(), change, connection);
+        } catch (SQLException e) {
+            LOGGER.error("Error while changing state",e);
             throw new DAOException("Error while changing state");
-        }finally {
+        } finally {
             connectionPool.closeConnection(connection);
         }
 
@@ -113,8 +121,9 @@ public class FineDAOImpl implements FineDAO {
         try {
             connection = connectionPool.getConnection();
             String delete = bundle.getString(FINE_DELETE_FINE);
-            DAOUtil.deleteEntity(fineId,delete,connection);
+            DAOUtil.deleteEntity(fineId, delete, connection);
         } catch (SQLException e) {
+            LOGGER.error("Error while deleting fine",e);
             throw new DAOException("Error while deleting fine");
         } finally {
             connectionPool.closeConnection(connection);
@@ -124,19 +133,20 @@ public class FineDAOImpl implements FineDAO {
     @Override
     public void addFine(int userId, int carId, String cause, double bill, Date dueDate) throws DAOException {
         Connection connection = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             String add = bundle.getString(FINE_ADD_FINE);
             PreparedStatement statement = connection.prepareStatement(add);
-            statement.setInt(1,userId);
-            statement.setInt(2,carId);
-            statement.setString(3,cause);
-            statement.setDouble(4,bill);
-            statement.setDate(5,dueDate);
+            statement.setInt(1, userId);
+            statement.setInt(2, carId);
+            statement.setString(3, cause);
+            statement.setDouble(4, bill);
+            statement.setDate(5, dueDate);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
+            LOGGER.error("Error while adding fine",e);
             throw new DAOException("Error while adding fine");
-        }finally {
+        } finally {
             connectionPool.closeConnection(connection);
         }
     }

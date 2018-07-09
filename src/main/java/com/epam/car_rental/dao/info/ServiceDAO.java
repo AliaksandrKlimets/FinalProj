@@ -12,7 +12,7 @@ public interface ServiceDAO {
 
     List<Car> getCarsByService(Service.Services service) throws DAOException;
 
-    void addService(Service.Services service, double costPerHour, double oneToSeven, double eightToFifteen, double sixteenAndMore) throws DAOException;
+    void addService(Service.Services service, int carId, double costPerHour, double oneToSeven, double eightToFifteen, double sixteenAndMore) throws DAOException;
 
     void deleteService(int serviceId) throws DAOException;
 

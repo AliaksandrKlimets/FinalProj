@@ -5,6 +5,7 @@ import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.UserInfo;
 import com.epam.car_rental.util.DAOUtil;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.util.ResourceBundle;
 import static com.epam.car_rental.dao.SQLQuery.*;
 
 public class UserInfoDAOImpl implements UserInfoDAO {
-
+    private static final Logger LOGGER = Logger.getLogger(UserInfoDAOImpl.class);
     private ResourceBundle bundle = ResourceBundle.getBundle("query.user");
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
@@ -31,10 +32,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (!resultSet.isBeforeFirst()) {
+                LOGGER.error("Cannot find user info by id");
                 throw new EntityNotFoundException("Cannot find user info by id");
             }
             return DAOUtil.createUserInfoFromDB(resultSet);
         } catch (SQLException e) {
+            LOGGER.error("SQL error while searching user info",e);
             throw new DAOException("SQL error while searching user info");
         } finally {
             connectionPool.closeConnection(connection);
@@ -56,6 +59,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
             statement.setDate(6, birthDate);
             statement.executeUpdate();
         } catch (SQLException e) {
+            LOGGER.error("Cannot add user info",e);
             throw new DAOException("Cannot add user info");
         } finally {
             connectionPool.closeConnection(connection);
@@ -70,6 +74,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
             String changeName = bundle.getString(USER_INFO_CHANGE_NAME);
             DAOUtil.changeInDB(id, name, changeName, connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot change user name",e);
             throw new DAOException("Cannot change user name");
         } finally {
             connectionPool.closeConnection(connection);
@@ -84,6 +89,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
             String changeSurname = bundle.getString(USER_INFO_CHANGE_SURNAME);
             DAOUtil.changeInDB(id, surname, changeSurname, connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot change user surname",e);
             throw new DAOException("Cannot change user surname");
         } finally {
             connectionPool.closeConnection(connection);
@@ -98,6 +104,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
             String changeEmail = bundle.getString(USER_INFO_CHANGE_EMAIL);
             DAOUtil.changeInDB(id, email, changeEmail, connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot change user email",e);
             throw new DAOException("Cannot change user email");
         } finally {
             connectionPool.closeConnection(connection);
@@ -112,6 +119,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
             String changePhone = bundle.getString(USER_INFO_CHANGE_PHONE);
             DAOUtil.changeInDB(id, phone, changePhone, connection);
         } catch (SQLException e) {
+            LOGGER.error("Cannot change user phone",e);
             throw new DAOException("Cannot change user phone");
         } finally {
             connectionPool.closeConnection(connection);
@@ -124,13 +132,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         try {
             connection = connectionPool.getConnection();
             String delete = bundle.getString(USER_INFO_DELETE_INFO);
-            DAOUtil.deleteEntity(id,delete,connection);
+            DAOUtil.deleteEntity(id, delete, connection);
         } catch (SQLException e) {
+            LOGGER.error("Error while deleting user info",e);
             throw new DAOException("Error while deleting user info");
         } finally {
             connectionPool.closeConnection(connection);
         }
     }
-
-
 }
