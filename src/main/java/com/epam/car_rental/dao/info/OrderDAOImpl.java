@@ -1,6 +1,7 @@
 package com.epam.car_rental.dao.info;
 
 import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.Order;
 import com.epam.car_rental.service.info.OrderNotFoundException;
@@ -40,7 +41,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public Order getOrder(int orderId) throws DAOException, OrderNotFoundException {
+    public Order getOrder(int orderId) throws DAOException, EntityNotFoundException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
@@ -51,7 +52,7 @@ public class OrderDAOImpl implements OrderDAO {
 
             if (!resultSet.isBeforeFirst()) {
                 LOGGER.error("Cannot find order");
-                throw new OrderNotFoundException("Cannot find order");
+                throw new EntityNotFoundException("Cannot find order");
             }
 
             return DAOUtil.createOrderFromDB(resultSet);

@@ -1,10 +1,10 @@
 package com.epam.car_rental.dao.user;
 
 import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.dao.EntityExistException;
 import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.User;
-import com.epam.car_rental.service.user.UserExistException;
 import com.epam.car_rental.util.DAOUtil;
 import org.apache.log4j.Logger;
 
@@ -108,7 +108,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void addUser(String login, String password, User.Role role) throws DAOException, UserExistException {
+    public void addUser(String login, String password, User.Role role) throws DAOException, EntityExistException {
         Connection connection = null;
 
         try {
@@ -119,7 +119,7 @@ public class UserDAOImpl implements UserDAO {
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.isBeforeFirst()) {
                 LOGGER.error("User exist");
-                throw new UserExistException("User exist");
+                throw new EntityExistException("User exist");
             }
 
             password = DAOUtil.createPassword(password);

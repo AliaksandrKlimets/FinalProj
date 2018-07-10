@@ -1,9 +1,9 @@
 package com.epam.car_rental.dao.info;
 
 import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.Fine;
-import com.epam.car_rental.service.info.FineNotFoundException;
 import com.epam.car_rental.util.DAOUtil;
 import org.apache.log4j.Logger;
 
@@ -58,7 +58,7 @@ public class FineDAOImpl implements FineDAO {
     }
 
     @Override
-    public Fine getFine(int fineId) throws DAOException, FineNotFoundException {
+    public Fine getFine(int fineId) throws DAOException, EntityNotFoundException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
@@ -69,7 +69,7 @@ public class FineDAOImpl implements FineDAO {
 
             if (!resultSet.isBeforeFirst()) {
                 LOGGER.error("Cannot find fine by id");
-                throw new FineNotFoundException("Cannot find fine by id");
+                throw new EntityNotFoundException("Cannot find fine by id");
             }
 
             return DAOUtil.createFineFromDB(resultSet);

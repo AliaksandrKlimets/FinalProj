@@ -1,8 +1,8 @@
 package com.epam.car_rental.dao.info;
 
 import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.entity.Fine;
-import com.epam.car_rental.service.info.FineNotFoundException;
 
 import java.sql.Date;
 import java.util.List;
@@ -13,7 +13,7 @@ public interface FineDAO {
 
     List<Fine> getUserFine(int userId) throws DAOException;
 
-    Fine getFine(int fineId) throws DAOException, FineNotFoundException;
+    Fine getFine(int fineId) throws DAOException, EntityNotFoundException;
 
     void changePaymentState(int fineId, Fine.State state) throws DAOException;
 

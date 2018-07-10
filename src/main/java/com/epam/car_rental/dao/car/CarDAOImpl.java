@@ -1,10 +1,10 @@
 package com.epam.car_rental.dao.car;
 
 import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.dao.EntityExistException;
 import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.Car;
-import com.epam.car_rental.service.car.CarExistException;
 import com.epam.car_rental.util.DAOUtil;
 import org.apache.log4j.Logger;
 
@@ -82,7 +82,7 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public void addCar(String model, String year, String consumption, double capacity,
                        Car.Type type, String transmission, Car.FuelType fuelType,
-                       String image, String addInfo) throws CarExistException, DAOException {
+                       String image, String addInfo) throws EntityExistException, DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
@@ -92,7 +92,7 @@ public class CarDAOImpl implements CarDAO {
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.isBeforeFirst()) {
                 LOGGER.error("Car exist");
-                throw new CarExistException("Car exist");
+                throw new EntityExistException("Car exist");
             }
             addCarToDB(model, year, consumption, capacity, type, transmission, fuelType, image, addInfo, connection);
         } catch (SQLException e) {

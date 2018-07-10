@@ -1,8 +1,8 @@
 package com.epam.car_rental.dao.info;
 
 import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.entity.Order;
-import com.epam.car_rental.service.info.OrderNotFoundException;
 
 import java.sql.Date;
 import java.util.List;
@@ -11,7 +11,7 @@ public interface OrderDAO {
 
     List<Order> getOrders() throws DAOException;
 
-    Order getOrder(int orderId) throws DAOException, OrderNotFoundException;
+    Order getOrder(int orderId) throws DAOException, EntityNotFoundException;
 
     void deleteOrder(int orderId) throws DAOException;
 
