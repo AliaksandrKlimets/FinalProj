@@ -19,7 +19,7 @@ public interface FineDAO {
 
     void deleteFine(int fineId) throws DAOException;
 
-    void addFine(int userId, int carId, String cause, double bill, Date dueDate) throws DAOException;
+    void addFine(Fine fine) throws DAOException;
 
     List<Fine> getUnpaidFines()throws DAOException;
 

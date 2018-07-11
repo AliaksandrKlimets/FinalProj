@@ -131,17 +131,17 @@ public class FineDAOImpl implements FineDAO {
     }
 
     @Override
-    public void addFine(int userId, int carId, String cause, double bill, Date dueDate) throws DAOException {
+    public void addFine(Fine fine) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String add = bundle.getString(FINE_ADD_FINE);
             PreparedStatement statement = connection.prepareStatement(add);
-            statement.setInt(1, userId);
-            statement.setInt(2, carId);
-            statement.setString(3, cause);
-            statement.setDouble(4, bill);
-            statement.setDate(5, dueDate);
+            statement.setInt(1, fine.getUserId());
+            statement.setInt(2, fine.getCarId());
+            statement.setString(3, fine.getCause());
+            statement.setDouble(4, fine.getRepairBill());
+            statement.setDate(5, fine.getDueDate());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error("Error while adding fine",e);

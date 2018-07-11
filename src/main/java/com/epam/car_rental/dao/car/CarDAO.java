@@ -13,9 +13,7 @@ public interface CarDAO {
 
     void deleteCar(int id) throws DAOException;
 
-    void addCar(String model, String year, String consumption, double capacity,
-                Car.Type type, String transmission, Car.FuelType fuelType,
-                String image, String addInfo) throws EntityExistException, DAOException;
+    void addCar(Car car) throws EntityExistException, DAOException;
 
     List<Car> getCarByType(Car.Type type) throws DAOException;
 }

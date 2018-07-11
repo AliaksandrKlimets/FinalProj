@@ -80,21 +80,19 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public void addCar(String model, String year, String consumption, double capacity,
-                       Car.Type type, String transmission, Car.FuelType fuelType,
-                       String image, String addInfo) throws EntityExistException, DAOException {
+    public void addCar(Car car) throws EntityExistException, DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String check = bundle.getString(CAR_CHECK_CAR);
             PreparedStatement statement = connection.prepareStatement(check);
-            statement.setString(1, model);
+            statement.setString(1, car.getModel());
             ResultSet resultSet = statement.executeQuery();
-            if (!resultSet.isBeforeFirst()) {
+            if (resultSet.isBeforeFirst()) {
                 LOGGER.error("Car exist");
                 throw new EntityExistException("Car exist");
             }
-            addCarToDB(model, year, consumption, capacity, type, transmission, fuelType, image, addInfo, connection);
+            addCarToDB(car, connection);
         } catch (SQLException e) {
             LOGGER.error("Error while adding car to db",e);
             throw new DAOException("Error while adding car to db");
@@ -104,19 +102,17 @@ public class CarDAOImpl implements CarDAO {
 
     }
 
-    private void addCarToDB(String model, String year, String consumption, double capacity,
-                            Car.Type type, String transmission, Car.FuelType fuelType,
-                            String image, String addInfo, Connection connection) throws SQLException {
+    private void addCarToDB(Car car, Connection connection) throws SQLException {
         String add = bundle.getString(CAR_ADD_CAR);
         PreparedStatement statement = connection.prepareStatement(add);
-        statement.setString(1, model);
-        statement.setString(2, year);
-        statement.setDouble(4, capacity);
-        statement.setString(5, type.toString());
-        statement.setString(6, transmission);
-        statement.setString(7, fuelType.toString());
-        statement.setString(8, image);
-        statement.setString(9, addInfo);
+        statement.setString(1, car.getModel());
+        statement.setString(2, car.getYear());
+        statement.setDouble(4, car.getEngineCapacity());
+        statement.setString(5, car.getType().toString());
+        statement.setString(6, car.getTransmission());
+        statement.setString(7, car.getFuelType().toString());
+        statement.setString(8, car.getImage());
+        statement.setString(9, car.getAddInfo());
         statement.executeUpdate();
     }
 

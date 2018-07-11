@@ -19,16 +19,40 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void addCarToOrderedCarList(int carId, int userId, Date beginDate, Date endDate) throws DAOException {
+    public void isDateAvailable(Date begin, Date end) throws DAOException, DateNotAvailableException{
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String isAvailable = bundle.getString(ORDERED_CAR_DATE_AVAILABLE);
+            PreparedStatement statement = connection.prepareStatement(isAvailable);
+            statement.setDate(1,begin);
+            statement.setDate(2,end);
+            statement.setDate(3,begin);
+            statement.setDate(4,end);
+            ResultSet set = statement.executeQuery();
+            if(set.isBeforeFirst()){
+                LOGGER.error("No available date");
+                throw new DateNotAvailableException("No available date");
+            }
+        }catch (SQLException e){
+            LOGGER.error("Cannot check date available");
+            throw new DAOException("Cannot check date available");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void addCarToOrderedCarList(OrderedCar orderedCar) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String addCarToList = bundle.getString(ORDERED_CAR_ADD_CAR_ORDER);
             PreparedStatement statement = connection.prepareStatement(addCarToList);
-            statement.setInt(1, carId);
-            statement.setInt(2, userId);
-            statement.setDate(3, beginDate);
-            statement.setDate(4, endDate);
+            statement.setInt(1, orderedCar.getCarId());
+            statement.setInt(2, orderedCar.getUserId());
+            statement.setDate(3, orderedCar.getBeginDate());
+            statement.setDate(4, orderedCar.getEndDate());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error("Cannot add car to ordered car list",e);

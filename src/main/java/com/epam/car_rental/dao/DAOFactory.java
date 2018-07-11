@@ -7,14 +7,11 @@ import com.epam.car_rental.dao.car.OrderedCarDAOImpl;
 import com.epam.car_rental.dao.info.*;
 import com.epam.car_rental.dao.user.UserDAO;
 import com.epam.car_rental.dao.user.UserDAOImpl;
-import com.epam.car_rental.dao.user.UserInfoDAO;
-import com.epam.car_rental.dao.user.UserInfoDAOImpl;
 
 public class DAOFactory {
     private static volatile DAOFactory instance;
 
     private final UserDAO userDAO = new UserDAOImpl();
-    private final UserInfoDAO userInfoDAO = new UserInfoDAOImpl();
     private final CarDAO carDAO = new CarDAOImpl();
     private final OrderedCarDAO orderedCarDAO = new OrderedCarDAOImpl();
     private final FineDAO fineDAO = new FineDAOImpl();
@@ -31,16 +28,8 @@ public class DAOFactory {
         return instance;
     }
 
-    public static void setInstance(DAOFactory instance) {
-        DAOFactory.instance = instance;
-    }
-
     public UserDAO getUserDAO() {
         return userDAO;
-    }
-
-    public UserInfoDAO getUserInfoDAO() {
-        return userInfoDAO;
     }
 
     public CarDAO getCarDAO() {

@@ -21,7 +21,13 @@ public class DAOUtil {
             user.setUserId(resultSet.getInt(column++));
             user.setLogin(resultSet.getString(column++));
             user.setPassword(resultSet.getString(column++));
-            user.setRole(resultSet.getString(column));
+            user.setRole(resultSet.getString(column++));
+            user.setName(resultSet.getString(column++));
+            user.setSurname(resultSet.getString(column++));
+            user.setEmail(resultSet.getString(column++));
+            user.setPhone(resultSet.getString(column++));
+            user.setBirthDate(resultSet.getDate(column++));
+            user.setRegistrationDate(resultSet.getDate(column));
         }
         return user;
     }
@@ -34,42 +40,16 @@ public class DAOUtil {
             user.setUserId(resultSet.getInt(column++));
             user.setLogin(resultSet.getString(column++));
             user.setPassword(resultSet.getString(column++));
-            user.setRole(resultSet.getString(column));
+            user.setRole(resultSet.getString(column++));
+            user.setName(resultSet.getString(column++));
+            user.setSurname(resultSet.getString(column++));
+            user.setEmail(resultSet.getString(column++));
+            user.setPhone(resultSet.getString(column++));
+            user.setBirthDate(resultSet.getDate(column++));
+            user.setRegistrationDate(resultSet.getDate(column));
             users.add(user);
         }
         return users;
-    }
-
-    public static UserInfo createUserInfoFromDB(ResultSet resultSet) throws SQLException {
-        UserInfo userInfo = new UserInfo();
-        while (resultSet.next()) {
-            int column = 1;
-            userInfo.setUserId(resultSet.getInt(column++));
-            userInfo.setName(resultSet.getString(column++));
-            userInfo.setSurname(resultSet.getString(column++));
-            userInfo.setEmail(resultSet.getString(column++));
-            userInfo.setPhone(resultSet.getString(column++));
-            userInfo.setBirthDate(resultSet.getDate(column++));
-            userInfo.setRegistrationDate(resultSet.getDate(column));
-        }
-        return userInfo;
-    }
-
-    public static List<UserInfo> createUserInfoListFromDB(ResultSet resultSet) throws SQLException {
-        List<UserInfo> userInfoList = new ArrayList<>();
-        while (resultSet.next()) {
-            UserInfo userInfo = new UserInfo();
-            int column = 1;
-            userInfo.setUserId(resultSet.getInt(column++));
-            userInfo.setName(resultSet.getString(column++));
-            userInfo.setSurname(resultSet.getString(column++));
-            userInfo.setEmail(resultSet.getString(column++));
-            userInfo.setPhone(resultSet.getString(column++));
-            userInfo.setBirthDate(resultSet.getDate(column++));
-            userInfo.setRegistrationDate(resultSet.getDate(column));
-            userInfoList.add(userInfo);
-        }
-        return userInfoList;
     }
 
     public static Car createCarFromDB(ResultSet resultSet) throws SQLException {

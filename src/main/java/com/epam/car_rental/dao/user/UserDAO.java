@@ -16,7 +16,15 @@ public interface UserDAO {
 
     void changePassword(int userId, String newPassword) throws DAOException;
 
-    void addUser(String login, String password, User.Role role) throws DAOException,EntityExistException;
+    void changeName(int id, String name) throws DAOException;
+
+    void changeSurname(int id, String surname) throws DAOException;
+
+    void changeEmail(int id, String email) throws DAOException;
+
+    void changePhone(int id, String phone) throws DAOException;
+
+    void addUser(User user) throws DAOException,EntityExistException;
 
     void deleteUser(int id) throws DAOException, UserNotFoundException;
 

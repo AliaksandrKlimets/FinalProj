@@ -6,6 +6,7 @@ import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.Order;
 import com.epam.car_rental.service.info.OrderNotFoundException;
 import com.epam.car_rental.util.DAOUtil;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -80,21 +81,20 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void addOrder(int userId, int serviceId, String passportNumber, String idNumber,
-                         Date dateOfExpiry, Date serviceStart, Date serviceEnd, double serviceCost) throws DAOException {
+    public void addOrder(Order order) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String add = bundle.getString(ORDER_ADD_ORDER);
             PreparedStatement statement = connection.prepareStatement(add);
-            statement.setInt(1, userId);
-            statement.setInt(2, serviceId);
-            statement.setString(3, passportNumber);
-            statement.setString(4, idNumber);
-            statement.setDate(5, dateOfExpiry);
-            statement.setDate(6, serviceStart);
-            statement.setDate(7, serviceEnd);
-            statement.setDouble(8, serviceCost);
+            statement.setInt(1, order.getUserId());
+            statement.setInt(2, order.getServiceId());
+            statement.setString(3, order.getPassportNumber());
+            statement.setString(4, order.getIdentificationNumber());
+            statement.setDate(5, order.getDateOfExpiry());
+            statement.setDate(6, order.getServiceStart());
+            statement.setDate(7, order.getServiceEnd());
+            statement.setDouble(8, order.getServiceCost());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error("Error while adding order to db",e);

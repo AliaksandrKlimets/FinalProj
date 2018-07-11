@@ -57,22 +57,24 @@ public class ServiceDAOImpl implements ServiceDAO {
     }
 
     @Override
-    public void addService(Service.Services service,int carId, double costPerHour, double oneToSeven, double eightToFifteen, double sixteenAndMore) throws DAOException {
+    public void addService(Service service) throws DAOException {
         Connection connection = null;
         try{
             connection = connectionPool.getConnection();
             String add = bundle.getString(SERVICE_ADD_SERVICE);
             PreparedStatement statement = connection.prepareStatement(add);
-            statement.setString(1,service.toString());
-            statement.setInt(2,carId);
-            statement.setDouble(3,costPerHour);
-            statement.setDouble(4,oneToSeven);
-            statement.setDouble(5,eightToFifteen);
-            statement.setDouble(6,sixteenAndMore);
+            statement.setString(1,service.getService().toString());
+            statement.setInt(2,service.getCarId());
+            statement.setDouble(3,service.getCostPerHour());
+            statement.setDouble(4,service.getOneToSevenDays());
+            statement.setDouble(5,service.getEightToFifteen());
+            statement.setDouble(6,service.getSixteenAndMore());
             statement.executeUpdate();
         }catch (SQLException e){
             LOGGER.error("Error while adding service to db",e);
             throw new DAOException("Error while adding service to db");
+        }finally {
+            connectionPool.closeConnection(connection);
         }
     }
 

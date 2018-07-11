@@ -15,8 +15,7 @@ public interface OrderDAO {
 
     void deleteOrder(int orderId) throws DAOException;
 
-    void addOrder(int UserId, int serviceId, String passportNumber, String idNumber,
-                  Date dateOfExpiry, Date serviceStart, Date serviceEnd, double serviceCost) throws DAOException;
+    void addOrder(Order order) throws DAOException;
 
     void changeOrderState(int orderId, Order.OrderState state) throws DAOException;
 
