@@ -10,21 +10,21 @@ public interface UserService {
 
     User getUser(String login, String password) throws ServiceException;
 
-    void changeLogin(int userId, String login) throws ServiceException;
+    void changeLogin(String userId, String login) throws ServiceException;
 
-    void changePassword(int userId, String newPassword) throws ServiceException;
+    void changePassword(String userId, String newPassword) throws ServiceException;
 
-    void changeName(int id, String name) throws ServiceException;
+    void changeName(String id, String name) throws ServiceException;
 
-    void changeSurname(int id, String surname) throws ServiceException;
+    void changeSurname(String id, String surname) throws ServiceException;
 
-    void changeEmail(int id, String email) throws ServiceException;
+    void changeEmail(String id, String email) throws ServiceException;
 
-    void changePhone(int id, String phone) throws ServiceException;
+    void changePhone(String id, String phone) throws ServiceException;
 
     void addUser(User user, String birthDate) throws ServiceException;
 
-    void deleteUser(int id) throws ServiceException;
+    void deleteUser(String id) throws ServiceException;
 
     long getUserIdByLogin(String login) throws ServiceException;
 

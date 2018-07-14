@@ -10,7 +10,7 @@ public interface FineDAO {
 
     List<Fine> getFines() throws DAOException;
 
-    List<Fine> getUserFine(int userId) throws DAOException;
+    List<Fine> getUserFines(int userId) throws DAOException;
 
     Fine getFine(int fineId) throws DAOException, EntityNotFoundException;
 

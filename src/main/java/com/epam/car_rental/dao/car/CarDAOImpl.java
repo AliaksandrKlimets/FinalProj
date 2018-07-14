@@ -80,7 +80,7 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public long getCarIdByModel(String model) throws DAOException, EntityNotFoundException {
+    public int getCarIdByModel(String model) throws DAOException, EntityNotFoundException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
@@ -93,7 +93,7 @@ public class CarDAOImpl implements CarDAO {
                 LOGGER.error("Cannot find car by model");
                 throw new EntityNotFoundException("Cannot find car by model");
             }
-            return resultSet.getLong(1);
+            return resultSet.getInt(1);
         } catch (SQLException e) {
             LOGGER.error("Cannot create car from db",e);
             throw new DAOException("Cannot create car from db");

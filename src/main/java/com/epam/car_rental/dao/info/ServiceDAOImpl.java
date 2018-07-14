@@ -95,7 +95,7 @@ public class ServiceDAOImpl implements ServiceDAO {
     }
 
     @Override
-    public long getServiceIdByModelAndService(String model, String service) throws DAOException {
+    public int getServiceIdByModelAndService(String model, String service) throws DAOException {
         Connection connection = null;
         try{
             connection = connectionPool.getConnection();
@@ -109,7 +109,7 @@ public class ServiceDAOImpl implements ServiceDAO {
                 throw new EntityNotFoundException("Cannot find service id by model");
             }
 
-            return set.getLong(1);
+            return set.getInt(1);
         }catch (SQLException e){
             LOGGER.error("Cannot get service is by model and service");
             throw new DAOException("Cannot get service is by model and service");

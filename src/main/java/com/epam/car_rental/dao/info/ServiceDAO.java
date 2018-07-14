@@ -16,6 +16,6 @@ public interface ServiceDAO {
 
     void deleteService(int serviceId) throws DAOException;
 
-    long getServiceIdByModelAndService(String model, String service) throws DAOException;
+    int getServiceIdByModelAndService(String model, String service) throws DAOException;
 
 }

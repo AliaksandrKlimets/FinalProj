@@ -81,7 +81,7 @@ public class FineDAOImpl implements FineDAO {
     }
 
     @Override
-    public List<Fine> getUserFine(int userId) throws DAOException {
+    public List<Fine> getUserFines(int userId) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();

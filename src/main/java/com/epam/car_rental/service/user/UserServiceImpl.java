@@ -10,6 +10,7 @@ import com.epam.car_rental.service.ServiceException;
 import com.epam.car_rental.service.validation.InputException;
 import com.epam.car_rental.service.validation.InvalidParametersException;
 import com.epam.car_rental.service.validation.validator.UserValidator;
+import com.epam.car_rental.service.validation.validator.Validator;
 
 import java.sql.Date;
 import java.util.List;
@@ -43,11 +44,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeLogin(int userId, String login) throws ServiceException {
+    public void changeLogin(String userId, String login) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
+            Validator.isNumber(userId);
             UserValidator.isLogin(login);
-            userDAO.changeLogin(userId, login);
+            userDAO.changeLogin(Integer.parseInt(userId), login);
         } catch (EntityExistException e) {
             throw new UserExistException(e.getMessage());
         } catch (DAOException e) {
@@ -58,11 +60,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(int userId, String newPassword) throws ServiceException {
+    public void changePassword(String userId, String newPassword) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
+            Validator.isNumber(userId);
             UserValidator.isPassword(newPassword);
-            userDAO.changePassword(userId, newPassword);
+            userDAO.changePassword(Integer.parseInt(userId), newPassword);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
@@ -71,11 +74,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeName(int id, String name) throws ServiceException {
+    public void changeName(String userId, String name) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
+            Validator.isNumber(userId);
             UserValidator.isName(name);
-            userDAO.changeName(id, name);
+            userDAO.changeName(Integer.parseInt(userId), name);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
@@ -84,11 +88,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeSurname(int id, String surname) throws ServiceException {
+    public void changeSurname(String userId, String surname) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
+            Validator.isNumber(userId);
             UserValidator.isName(surname);
-            userDAO.changeSurname(id, surname);
+            userDAO.changeSurname(Integer.parseInt(userId), surname);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
@@ -97,11 +102,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeEmail(int id, String email) throws ServiceException {
+    public void changeEmail(String  userId, String email) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
+            Validator.isNumber(userId);
             UserValidator.isEmail(email);
-            userDAO.changeEmail(id, email);
+            userDAO.changeEmail(Integer.parseInt(userId), email);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
@@ -110,11 +116,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePhone(int id, String phone) throws ServiceException {
+    public void changePhone(String userId, String phone) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
+            Validator.isNumber(userId);
             UserValidator.isPhone(phone);
-            userDAO.changePhone(id, phone);
+            userDAO.changePhone(Integer.parseInt(userId), phone);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
@@ -140,12 +147,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(int id) throws ServiceException {
+    public void deleteUser(String userId) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try{
-            userDAO.deleteUser(id);
+            Validator.isNumber(userId);
+            userDAO.deleteUser(Integer.parseInt(userId));
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
+        }catch (InputException e){
+            throw new InvalidParametersException(e.getMessage());
         }
     }
 

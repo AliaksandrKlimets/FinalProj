@@ -4,10 +4,11 @@ import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.dao.DAOFactory;
 import com.epam.car_rental.dao.EntityExistException;
 import com.epam.car_rental.dao.car.CarDAO;
+import com.epam.car_rental.dao.car.DateNotAvailableException;
 import com.epam.car_rental.dao.car.OrderedCarDAO;
-import com.epam.car_rental.dao.info.OrderDAO;
 import com.epam.car_rental.entity.Car;
 import com.epam.car_rental.entity.OrderedCar;
+import com.epam.car_rental.service.DateNotAvailableServiceException;
 import com.epam.car_rental.service.ServiceException;
 import com.epam.car_rental.service.validation.InputException;
 import com.epam.car_rental.service.validation.InvalidParametersException;
@@ -29,22 +30,28 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car getCar(int id) throws ServiceException {
+    public Car getCar(String id) throws ServiceException {
         CarDAO carDAO = DAOFactory.getInstance().getCarDAO();
         try {
-            return carDAO.getCar(id);
+            Validator.isNumber(id);
+            return carDAO.getCar(Integer.parseInt(id));
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
+        }catch (InputException e){
+            throw new InvalidParametersException(e.getMessage());
         }
     }
 
     @Override
-    public void deleteCar(int id) throws ServiceException {
+    public void deleteCar(String id) throws ServiceException {
         CarDAO carDAO = DAOFactory.getInstance().getCarDAO();
         try {
-            carDAO.deleteCar(id);
+            Validator.isNumber(id);
+            carDAO.deleteCar(Integer.parseInt(id));
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
+        }catch (InputException e){
+            throw new InvalidParametersException(e.getMessage());
         }
     }
 
@@ -81,7 +88,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public long getCarIdByModel(String model) throws ServiceException {
+    public int getCarIdByModel(String model) throws ServiceException {
         CarDAO carDAO = DAOFactory.getInstance().getCarDAO();
         try {
             CarValidator.isModel(model);
@@ -104,12 +111,15 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<OrderedCar> getCarOrders(int id) throws ServiceException {
+    public List<OrderedCar> getCarOrders(String id) throws ServiceException {
         OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
         try {
-            return orderedCarDAO.getCarOrders(id);
+            Validator.isNumber(id);
+            return orderedCarDAO.getCarOrders(Integer.parseInt(id));
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
+        }catch (InputException e){
+            throw new InvalidParametersException(e.getMessage());
         }
     }
 
@@ -124,22 +134,28 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteCarFromOrderedCarList(int carId) throws ServiceException {
+    public void deleteCarFromOrderedCarList(String carId) throws ServiceException {
         OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
         try{
-            orderedCarDAO.deleteCarFromOrderedCarList(carId);
+            Validator.isNumber(carId);
+            orderedCarDAO.deleteCarFromOrderedCarList(Integer.parseInt(carId));
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
+        }catch (InputException e){
+            throw new InvalidParametersException(e.getMessage());
         }
     }
 
     @Override
-    public List<OrderedCar> getActualCarOrders(int carId) throws ServiceException {
+    public List<OrderedCar> getActualCarOrders(String carId) throws ServiceException {
         OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
         try{
-            return orderedCarDAO.getActualCarOrders(carId);
+            Validator.isNumber(carId);
+            return orderedCarDAO.getActualCarOrders(Integer.parseInt(carId));
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
+        }catch (InputException e){
+            throw new InvalidParametersException(e.getMessage());
         }
     }
 
@@ -150,6 +166,8 @@ public class CarServiceImpl implements CarService {
             Validator.isDate(begin);
             Validator.isDate(end);
             orderedCarDAO.isDateAvailable(Date.valueOf(begin),Date.valueOf(end));
+        }catch (DateNotAvailableException e){
+            throw new DateNotAvailableServiceException(e.getMessage());
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }catch (InputException e){

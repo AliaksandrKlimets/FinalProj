@@ -13,7 +13,8 @@ public class OrderValidator {
     private static final String PAYMENT_STATE_REGEX = "^PAID$|^UNPAID$";
 
 
-    public static void isInputDataValid(Order order, String dateOfExpiry, String start, String end) throws InputException, NotDateException {
+    public static void isInputDataValid(Order order,String userId, String dateOfExpiry, String start, String end) throws InputException, NotDateException {
+        Validator.isNumber(userId);
         isPassport(order.getPassportNumber());
         isIdNumber(order.getIdentificationNumber());
         Validator.isDate(dateOfExpiry);
@@ -43,7 +44,7 @@ public class OrderValidator {
     }
 
     public static void isPaymentState(String state) throws InputException {
-        boolean isValid = state == null || !state.matches(ORDER_STATE_REGEX);
+        boolean isValid = state == null || !state.matches(PAYMENT_STATE_REGEX);
         if (isValid) {
             throw new InputException("Payment state is invalid");
         }
