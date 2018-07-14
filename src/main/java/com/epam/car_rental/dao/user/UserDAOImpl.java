@@ -168,7 +168,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void addUser(User user) throws DAOException, EntityExistException {
+    public void addUser(User user) throws DAOException {
         Connection connection = null;
 
         try {
@@ -197,6 +197,53 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    @Override
+    public long getUserIdByLogin(String login) throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String getId = bundle.getString(USER_GET_ID);
+            PreparedStatement statement = connection.prepareStatement(getId);
+            statement.setString(1,login);
+            ResultSet set = statement.executeQuery();
+
+            if (!set.isBeforeFirst()) {
+                LOGGER.error("Login do not exist");
+                throw new EntityNotFoundException("Login don't exist");
+            }
+
+            return  set.getLong(1);
+        }catch (SQLException e){
+            LOGGER.error("Cannot find user id by login");
+            throw new DAOException("Cannot find user id by login");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    public User getUserByLogin(String login) throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String getUser = bundle.getString(USER_GET_USER_BY_LOGIN);
+            PreparedStatement statement = connection.prepareStatement(getUser);
+            statement.setString(1,login);
+            ResultSet set = statement.executeQuery();
+
+            if (!set.isBeforeFirst()) {
+                LOGGER.error("User do not exist");
+                throw new EntityNotFoundException("User don't exist");
+            }
+
+            return  DAOUtil.createUserFromDB(set);
+        }catch (SQLException e){
+            LOGGER.error("Cannot find user by login");
+            throw new DAOException("Cannot find user  by login");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
     private void addUserToDB(User user, Connection connection) throws SQLException {
         String addUserToDB = bundle.getString(USER_ADD_USER);
         String addUserInfoToDB = bundle.getString(USER_INFO_ADD_INFO);
@@ -211,7 +258,6 @@ public class UserDAOImpl implements UserDAO {
 
         statement = connection.prepareStatement(getId);
         statement.setString(1, user.getLogin());
-        statement.setString(2, user.getPassword());
         ResultSet set = statement.executeQuery();
 
         statement = connection.prepareStatement(addUserInfoToDB);

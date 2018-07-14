@@ -1,6 +1,8 @@
 package com.epam.car_rental.service.user;
 
-public class UserNotFoundException extends Exception {
+import com.epam.car_rental.service.ServiceException;
+
+public class UserNotFoundException extends ServiceException {
     public UserNotFoundException(String massage){
         super(massage);
     }

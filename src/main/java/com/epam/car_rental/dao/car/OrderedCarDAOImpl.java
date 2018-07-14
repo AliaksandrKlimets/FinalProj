@@ -19,7 +19,7 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void isDateAvailable(Date begin, Date end) throws DAOException, DateNotAvailableException{
+    public void isDateAvailable(Date begin, Date end) throws DAOException{
         Connection connection = null;
         try{
             connection = connectionPool.getConnection();

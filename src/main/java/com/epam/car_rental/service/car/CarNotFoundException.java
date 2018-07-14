@@ -1,6 +1,8 @@
 package com.epam.car_rental.service.car;
 
-public class CarNotFoundException extends Exception {
+import com.epam.car_rental.service.ServiceException;
+
+public class CarNotFoundException extends ServiceException {
     public CarNotFoundException(String massage){
         super(massage);
     }

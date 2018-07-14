@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class DAOUtil {
@@ -65,6 +67,13 @@ public class DAOUtil {
             car.setTransmission(resultSet.getString(column++));
             car.setFuelType(resultSet.getString(column++).toUpperCase());
             car.setImage(resultSet.getString(column++));
+//            final String addInfoRegex = "[a-zA-Zа-я-А-Я\\s-\\.]+";
+//            Matcher matcher = Pattern.compile(addInfoRegex).matcher(resultSet.getString(column));
+//            List<String> resultList = new ArrayList<>();
+//            while(matcher.find()){
+//                resultList.add(matcher.group().trim());
+//            }
+//            car.setAddInfo(resultList);
             car.setAddInfo(resultSet.getString(column));
         }
         return car;

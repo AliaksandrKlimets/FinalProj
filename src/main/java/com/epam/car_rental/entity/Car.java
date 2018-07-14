@@ -13,6 +13,7 @@ public class Car {
     private FuelType fuelType;
     private String image;
     private String addInfo;
+    //private List<String> addInfo;
 
 
     public enum Type {

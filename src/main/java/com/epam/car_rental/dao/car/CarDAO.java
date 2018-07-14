@@ -2,6 +2,7 @@ package com.epam.car_rental.dao.car;
 
 import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.dao.EntityExistException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.entity.Car;
 
 import java.util.List;
@@ -13,7 +14,9 @@ public interface CarDAO {
 
     void deleteCar(int id) throws DAOException;
 
-    void addCar(Car car) throws EntityExistException, DAOException;
+    void addCar(Car car) throws  DAOException;
 
     List<Car> getCarByType(Car.Type type) throws DAOException;
+
+    long getCarIdByModel(String model) throws DAOException;
 }

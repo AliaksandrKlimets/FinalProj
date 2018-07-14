@@ -1,6 +1,8 @@
 package com.epam.car_rental.service.info;
 
-public class FineNotFoundException extends Exception {
+import com.epam.car_rental.service.ServiceException;
+
+public class FineNotFoundException extends ServiceException {
     public FineNotFoundException(String massage){
         super(massage);
     }

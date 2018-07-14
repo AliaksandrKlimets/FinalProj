@@ -9,6 +9,7 @@ public class SQLQuery {
     public static final String USER_DELETE_USER = "user.delete.user";
     public static final String USER_CHECK_LOGIN = "user.check.login";
     public static final String USER_GET_ID = "user.get.id";
+    public static final String USER_GET_USER_BY_LOGIN = "user.get.user.by.login";
 
     public static final String USER_INFO_ADD_INFO = "user.info.add.info.";
     public static final String USER_INFO_CHANGE_NAME = "user.info.change.name";
@@ -22,6 +23,7 @@ public class SQLQuery {
     public static final String CAR_ADD_CAR = "car.add.car";
     public static final String CAR_CHECK_CAR = "car.check.car";
     public static final String CAR_GET_CARS_BY_TYPE = "car.get.cars.by.type";
+    public static final String CAR_GET_CAR_BY_MODEL = "car.get.car.by.model";
 
     public static final String ORDERED_CAR_GET_CARS = "ordered.car.get.cars";
     public static final String ORDERED_CAR_GET_CAR_ORDERS ="ordered.car.get.car.orders";
@@ -51,4 +53,5 @@ public class SQLQuery {
     public static final String SERVICE_ADD_SERVICE ="service.add.service";
     public static final String SERVICE_DELETE_SERVICES ="service.delete.service";
     public static final String SERVICE_GET_CARS_BY_SERVICE ="service.get.cars.by.service";
+    public static final String SERVICE_GET_ID = "service.get.id";
 }

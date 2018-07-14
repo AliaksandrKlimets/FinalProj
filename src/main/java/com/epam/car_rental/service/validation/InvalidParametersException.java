@@ -1,6 +1,8 @@
 package com.epam.car_rental.service.validation;
 
-public class InvalidParametersException extends Exception {
+import com.epam.car_rental.service.ServiceException;
+
+public class InvalidParametersException extends ServiceException {
     public InvalidParametersException(String massage){
         super(massage);
     }

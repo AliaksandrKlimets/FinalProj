@@ -1,6 +1,7 @@
 package com.epam.car_rental.dao.info;
 
 import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.connector.ConnectionPool;
 import com.epam.car_rental.entity.Car;
 import com.epam.car_rental.entity.Service;
@@ -88,6 +89,30 @@ public class ServiceDAOImpl implements ServiceDAO {
         }catch (SQLException e){
             LOGGER.error("Error while deleting service by id",e);
             throw new DAOException("Error while deleting service by id");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public long getServiceIdByModelAndService(String model, String service) throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String getId = bundle.getString(SERVICE_GET_ID);
+            PreparedStatement statement = connection.prepareStatement(getId);
+            statement.setString(1,model);
+            statement.setString(2,service);
+            ResultSet set = statement.executeQuery();
+
+            if(!set.isBeforeFirst()){
+                throw new EntityNotFoundException("Cannot find service id by model");
+            }
+
+            return set.getLong(1);
+        }catch (SQLException e){
+            LOGGER.error("Cannot get service is by model and service");
+            throw new DAOException("Cannot get service is by model and service");
         }finally {
             connectionPool.closeConnection(connection);
         }

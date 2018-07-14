@@ -2,6 +2,7 @@ package com.epam.car_rental.dao.user;
 
 import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.dao.EntityExistException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.entity.User;
 import com.epam.car_rental.service.user.UserNotFoundException;
 
@@ -24,8 +25,11 @@ public interface UserDAO {
 
     void changePhone(int id, String phone) throws DAOException;
 
-    void addUser(User user) throws DAOException,EntityExistException;
+    void addUser(User user) throws DAOException;
 
-    void deleteUser(int id) throws DAOException, UserNotFoundException;
+    void deleteUser(int id) throws DAOException;
 
+    long getUserIdByLogin(String login) throws DAOException;
+
+    User getUserByLogin(String login) throws DAOException;
 }
