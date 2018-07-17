@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Order {
     private int orderId;
     private int userId;
-    private int serviceId;
+    private int carId;
     private String passportNumber;
     private String identificationNumber;
     private Date dateOfExpiry;
@@ -66,14 +66,6 @@ public class Order {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
     }
 
     public String getPassportNumber() {
@@ -148,11 +140,19 @@ public class Order {
         this.paymentState = PaymentState.valueOf(paymentState);
     }
 
+    public int getCarId() {
+        return carId;
+    }
+
+    public void setCarId(int carId) {
+        this.carId = carId;
+    }
+
     @Override
     public String toString() {
         return "id " + orderId
                 + " user id " + userId
-                + " info id " + serviceId
+                + " info id " + carId
                 + " passport number " + passportNumber
                 + " id number " + identificationNumber
                 + " date of expiry " + dateOfExpiry
@@ -168,7 +168,7 @@ public class Order {
     public int hashCode() {
         return orderId * 33
                 + userId * 34
-                + serviceId * 35
+                + carId * 35
                 + passportNumber.hashCode()
                 + identificationNumber.hashCode()
                 + dateOfExpiry.hashCode()
@@ -187,7 +187,7 @@ public class Order {
         Order order = (Order) o;
         return Objects.equals(orderId, order.orderId) &&
                 Objects.equals(userId, order.orderId) &&
-                Objects.equals(serviceId, order.serviceId) &&
+                Objects.equals(carId, order.carId) &&
                 Objects.equals(passportNumber, order.passportNumber) &&
                 Objects.equals(identificationNumber, order.identificationNumber) &&
                 Objects.equals(dateOfExpiry, order.dateOfExpiry) &&

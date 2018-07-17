@@ -33,7 +33,7 @@ public class CarDAOImpl implements CarDAO {
 
             return DAOUtil.getCarListFromDB(resultSet);
         } catch (SQLException e) {
-            LOGGER.error("Error while getting car list",e);
+            LOGGER.error("Error while getting car list", e);
             throw new DAOException("Error while getting car list");
         } finally {
             connectionPool.closeConnection(connection);
@@ -56,7 +56,7 @@ public class CarDAOImpl implements CarDAO {
             }
             return DAOUtil.createCarFromDB(resultSet);
         } catch (SQLException e) {
-            LOGGER.error("Cannot create car from db",e);
+            LOGGER.error("Cannot create car from db", e);
             throw new DAOException("Cannot create car from db");
         } finally {
             connectionPool.closeConnection(connection);
@@ -71,7 +71,7 @@ public class CarDAOImpl implements CarDAO {
             String deleteCar = bundle.getString(CAR_DELETE_CAR);
             DAOUtil.deleteEntity(id, deleteCar, connection);
         } catch (SQLException e) {
-            LOGGER.error("Error while deleting car from db",e);
+            LOGGER.error("Error while deleting car from db", e);
             throw new DAOException("Error while deleting car from db");
         } finally {
             connectionPool.closeConnection(connection);
@@ -80,7 +80,7 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public int getCarIdByModel(String model) throws DAOException, EntityNotFoundException {
+    public int getCarIdByModel(String model) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
@@ -95,7 +95,7 @@ public class CarDAOImpl implements CarDAO {
             }
             return resultSet.getInt(1);
         } catch (SQLException e) {
-            LOGGER.error("Cannot create car from db",e);
+            LOGGER.error("Cannot create car from db", e);
             throw new DAOException("Cannot create car from db");
         } finally {
             connectionPool.closeConnection(connection);
@@ -103,7 +103,7 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public void addCar(Car car) throws EntityExistException, DAOException {
+    public void addCar(Car car) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
@@ -117,7 +117,7 @@ public class CarDAOImpl implements CarDAO {
             }
             addCarToDB(car, connection);
         } catch (SQLException e) {
-            LOGGER.error("Error while adding car to db",e);
+            LOGGER.error("Error while adding car to db", e);
             throw new DAOException("Error while adding car to db");
         } finally {
             connectionPool.closeConnection(connection);
@@ -127,6 +127,10 @@ public class CarDAOImpl implements CarDAO {
 
     private void addCarToDB(Car car, Connection connection) throws SQLException {
         String add = bundle.getString(CAR_ADD_CAR);
+        String id = bundle.getString(CAR_GET_CAR_BY_MODEL);
+        String addServiceCost = bundle.getString(CAR_ADD_SERVICE_COST);
+
+        connection.setAutoCommit(false);
         PreparedStatement statement = connection.prepareStatement(add);
         statement.setString(1, car.getModel());
         statement.setString(2, car.getYear());
@@ -137,6 +141,20 @@ public class CarDAOImpl implements CarDAO {
         statement.setString(8, car.getImage());
         statement.setString(9, car.getAddInfo());
         statement.executeUpdate();
+
+        statement = connection.prepareStatement(id);
+        statement.setString(1,car.getModel());
+        ResultSet set = statement.executeQuery();
+
+        statement = connection.prepareStatement(addServiceCost);
+        statement.setInt(1,set.getInt(1));
+        statement.setDouble(2,car.getCostPerHour());
+        statement.setDouble(3,car.getOneToSevenDays());
+        statement.setDouble(4,car.getEightToFifteen());
+        statement.setDouble(5,car.getSixteenAndMore());
+        statement.executeUpdate();
+        connection.commit();
+        connection.setAutoCommit(true);
     }
 
     @Override
@@ -150,7 +168,7 @@ public class CarDAOImpl implements CarDAO {
             statement.setString(1, type.toString());
             return DAOUtil.getCarListFromDB(resultSet);
         } catch (SQLException e) {
-            LOGGER.error("Error while getting car list by model",e);
+            LOGGER.error("Error while getting car list by model", e);
             throw new DAOException("Error while getting car list by model");
         } finally {
             connectionPool.closeConnection(connection);

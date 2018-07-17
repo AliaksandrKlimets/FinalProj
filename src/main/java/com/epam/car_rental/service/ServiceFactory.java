@@ -13,7 +13,6 @@ public class ServiceFactory {
     private final UserService userService = new UserServiceImpl();
     private final FineService fineService = new FineServiceImpl();
     private final OrderService orderService = new OrderServiceImpl();
-    private final ServiceService serviceService = new ServiceServiceImpl();
 
     private ServiceFactory() {
     }
@@ -41,7 +40,4 @@ public class ServiceFactory {
         return orderService;
     }
 
-    public ServiceService getServiceService() {
-        return serviceService;
-    }
 }

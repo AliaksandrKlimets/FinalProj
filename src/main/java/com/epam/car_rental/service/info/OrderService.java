@@ -12,7 +12,7 @@ public interface OrderService {
 
     void deleteOrder(String orderId) throws ServiceException;
 
-    void addOrder(Order order, String userId, String expiryDate, String start, String end) throws ServiceException;
+    void addOrder(Order order, String userId, String carId, String expiryDate, String start, String end) throws ServiceException;
 
     void changeOrderState(String orderId, String state) throws ServiceException;
 

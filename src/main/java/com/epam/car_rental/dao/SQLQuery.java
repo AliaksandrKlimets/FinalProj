@@ -24,6 +24,7 @@ public class SQLQuery {
     public static final String CAR_CHECK_CAR = "car.check.car";
     public static final String CAR_GET_CARS_BY_TYPE = "car.get.cars.by.type";
     public static final String CAR_GET_CAR_BY_MODEL = "car.get.car.by.model";
+    public static final String CAR_ADD_SERVICE_COST = "car.add.service.cost";
 
     public static final String ORDERED_CAR_GET_CARS = "ordered.car.get.cars";
     public static final String ORDERED_CAR_GET_CAR_ORDERS ="ordered.car.get.car.orders";
@@ -48,10 +49,4 @@ public class SQLQuery {
     public static final String ORDER_ADD_DECLINE_REASON = "order.add.decline.reason";
     public static final String ORDER_ADD_ORDER = "order.add.order";
     public static final String ORDER_DELETE_ORDER = "order.delete.order";
-
-    public static final String SERVICE_GET_SERVICES ="service.get.services";
-    public static final String SERVICE_ADD_SERVICE ="service.add.service";
-    public static final String SERVICE_DELETE_SERVICES ="service.delete.service";
-    public static final String SERVICE_GET_CARS_BY_SERVICE ="service.get.cars.by.service";
-    public static final String SERVICE_GET_ID = "service.get.id";
 }

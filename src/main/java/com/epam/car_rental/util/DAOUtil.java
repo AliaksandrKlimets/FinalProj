@@ -74,7 +74,11 @@ public class DAOUtil {
 //                resultList.add(matcher.group().trim());
 //            }
 //            car.setAddInfo(resultList);
-            car.setAddInfo(resultSet.getString(column));
+            car.setAddInfo(resultSet.getString(column++));
+            car.setCostPerHour(resultSet.getDouble(column++));
+            car.setOneToSevenDays(resultSet.getDouble(column++));
+            car.setOneToSevenDays(resultSet.getDouble(column++));
+            car.setSixteenAndMore(resultSet.getDouble(column));
         }
         return car;
     }
@@ -93,7 +97,11 @@ public class DAOUtil {
             car.setTransmission(resultSet.getString(column++));
             car.setFuelType(resultSet.getString(column++).toUpperCase());
             car.setImage(resultSet.getString(column++));
-            car.setAddInfo(resultSet.getString(column));
+            car.setAddInfo(resultSet.getString(column++));
+            car.setCostPerHour(resultSet.getDouble(column++));
+            car.setOneToSevenDays(resultSet.getDouble(column++));
+            car.setOneToSevenDays(resultSet.getDouble(column++));
+            car.setSixteenAndMore(resultSet.getDouble(column));
             carList.add(car);
         }
         return carList;
@@ -105,7 +113,7 @@ public class DAOUtil {
             int column = 1;
             order.setOrderId(resultSet.getInt(column++));
             order.setUserId(resultSet.getInt(column++));
-            order.setServiceId(resultSet.getInt(column++));
+            order.setCarId(resultSet.getInt(column++));
             order.setPassportNumber(resultSet.getString(column++));
             order.setIdentificationNumber(resultSet.getString(column++));
             order.setDateOfExpiry(resultSet.getDate(column++));
@@ -126,7 +134,7 @@ public class DAOUtil {
             Order order = new Order();
             order.setOrderId(resultSet.getInt(column++));
             order.setUserId(resultSet.getInt(column++));
-            order.setServiceId(resultSet.getInt(column++));
+            order.setCarId(resultSet.getInt(column++));
             order.setPassportNumber(resultSet.getString(column++));
             order.setIdentificationNumber(resultSet.getString(column++));
             order.setDateOfExpiry(resultSet.getDate(column++));
@@ -188,22 +196,6 @@ public class DAOUtil {
         return orderedCarList;
     }
 
-    public static List<Service> createServiceListFromDB(ResultSet resultSet) throws SQLException {
-        List<Service> serviceList = new ArrayList<>();
-        while (resultSet.next()) {
-            int column = 1;
-            Service service = new Service();
-            service.setServiceId(resultSet.getInt(column++));
-            service.setService(resultSet.getString(column++).toUpperCase());
-            service.setCarId(resultSet.getInt(column++));
-            service.setCostPerHour(resultSet.getDouble(column++));
-            service.setOneToSevenDays(resultSet.getDouble(column++));
-            service.setEightToFifteen(resultSet.getDouble(column++));
-            service.setSixteenAndMore(resultSet.getDouble(column));
-            serviceList.add(service);
-        }
-        return serviceList;
-    }
 
     public static String createPassword(String password) throws NoSuchAlgorithmException {
         StringBuilder code = new StringBuilder();

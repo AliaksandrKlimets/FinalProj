@@ -15,6 +15,11 @@ public class Car {
     private String addInfo;
     //private List<String> addInfo;
 
+    private double costPerHour;
+    private double oneToSevenDays;
+    private double eightToFifteen;
+    private double sixteenAndMore;
+
 
     public enum Type {
         COUPE("Купе"), HATCHBACK("Хэтчбек"), UNIVERSAL("Универсал"), PICKUP("Пикап"), CROSSOVER("Сроссовер");
@@ -127,6 +132,38 @@ public class Car {
         this.addInfo = addInfo;
     }
 
+    public double getCostPerHour() {
+        return costPerHour;
+    }
+
+    public void setCostPerHour(double costPerHour) {
+        this.costPerHour = costPerHour;
+    }
+
+    public double getOneToSevenDays() {
+        return oneToSevenDays;
+    }
+
+    public void setOneToSevenDays(double oneToSevenDays) {
+        this.oneToSevenDays = oneToSevenDays;
+    }
+
+    public double getEightToFifteen() {
+        return eightToFifteen;
+    }
+
+    public void setEightToFifteen(double eightToFifteen) {
+        this.eightToFifteen = eightToFifteen;
+    }
+
+    public double getSixteenAndMore() {
+        return sixteenAndMore;
+    }
+
+    public void setSixteenAndMore(double sixteenAndMore) {
+        this.sixteenAndMore = sixteenAndMore;
+    }
+
     @Override
     public String toString() {
         return "id " + carId
@@ -137,7 +174,11 @@ public class Car {
                 + " car type " + type
                 + " transmission " + transmission
                 + " fuel type " + fuelType
-                + " additional info " + addInfo;
+                + " additional info " + addInfo
+                + " 1 hour " + costPerHour
+                + " 1 - 7 " + oneToSevenDays
+                + " 8 - 15 " + eightToFifteen
+                + " 16+ " + sixteenAndMore;
     }
 
     @Override
@@ -150,7 +191,11 @@ public class Car {
                 + type.hashCode()
                 + transmission.hashCode()
                 + fuelType.hashCode()
-                + addInfo.hashCode();
+                + addInfo.hashCode()
+                + (int) costPerHour * 34
+                + (int) oneToSevenDays * 35
+                + (int) eightToFifteen * 36
+                + (int) sixteenAndMore * 37;
     }
 
     @Override
@@ -166,6 +211,10 @@ public class Car {
                 Objects.equals(transmission, car.transmission) &&
                 Objects.equals(fuelType, car.fuelType) &&
                 Objects.equals(image, car.image) &&
-                Objects.equals(addInfo, car.addInfo);
+                Objects.equals(addInfo, car.addInfo)&&
+                Objects.equals(costPerHour, car.costPerHour) &&
+                Objects.equals(oneToSevenDays, car.oneToSevenDays) &&
+                Objects.equals(eightToFifteen, car.eightToFifteen) &&
+                Objects.equals(sixteenAndMore, car.eightToFifteen);
     }
 }

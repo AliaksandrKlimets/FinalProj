@@ -15,7 +15,6 @@ public class DAOFactory {
     private final CarDAO carDAO = new CarDAOImpl();
     private final OrderedCarDAO orderedCarDAO = new OrderedCarDAOImpl();
     private final FineDAO fineDAO = new FineDAOImpl();
-    private final ServiceDAO serviceDAO = new ServiceDAOImpl();
     private final OrderDAO orderDAO = new OrderDAOImpl();
 
     private DAOFactory() {
@@ -42,10 +41,6 @@ public class DAOFactory {
 
     public FineDAO getFineDAO() {
         return fineDAO;
-    }
-
-    public ServiceDAO getServiceDAO() {
-        return serviceDAO;
     }
 
     public OrderDAO getOrderDAO() {

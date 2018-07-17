@@ -13,7 +13,7 @@ public class CarValidator {
     private static final String TYPE_REGEX = "^COUPE$|^HATCHBACK$|^UNIVERSAL$|^PICKUP$|^CROSSOVER$";
     private static final String FUEL_REGEX = "^PETROL$|^DIESEL$|^GAS$";
 
-    public static void isInputDataValid(Car car, String capacity, String type, String fuel) throws InputException {
+    public static void isInputDataValid(Car car, String capacity, String type, String fuel, String hour, String oneToSeven, String eightToFifteen, String more) throws InputException {
         isModel(car.getModel());
         isYear(car.getYear());
         isConsumption(car.getConsumption());
@@ -22,6 +22,10 @@ public class CarValidator {
         isAddInfo(car.getAddInfo());
         isCarType(type);
         isFuelType(fuel);
+        Validator.isDouble(hour);
+        Validator.isDouble(oneToSeven);
+        Validator.isDouble(eightToFifteen);
+        Validator.isDouble(more);
     }
 
     public static void isCarType(String type) throws InputException {

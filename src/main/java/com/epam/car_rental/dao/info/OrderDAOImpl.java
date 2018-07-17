@@ -86,7 +86,7 @@ public class OrderDAOImpl implements OrderDAO {
             String add = bundle.getString(ORDER_ADD_ORDER);
             PreparedStatement statement = connection.prepareStatement(add);
             statement.setInt(1, order.getUserId());
-            statement.setInt(2, order.getServiceId());
+            statement.setInt(2, order.getCarId());
             statement.setString(3, order.getPassportNumber());
             statement.setString(4, order.getIdentificationNumber());
             statement.setDate(5, order.getDateOfExpiry());

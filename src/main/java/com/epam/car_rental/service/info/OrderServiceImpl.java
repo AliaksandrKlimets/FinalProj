@@ -56,11 +56,12 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public void addOrder(Order order,String userId, String expiryDate, String start, String end) throws ServiceException {
+    public void addOrder(Order order,String userId, String carId, String expiryDate, String start, String end) throws ServiceException {
         OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
         try{
-            OrderValidator.isInputDataValid(order,userId,expiryDate,start,end);
+            OrderValidator.isInputDataValid(order,userId,carId,expiryDate,start,end);
             order.setUserId(Integer.parseInt(userId));
+            order.setCarId(Integer.parseInt(carId));
             order.setDateOfExpiry(Date.valueOf(expiryDate));
             order.setServiceStart(Date.valueOf(start));
             order.setServiceEnd(Date.valueOf(end));

@@ -56,13 +56,17 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void addCar(Car car, String capacity, String carType, String fuelType) throws ServiceException {
+    public void addCar(Car car, String capacity, String carType, String fuelType, String hour, String oneToSeven, String eightToFifteen, String more) throws ServiceException {
         CarDAO carDAO = DAOFactory.getInstance().getCarDAO();
         try {
-            CarValidator.isInputDataValid(car, capacity, carType, fuelType);
+            CarValidator.isInputDataValid(car, capacity, carType, fuelType, hour,oneToSeven,eightToFifteen,more);
             car.setEngineCapacity(Double.parseDouble(capacity));
             car.setType(carType);
             car.setFuelType(fuelType);
+            car.setCostPerHour(Double.parseDouble(hour));
+            car.setOneToSevenDays(Double.parseDouble(oneToSeven));
+            car.setEightToFifteen(Double.parseDouble(eightToFifteen));
+            car.setSixteenAndMore(Double.parseDouble(more));
 
             carDAO.addCar(car);
         } catch (EntityExistException e) {

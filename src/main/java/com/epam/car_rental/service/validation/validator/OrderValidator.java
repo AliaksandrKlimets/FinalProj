@@ -13,8 +13,9 @@ public class OrderValidator {
     private static final String PAYMENT_STATE_REGEX = "^PAID$|^UNPAID$";
 
 
-    public static void isInputDataValid(Order order,String userId, String dateOfExpiry, String start, String end) throws InputException, NotDateException {
+    public static void isInputDataValid(Order order,String userId,String carId, String dateOfExpiry, String start, String end) throws InputException, NotDateException {
         Validator.isNumber(userId);
+        Validator.isNumber(carId);
         isPassport(order.getPassportNumber());
         isIdNumber(order.getIdentificationNumber());
         Validator.isDate(dateOfExpiry);
