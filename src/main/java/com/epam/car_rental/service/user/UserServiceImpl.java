@@ -108,7 +108,9 @@ public class UserServiceImpl implements UserService {
             Validator.isNumber(userId);
             UserValidator.isEmail(email);
             userDAO.changeEmail(Integer.parseInt(userId), email);
-        } catch (DAOException e) {
+        } catch (EntityExistException e){
+            throw new UserExistException(e.getMessage());
+        }catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
             throw new InvalidParametersException(e.getMessage());

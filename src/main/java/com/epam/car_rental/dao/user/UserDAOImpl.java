@@ -78,6 +78,16 @@ public class UserDAOImpl implements UserDAO {
 
         try {
             connection = connectionPool.getConnection();
+            String add = bundle.getString(USER_CHECK_LOGIN);
+            PreparedStatement statement = connection.prepareStatement(add);
+            statement.setString(1, login);
+            statement.setString(2, login);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                LOGGER.error("Login exist, Cannot change login");
+                throw new EntityExistException("Login exist, Cannot change login");
+            }
+
             String change = bundle.getString(USER_UPDATE_LOGIN);
             DAOUtil.changeInDB(userId, login, change, connection);
         } catch (SQLException e) {
@@ -142,6 +152,15 @@ public class UserDAOImpl implements UserDAO {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
+            String add = bundle.getString(USER_CHECK_LOGIN);
+            PreparedStatement statement = connection.prepareStatement(add);
+            statement.setString(1, email);
+            statement.setString(2, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                LOGGER.error("Email exist, cannot change email");
+                throw new EntityExistException("Email exist, cannot change email");
+            }
             String changeEmail = bundle.getString(USER_INFO_CHANGE_EMAIL);
             DAOUtil.changeInDB(id, email, changeEmail, connection);
         } catch (SQLException e) {
@@ -200,11 +219,11 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public long getUserIdByLogin(String login) throws DAOException {
         Connection connection = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             String getId = bundle.getString(USER_GET_ID);
             PreparedStatement statement = connection.prepareStatement(getId);
-            statement.setString(1,login);
+            statement.setString(1, login);
             ResultSet set = statement.executeQuery();
 
             if (!set.isBeforeFirst()) {
@@ -212,22 +231,22 @@ public class UserDAOImpl implements UserDAO {
                 throw new EntityNotFoundException("Login don't exist");
             }
 
-            return  set.getLong(1);
-        }catch (SQLException e){
+            return set.getLong(1);
+        } catch (SQLException e) {
             LOGGER.error("Cannot find user id by login");
             throw new DAOException("Cannot find user id by login");
-        }finally {
+        } finally {
             connectionPool.closeConnection(connection);
         }
     }
 
     public User getUserByLogin(String login) throws DAOException {
         Connection connection = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             String getUser = bundle.getString(USER_GET_USER_BY_LOGIN);
             PreparedStatement statement = connection.prepareStatement(getUser);
-            statement.setString(1,login);
+            statement.setString(1, login);
             ResultSet set = statement.executeQuery();
 
             if (!set.isBeforeFirst()) {
@@ -235,11 +254,11 @@ public class UserDAOImpl implements UserDAO {
                 throw new EntityNotFoundException("User don't exist");
             }
 
-            return  DAOUtil.createUserFromDB(set);
-        }catch (SQLException e){
+            return DAOUtil.createUserFromDB(set);
+        } catch (SQLException e) {
             LOGGER.error("Cannot find user by login");
             throw new DAOException("Cannot find user  by login");
-        }finally {
+        } finally {
             connectionPool.closeConnection(connection);
         }
     }
