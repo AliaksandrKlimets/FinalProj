@@ -1,6 +1,6 @@
 package com.epam.car_rental.dao;
 
-public class SQLQuery {
+public final class SQLQuery {
     public static final String USER_ALL_USERS = "user.all.users";
     public static final String USER_SEARCH_USER = "user.search.user";
     public static final String USER_UPDATE_LOGIN = "user.update.login";
