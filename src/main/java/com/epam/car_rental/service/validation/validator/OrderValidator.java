@@ -38,14 +38,14 @@ public class OrderValidator {
     }
 
     public static void isOrderState(String state) throws InputException {
-        boolean isValid = state == null || !state.matches(ORDER_STATE_REGEX);
+        boolean isValid = state == null || !state.toUpperCase().matches(ORDER_STATE_REGEX);
         if (isValid) {
             throw new InputException("Order state is invalid");
         }
     }
 
     public static void isPaymentState(String state) throws InputException {
-        boolean isValid = state == null || !state.matches(PAYMENT_STATE_REGEX);
+        boolean isValid = state == null || !state.toUpperCase().matches(PAYMENT_STATE_REGEX);
         if (isValid) {
             throw new InputException("Payment state is invalid");
         }

@@ -16,7 +16,7 @@ public interface CarDAO {
 
     void addCar(Car car) throws  DAOException;
 
-    List<Car> getCarByType(Car.Type type) throws DAOException;
+    List<Car> getCarsByType(Car.Type type) throws DAOException;
 
     int getCarIdByModel(String model) throws DAOException;
 }

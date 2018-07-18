@@ -16,7 +16,7 @@ public interface CarService {
 
     void addCar(Car car, String capacity, String carType, String fuelType, String hour, String oneToSeven, String eightToFifteen, String more) throws  ServiceException;
 
-    List<Car> getCarByType(String type) throws ServiceException;
+    List<Car> getCarsByType(String type) throws ServiceException;
 
     int getCarIdByModel(String model) throws ServiceException;
 

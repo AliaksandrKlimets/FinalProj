@@ -20,8 +20,8 @@ public class CarValidator {
         isCapacity(capacity);
         isTransmission(car.getTransmission());
         isAddInfo(car.getAddInfo());
-        isCarType(type);
-        isFuelType(fuel);
+        isCarType(type.toUpperCase());
+        isFuelType(fuel.toUpperCase());
         Validator.isDouble(hour);
         Validator.isDouble(oneToSeven);
         Validator.isDouble(eightToFifteen);

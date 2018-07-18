@@ -79,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
         try{
             Validator.isNumber(orderId);
             OrderValidator.isOrderState(state);
-            orderDAO.changeOrderState(Integer.parseInt(orderId),Order.OrderState.valueOf(state));
+            orderDAO.changeOrderState(Integer.parseInt(orderId),Order.OrderState.valueOf(state.toUpperCase()));
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }catch (InputException e){
@@ -93,7 +93,7 @@ public class OrderServiceImpl implements OrderService {
         try{
             Validator.isNumber(orderId);
             OrderValidator.isPaymentState(state);
-            orderDAO.changePaymentState(Integer.parseInt(orderId),Order.PaymentState.valueOf(state));
+            orderDAO.changePaymentState(Integer.parseInt(orderId),Order.PaymentState.valueOf(state.toUpperCase()));
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }catch (InputException e){

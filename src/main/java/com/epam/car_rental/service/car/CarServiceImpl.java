@@ -61,8 +61,8 @@ public class CarServiceImpl implements CarService {
         try {
             CarValidator.isInputDataValid(car, capacity, carType, fuelType, hour,oneToSeven,eightToFifteen,more);
             car.setEngineCapacity(Double.parseDouble(capacity));
-            car.setType(carType);
-            car.setFuelType(fuelType);
+            car.setType(carType.toUpperCase());
+            car.setFuelType(fuelType.toUpperCase());
             car.setCostPerHour(Double.parseDouble(hour));
             car.setOneToSevenDays(Double.parseDouble(oneToSeven));
             car.setEightToFifteen(Double.parseDouble(eightToFifteen));
@@ -79,11 +79,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> getCarByType(String type) throws ServiceException {
+    public List<Car> getCarsByType(String type) throws ServiceException {
         CarDAO carDAO = DAOFactory.getInstance().getCarDAO();
         try {
             CarValidator.isCarType(type);
-            return carDAO.getCarByType(Car.Type.valueOf(type));
+            return carDAO.getCarsByType(Car.Type.valueOf(type.toUpperCase()));
         } catch (InputException e) {
             throw new InvalidParametersException(e.getMessage());
         } catch (DAOException e) {

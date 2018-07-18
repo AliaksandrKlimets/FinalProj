@@ -143,22 +143,22 @@ public class CarDAOImpl implements CarDAO {
         statement.executeUpdate();
 
         statement = connection.prepareStatement(id);
-        statement.setString(1,car.getModel());
+        statement.setString(1, car.getModel());
         ResultSet set = statement.executeQuery();
 
         statement = connection.prepareStatement(addServiceCost);
-        statement.setInt(1,set.getInt(1));
-        statement.setDouble(2,car.getCostPerHour());
-        statement.setDouble(3,car.getOneToSevenDays());
-        statement.setDouble(4,car.getEightToFifteen());
-        statement.setDouble(5,car.getSixteenAndMore());
+        statement.setInt(1, set.getInt(1));
+        statement.setDouble(2, car.getCostPerHour());
+        statement.setDouble(3, car.getOneToSevenDays());
+        statement.setDouble(4, car.getEightToFifteen());
+        statement.setDouble(5, car.getSixteenAndMore());
         statement.executeUpdate();
         connection.commit();
         connection.setAutoCommit(true);
     }
 
     @Override
-    public List<Car> getCarByType(Car.Type type) throws DAOException {
+    public List<Car> getCarsByType(Car.Type type) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
