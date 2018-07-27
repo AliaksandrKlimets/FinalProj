@@ -5,8 +5,8 @@ import com.epam.car_rental.service.validation.InputException;
 
 public class UserValidator {
     private static final String LOGIN_REGEX = "^[\\w][\\w._\\d]{4,20}$";
-    private static final String PASSWORD_REGEX = "^[\\w\\d._]{5,17}$";
-    private static final String NAME_REGEX = "^[A-ZА-Я][a-zа-я]{1,20}$";
+    private static final String PASSWORD_REGEX = "^[\\w\\d._]{7,18}$";
+    private static final String NAME_REGEX = "^[А-Я][а-я]{3,20}|^[A-Z][a-z]{3,20}";
     private static final String EMAIL_REGEX = "^[\\w._\\d-]+@[A-Za-z]+.[A-Za-z]{2,3}$";
     private static final String PHONE_REGEX = "^(29|33|25)[\\d]{7}$";
     private static final String INCORRECT_USERNAME = "Incorrect username";

@@ -1,0 +1,93 @@
+.footer {
+    bottom: 0;
+    position: relative;
+    height: 100px;
+    margin: 0;
+    padding-top: 10px;
+    background-color: #3e4753;
+
+}
+
+.wrapper {
+    height: 120px;
+    padding: 0;
+    margin: 0;
+    background-color: #3e4753;
+}
+
+.footer-content {
+
+    width: 1400px;
+    height: 100px;
+    padding: 0px;
+    margin: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-right {
+    float: right;
+    height: 110px;
+    width: 300px;
+}
+
+.footer-left {
+    display: inline-block;
+    height: 110px;
+    width: 800px;
+    margin: 0;
+    padding: 0;
+}
+
+.info {
+    color: white;
+    font-size: 15px;
+    padding: 0 0 0 20px;
+    display: table-cell;
+    margin:0 10px 0 0;
+    height: 110px;
+    width: 220px;
+}
+
+.footer-list h3, .lang h3 {
+    color: white;
+    font-weight: normal;
+    font-family: calibri;
+    font-size: 17px;
+    margin: 0;
+    padding: 0;
+}
+
+.lang input[type="submit"] {
+    width: 70px;
+    height: 20px;
+    margin: 0;
+    font-size: 17px;
+    padding: 0;
+    border: 0px;
+    background-color: #3e4753;
+    text-align: left;
+    color: white;
+    font-weight: normal;
+    font-family: calibri;
+    outline: none;
+    cursor: pointer;
+}
+
+.lang input[type="submit"]:hover {
+    color: #8695a8;
+}
+
+li .lang {
+    display: list-item;
+    margin: 0;
+    padding: 2px;
+}
+
+li .footer-list {
+    color: white;
+    display: list-item;
+    margin: 4px 0 2px 0;
+    padding: 0;
+}

@@ -9,4 +9,5 @@ public final class ControlConst {
     public static final String CAR = "car";
     public static final String FINE = "fine";
     public static final String CAR_ORDER = "car-order";
+    public static final String LANG = "lang";
 }

@@ -13,6 +13,6 @@ public class ShowAllCars implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("/cars").forward(request,response);
     }
 }
