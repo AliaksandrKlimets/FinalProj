@@ -148,8 +148,8 @@ public class CarDAOImpl implements CarDAO {
 
         statement = connection.prepareStatement(addServiceCost);
         statement.setInt(1, set.getInt(1));
-        statement.setDouble(2, car.getCostPerHour());
-        statement.setDouble(3, car.getOneToSevenDays());
+        statement.setDouble(2, car.getCostPerDay());
+        statement.setDouble(3, car.getTwoToSevenDays());
         statement.setDouble(4, car.getEightToFifteen());
         statement.setDouble(5, car.getSixteenAndMore());
         statement.executeUpdate();

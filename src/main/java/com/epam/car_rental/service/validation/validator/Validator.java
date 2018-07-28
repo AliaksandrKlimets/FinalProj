@@ -5,7 +5,6 @@ import com.epam.car_rental.service.validation.InputException;
 import com.epam.car_rental.service.validation.NotDateException;
 import com.epam.car_rental.service.validation.NotNumberException;
 
-import java.util.Objects;
 
 public class Validator {
     private static final String NUMBER = "\\d+";
@@ -20,6 +19,7 @@ public class Validator {
         if (!(user instanceof User)) {
             throw new InputException("User is invalid");
         }
+
     }
 
     public static void isNumber(String number) throws NotNumberException {

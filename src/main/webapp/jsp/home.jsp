@@ -14,9 +14,16 @@
 </head>
 <body>
 <c:if test = "${empty sessionScope.user}">
-    <jsp:forward page="${pageContext.request.contextPath}/register" />
+    <jsp:forward page="${pageContext.request.contextPath}/registration" />
 </c:if>
-<jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
+<c:choose>
+   <c:when test="${sessionScope.user.role eq 'USER'}">
+       <jsp:include page="/WEB-INF/jsp/header/userHeader.jsp"/>
+   </c:when>
+    <c:when test="${sessionScope.user.role eq 'ADMIN'}">
+        <jsp:include page="/WEB-INF/jsp/header/adminHeader.jsp"/>
+    </c:when>
+</c:choose>
 <div style="height: 900px;">
     <p>Register page</p>
 </div>

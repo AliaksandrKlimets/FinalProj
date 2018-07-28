@@ -75,9 +75,9 @@ public class DAOUtil {
 //            }
 //            car.setAddInfo(resultList);
             car.setAddInfo(resultSet.getString(column++));
-            car.setCostPerHour(resultSet.getDouble(column++));
-            car.setOneToSevenDays(resultSet.getDouble(column++));
-            car.setOneToSevenDays(resultSet.getDouble(column++));
+            car.setCostPerDay(resultSet.getDouble(column++));
+            car.setTwoToSevenDays(resultSet.getDouble(column++));
+            car.setEightToFifteen(resultSet.getDouble(column++));
             car.setSixteenAndMore(resultSet.getDouble(column));
         }
         return car;
@@ -98,9 +98,9 @@ public class DAOUtil {
             car.setFuelType(resultSet.getString(column++).toUpperCase());
             car.setImage(resultSet.getString(column++));
             car.setAddInfo(resultSet.getString(column++));
-            car.setCostPerHour(resultSet.getDouble(column++));
-            car.setOneToSevenDays(resultSet.getDouble(column++));
-            car.setOneToSevenDays(resultSet.getDouble(column++));
+            car.setCostPerDay(resultSet.getDouble(column++));
+            car.setTwoToSevenDays(resultSet.getDouble(column++));
+            car.setEightToFifteen(resultSet.getDouble(column++));
             car.setSixteenAndMore(resultSet.getDouble(column));
             carList.add(car);
         }

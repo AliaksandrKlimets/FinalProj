@@ -68,6 +68,27 @@ a {
     cursor: pointer;
 }
 
+.form-button input[type="submit"] {
+
+    height: 65px;
+    margin: 0;
+    font-size: 19px;
+    padding: 19px 0 19px 0;
+    width: auto;
+    border: 0px;
+    background-color: #4a5664;
+    text-align: right;
+    color: #f4f4f4;
+    font-weight: normal;
+    font-family: calibri;
+    outline: none;
+    cursor: pointer;
+}
+
 .left-content ul li input[type="submit"]:hover {
+    color: #b6c7dd;
+}
+
+.form-button input[type="submit"]:hover {
     color: #b6c7dd;
 }

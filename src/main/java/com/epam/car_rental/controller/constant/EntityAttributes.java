@@ -10,4 +10,5 @@ public final class EntityAttributes {
     public static final String PHONE = "phone";
     public static final String BIRT_DATE = "birth-date";
     public static final String ID = "id";
+    public static final String USER = "user";
 }

@@ -47,13 +47,14 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = connectionPool.getConnection();
             String user = bundle.getString(USER_SEARCH_USER);
+            System.out.println(user);
             PreparedStatement statement = connection.prepareStatement(user);
             password = DAOUtil.createPassword(password);
             statement.setString(1, login);
             statement.setString(2, password);
-
+            System.out.println("1");
             ResultSet resultSet = statement.executeQuery();
-
+            System.out.println("2");
             if (!resultSet.isBeforeFirst()) {
                 LOGGER.error("Cannot find user");
                 throw new EntityNotFoundException("Cannot find user");

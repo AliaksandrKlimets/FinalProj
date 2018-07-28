@@ -23,6 +23,7 @@
     <fmt:message bundle="${loc}" key="locale.login.message.password.rule.first" var="passrule1"/>
     <fmt:message bundle="${loc}" key="locale.login.message.password.rule.second" var="passrule2"/>
     <fmt:message bundle="${loc}" key="locale.login.message.password.rule.third" var="passrule3"/>
+    <fmt:message bundle="${loc}" key="locale.required.title" var="inputtitle"/>
 
     <fmt:message bundle="${loc}" key="locale.login.title" var="title"/>
     <title>${title}</title>
@@ -35,16 +36,20 @@
 <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
 <div style="height: 620px; width: 1400px; margin: 30px auto 20px auto;">
     <div class="input-data-form">
-        <form class="login" action="" method="post">
-            <input type="hidden" name="command" value="">
+        <form class="login" action="${pageContext.request.contextPath}/rental" method="post">
+            <input type="hidden" name="command" value="AUTHORIZATION">
             <label class="input-label">${login}:</label><br>
-            <input type="text" name="login" placeholder="${holderlogin}" minlength="4" maxlength="20"
+            <input type="text" name="login" placeholder="${holderlogin}" title="${inputtitle}" minlength="4"
+                   maxlength="20"
                    pattern="^[a-zA-Z\d\._]{4,20}$" required>
             <label class="input-label">${password}:</label><br>
-            <input type="password" name="password" placeholder="${holderpassword}" minlength="7" maxlength="18"
+            <input type="password" name="password" placeholder="${holderpassword}" title="${inputtitle}" minlength="7"
+                   maxlength="18"
                    pattern="^[a-zA-Z\._\d]{7,18}$" required>
             <input type="submit" name="enter" value="${signin}">
-
+            <h2 style="font-family: calibri; font-size: 17px; color: #f4f4f4; margin: 20px 0 10px 0;  text-align: center;">
+                ${requestScope.error}
+            </h2>
             <hr class="input-separator">
             <div class="reg-link">
                 <a href="${pageContext.request.contextPath}/registration">${registration}</a>

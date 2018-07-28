@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 
     <link rel="stylesheet" href="assets/css/style.css">
@@ -31,7 +32,17 @@
 </head>
 <html>
 <body>
-<jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
+<c:if test="${sessionScope.user.role eq 'ADMIN'}">
+    <jsp:forward page="${pageContext.request.contextPath}/home"/>
+</c:if>
+<c:choose>
+    <c:when test="${not empty sessionScope.user}">
+        <jsp:include page="/WEB-INF/jsp/header/userHeader.jsp"/>
+    </c:when>
+    <c:when test="${empty sessionScope.user}">
+        <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
+    </c:when>
+</c:choose>
 <div style=" height: 800px; width: 1400px; margin: 30px auto 20px auto;">
     <div class="index-side">
         <div class="index-side-elem">

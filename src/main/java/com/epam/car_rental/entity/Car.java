@@ -15,8 +15,8 @@ public class Car {
     private String addInfo;
     //private List<String> addInfo;
 
-    private double costPerHour;
-    private double oneToSevenDays;
+    private double costPerDay;
+    private double twoToSevenDays;
     private double eightToFifteen;
     private double sixteenAndMore;
 
@@ -132,20 +132,20 @@ public class Car {
         this.addInfo = addInfo;
     }
 
-    public double getCostPerHour() {
-        return costPerHour;
+    public double getCostPerDay() {
+        return costPerDay;
     }
 
-    public void setCostPerHour(double costPerHour) {
-        this.costPerHour = costPerHour;
+    public void setCostPerDay(double costPerDay) {
+        this.costPerDay = costPerDay;
     }
 
-    public double getOneToSevenDays() {
-        return oneToSevenDays;
+    public double getTwoToSevenDays() {
+        return twoToSevenDays;
     }
 
-    public void setOneToSevenDays(double oneToSevenDays) {
-        this.oneToSevenDays = oneToSevenDays;
+    public void setTwoToSevenDays(double twoToSevenDays) {
+        this.twoToSevenDays = twoToSevenDays;
     }
 
     public double getEightToFifteen() {
@@ -175,8 +175,8 @@ public class Car {
                 + " transmission " + transmission
                 + " fuel type " + fuelType
                 + " additional info " + addInfo
-                + " 1 hour " + costPerHour
-                + " 1 - 7 " + oneToSevenDays
+                + " 1 hour " + costPerDay
+                + " 1 - 7 " + twoToSevenDays
                 + " 8 - 15 " + eightToFifteen
                 + " 16+ " + sixteenAndMore;
     }
@@ -192,8 +192,8 @@ public class Car {
                 + transmission.hashCode()
                 + fuelType.hashCode()
                 + addInfo.hashCode()
-                + (int) costPerHour * 34
-                + (int) oneToSevenDays * 35
+                + (int) costPerDay * 34
+                + (int) twoToSevenDays * 35
                 + (int) eightToFifteen * 36
                 + (int) sixteenAndMore * 37;
     }
@@ -211,9 +211,9 @@ public class Car {
                 Objects.equals(transmission, car.transmission) &&
                 Objects.equals(fuelType, car.fuelType) &&
                 Objects.equals(image, car.image) &&
-                Objects.equals(addInfo, car.addInfo)&&
-                Objects.equals(costPerHour, car.costPerHour) &&
-                Objects.equals(oneToSevenDays, car.oneToSevenDays) &&
+                Objects.equals(addInfo, car.addInfo) &&
+                Objects.equals(costPerDay, car.costPerDay) &&
+                Objects.equals(twoToSevenDays, car.twoToSevenDays) &&
                 Objects.equals(eightToFifteen, car.eightToFifteen) &&
                 Objects.equals(sixteenAndMore, car.eightToFifteen);
     }
