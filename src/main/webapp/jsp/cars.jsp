@@ -5,6 +5,9 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/side-bar-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header-style.css">
     <fmt:setLocale value="${sessionScope.lang}"/>
     <fmt:setBundle basename="locale.locale" var="loc"/>
 
@@ -24,8 +27,9 @@
         <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
     </c:when>
 </c:choose>
-<div style="height: 900px;">
-    <p>Car page</p>
+<div class="content">
+       <jsp:include page="/WEB-INF/jsp/sidebar/userSideBar.jsp"/>
+
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>

@@ -34,7 +34,7 @@
     <jsp:forward page="${pageContext.request.contextPath}/home"/>
 </c:if>
 <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
-<div style="height: 620px; width: 1400px; margin: 30px auto 20px auto;">
+<div class="content">
     <div class="input-data-form">
         <form class="login" action="${pageContext.request.contextPath}/rental" method="post">
             <input type="hidden" name="command" value="AUTHORIZATION">

@@ -58,7 +58,7 @@
         <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
     </c:when>
 </c:choose>
-<div style="width: 1400px; height: 1180px; margin: 30px auto 10px auto;">
+<div class="content">
 
     <div class="rule-content">
         <h1 class="head-label">${head}</h1>

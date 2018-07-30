@@ -51,7 +51,7 @@
     <jsp:forward page="${pageContext.request.contextPath}/home"/>
 </c:if>
 <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
-<div style="width: 1400px; height: 900px; margin: 30px auto 20px auto; ">
+<div class="content">
     <div class="input-data-form">
         <form class="login" action="" method="post" style="height: 800px; ">
             <input type="hidden" name="command" value="">

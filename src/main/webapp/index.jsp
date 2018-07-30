@@ -43,7 +43,7 @@
         <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
     </c:when>
 </c:choose>
-<div style=" height: 800px; width: 1400px; margin: 30px auto 20px auto;">
+<div class="content">
     <div class="index-side">
         <div class="index-side-elem">
             <h1 class="head-label-side">${sidehead1}</h1>

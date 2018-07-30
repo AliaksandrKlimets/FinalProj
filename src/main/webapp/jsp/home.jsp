@@ -5,10 +5,11 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <fmt:setLocale value="${sessionScope.lang}"/>
     <fmt:setBundle basename="locale.locale" var="loc"/>
 
-    <fmt:message bundle="${loc}" key="locale.register.title" var="title"/>
+    <fmt:message bundle="${loc}" key="locale.home.title" var="title"/>
     <title>${title}</title>
 
 </head>
@@ -24,8 +25,16 @@
         <jsp:include page="/WEB-INF/jsp/header/adminHeader.jsp"/>
     </c:when>
 </c:choose>
-<div style="height: 900px;">
-    <p>Register page</p>
+<div class="content">
+    <c:choose>
+        <c:when test="${sessionScope.user.role eq 'USER'}">
+            <jsp:include page="/WEB-INF/jsp/sidebar/userSideBar.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/table/user-table.jsp"/>
+        </c:when>
+        <c:when test="${sessionScope.user.role eq 'ADMIN'}">
+            <jsp:include page="/WEB-INF/jsp/sidebar/adminSideBar.jsp"/>
+        </c:when>
+    </c:choose>
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>

@@ -22,7 +22,7 @@
                     <li class="hov">${home}</li>
                 </a>
                 <li style="margin: 0; padding: 0px;">|</li>
-                <li style="padding-top: 0;" class="form-button"><form action="${pageContext.request.contextPath}/rental" method="post">
+                <li style="padding:0 0 0 19px;" class="form-button"><form action="${pageContext.request.contextPath}/rental" method="post">
                     <input type="hidden" name="command" value="LOG_OFF">
                     <input type="submit" value="${logOut}">
                 </form></li>

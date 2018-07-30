@@ -12,7 +12,7 @@ public interface FineDAO {
 
     List<Fine> getUserFines(int userId) throws DAOException;
 
-    Fine getFine(int fineId) throws DAOException, EntityNotFoundException;
+    Fine getFine(int fineId) throws DAOException;
 
     void changePaymentState(int fineId, Fine.State state) throws DAOException;
 

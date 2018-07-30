@@ -33,7 +33,6 @@ public class Authorization implements Command {
         String login = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);
         String sessionLang = (String) session.getAttribute(LANG);
-        System.out.println(login+password);
         String lang = sessionLang != null ? sessionLang : DEFAULT_LANG;
         session.setAttribute(LANG, lang);
         UserService userService = ServiceFactory.getInstance().getUserService();
@@ -42,7 +41,6 @@ public class Authorization implements Command {
             session.setAttribute(USER,user);
             response.sendRedirect(HOME_PAGE);
         }catch (UserNotFoundException e){
-            System.out.println("User not found");
             LOGGER.error(e.getMessage());
             ControllerUtil.updateWithMessage(request,response,e.getMessage(),LOGIN_PAGE);
         }catch (ServiceException e){

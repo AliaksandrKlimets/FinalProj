@@ -22,13 +22,13 @@
             <ul>
                 <a href="${pageContext.request.contextPath}/login"><li class="hov">${sign}</li></a>
                 <li style="margin: 0; padding: 0px;">|</li>
-                <a href="${pageContext.request.contextPath}/registration"><li class="hov">${registration}</li></a>
+                <a href="${pageContext.request.contextPath}/registration"><li class="hov" style="padding:0 0 0 19px;">${registration}</li></a>
             </ul>
         </div>
         <div class="left-content">
             <ul>
                 <a href="${pageContext.request.contextPath}/main"><li class="hov">${main}</li></a>
-                <li style="padding-top: 0;"><form action="${pageContext.request.contextPath}/rental" method="post">
+                <li style="padding-top: 0;"><form action="${pageContext.request.contextPath}/rental" method="get">
                     <input type="hidden" name="command" value="SHOW_ALL_CARS">
                     <input type="submit" value="${park}">
                 </form></li>
