@@ -18,7 +18,7 @@
 
 </head>
 <body style="margin: 0">
-<div class="user-side-bar">
+<div class="side-bar">
     <ul>
 
         <a style="margin: 0; padding: 0; width: 300px; height: 50px; color: white;" href="${pageContext.request.contextPath}/home">
@@ -27,20 +27,24 @@
             </li>
         </a>
         <li class="side-bar-item">
-            <form class="">
-                <input type="submit" name="info" value="${orders}">
+            <form class="" action="${pageContext.request.contextPath}/rental">
+                <input type="hidden" name="command" value="USER_ORDERS">
+                <input type="hidden" name="number" value="1">
+                <input type="submit" value="${orders}">
             </form>
         </li>
         <li class="side-bar-item">
-            <form class="">
-                <input type="submit" name="info" value="${fines}">
+            <form class="" action="${pageContext.request.contextPath}/rental">
+                <input type="hidden" name="command" value="USER_FINES">
+                <input type="hidden" name="number" value="1">
+                <input type="submit"  value="${fines}">
             </form>
         </li>
-        <li class="side-bar-item">
-            <form class="">
-                <input type="submit" name="info" value="${change}">
-            </form>
-        </li>
+        <a style="margin: 0; padding: 0; width: 300px; height: 50px; color: white;" href="${pageContext.request.contextPath}/settings">
+            <li class="side-bar-nav" style="color: white;">
+                ${change}
+            </li>
+        </a>
     </ul>
     </form>
 </div>

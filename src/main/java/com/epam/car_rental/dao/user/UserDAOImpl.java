@@ -24,13 +24,15 @@ public class UserDAOImpl implements UserDAO {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public List<User> getUsers() throws DAOException {
+    public List<User> getUsers(int begin, int size) throws DAOException {
         Connection connection = null;
 
         try {
             connection = connectionPool.getConnection();
             String userList = bundle.getString(USER_ALL_USERS);
             PreparedStatement statement = connection.prepareStatement(userList);
+            statement.setInt(1,size);
+            statement.setInt(2,begin);
             ResultSet resultSet = statement.executeQuery();
             return DAOUtil.createUserListFromBD(resultSet);
         } catch (SQLException e) {
@@ -270,15 +272,18 @@ public class UserDAOImpl implements UserDAO {
         statement.setString(1, user.getLogin());
         statement.setString(2, user.getPassword());
         statement.setString(3, user.getRole().toString());
-        statement.executeUpdate();
 
+        statement.executeUpdate();
 
         statement = connection.prepareStatement(getId);
         statement.setString(1, user.getLogin());
         ResultSet set = statement.executeQuery();
-
+        int id=0;
+        while(set.next()){
+           id=set.getInt(1);
+        }
         statement = connection.prepareStatement(addUserInfoToDB);
-        statement.setInt(1, set.getInt(1));
+        statement.setInt(1, id);
         statement.setString(2, user.getName());
         statement.setString(3, user.getSurname());
         statement.setString(4, user.getEmail());
@@ -301,6 +306,21 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Cannot delete user", e);
             throw new DAOException("Cannot delete user");
         } finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public int usersCount() throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String count = bundle.getString(USER_COUNT_ITEMS);
+            return DAOUtil.getCount(count,connection);
+        }catch (SQLException e){
+            LOGGER.error("Cannot count users");
+            throw new DAOException("Cannot count users");
+        }finally {
             connectionPool.closeConnection(connection);
         }
     }

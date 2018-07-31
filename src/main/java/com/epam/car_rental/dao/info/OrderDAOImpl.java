@@ -23,12 +23,14 @@ public class OrderDAOImpl implements OrderDAO {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public List<Order> getOrders() throws DAOException {
+    public List<Order> getOrders(int begin, int size) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String getOrders = bundle.getString(ORDER_GET_ORDERS);
             PreparedStatement statement = connection.prepareStatement(getOrders);
+            statement.setInt(1,size);
+            statement.setInt(2,begin);
             ResultSet resultSet = statement.executeQuery();
             return DAOUtil.createOrderListFromDB(resultSet);
         } catch (SQLException e) {
@@ -149,13 +151,15 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public List<Order> getUserOrders(int userId) throws DAOException {
+    public List<Order> getUserOrders(int userId, int begin, int size) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String getOrders = bundle.getString(ORDER_GET_USER_ORDERS);
             PreparedStatement statement = connection.prepareStatement(getOrders);
             statement.setInt(1, userId);
+            statement.setInt(2, size);
+            statement.setInt(3, begin);
             ResultSet resultSet = statement.executeQuery();
             return DAOUtil.createOrderListFromDB(resultSet);
         } catch (SQLException e) {
@@ -166,4 +170,33 @@ public class OrderDAOImpl implements OrderDAO {
         }
     }
 
+    @Override
+    public int ordersCount() throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String orderCount = bundle.getString(ORDER_ITEMS_COUNT);
+            return DAOUtil.getCount(orderCount,connection);
+        }catch (SQLException e){
+            LOGGER.error("Cannot count order items");
+            throw new DAOException("Cannot count order items");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public int userOrdersCount(int id) throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String orderCount = bundle.getString(ORDER_USER_ITEMS_COUNT);
+            return DAOUtil.getParamCount(id,orderCount,connection);
+        }catch (SQLException e){
+            LOGGER.error("Cannot count user order items");
+            throw new DAOException("Cannot user count order items");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
 }

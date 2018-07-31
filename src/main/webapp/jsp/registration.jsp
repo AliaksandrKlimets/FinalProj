@@ -52,9 +52,9 @@
 </c:if>
 <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
 <div class="content">
-    <div class="input-data-form">
-        <form class="login" action="" method="post" style="height: 800px; ">
-            <input type="hidden" name="command" value="">
+    <div class="input-data-form" style="height: 850px;">
+        <form class="login" action="${pageContext.request.contextPath}/rental" method="post" style="height: 800px; ">
+            <input type="hidden" name="command" value="REGISTRATION">
             <label class="input-label">${login}:</label><br>
             <input type="text" name="login" title="${inputtitle}" placeholder="${holderlogin}" minlength="4"
                    maxlength="20"
@@ -81,7 +81,7 @@
                    pattern="^(29|33|25)[\d]{7}$" title="${inputtitle}" required>
 
             <label class="input-label">${bitrh}:</label><br>
-            <input type="date" name="birth_date" max="2000-01-01" title="${inputtitle}" required>
+            <input type="date" name="birth-date" max="2000-01-01" title="${inputtitle}" required>
 
             <input type="submit" name="enter" value="${registration}">
 
@@ -93,7 +93,7 @@
 
 
     </div>
-    <div class="login-rules" style="height: 900px;">
+    <div class="login-rules" style="height: 700px; margin-bottom: 200px; background-color: #f4f4f4">
         <h1 class="head-label" style="color: white; font-weight: normal;">${loginrules}:</h1>
         <ul style="list-style-type: disc; margin: 5px 0 5px 60px;">
             <li class="side-list">${loginrule1}</li>

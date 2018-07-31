@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface FineDAO {
 
-    List<Fine> getFines() throws DAOException;
+    List<Fine> getFines(int begin, int size) throws DAOException;
 
-    List<Fine> getUserFines(int userId) throws DAOException;
+    List<Fine> getUserFines(int userId, int begin, int size) throws DAOException;
 
     Fine getFine(int fineId) throws DAOException;
 
@@ -20,6 +20,12 @@ public interface FineDAO {
 
     void addFine(Fine fine) throws DAOException;
 
-    List<Fine> getUnpaidFines()throws DAOException;
+    List<Fine> getUnpaidFines(int begin, int size) throws DAOException;
+
+    int finesCount() throws DAOException;
+
+    int userFinesCount(int id) throws DAOException;
+
+    int unpaidFinesCount() throws DAOException;
 
 }

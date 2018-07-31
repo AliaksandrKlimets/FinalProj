@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface OrderDAO {
 
-    List<Order> getOrders() throws DAOException;
+    List<Order> getOrders(int begin, int size) throws DAOException;
 
     Order getOrder(int orderId) throws DAOException, EntityNotFoundException;
 
@@ -22,5 +22,9 @@ public interface OrderDAO {
 
     void addDeclineReason(int orderId, String reason) throws DAOException;
 
-    List<Order> getUserOrders(int userId) throws DAOException;
+    List<Order> getUserOrders(int userId, int begin, int size) throws DAOException;
+
+    int ordersCount() throws DAOException;
+
+    int userOrdersCount(int id) throws DAOException;
 }

@@ -58,8 +58,8 @@
 
 
     </div>
-    <div class="login-rules">
-        <h1 class="head-label" style="color: white; font-weight: normal;">${loginrules}:</h1>
+    <div class="login-rules" style="background-color: #f4f4f4;">
+        <h1 class="head-label" style="color: white; font-weight: normal; ">${loginrules}:</h1>
         <ul style="list-style-type: disc; margin: 5px 0 5px 60px;">
             <li class="side-list">${loginrule1}</li>
             <li class="side-list">${loginrule2}</li>

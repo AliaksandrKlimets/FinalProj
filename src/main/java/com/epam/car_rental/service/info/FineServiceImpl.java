@@ -15,21 +15,21 @@ import java.util.List;
 
 public class FineServiceImpl implements FineService {
     @Override
-    public List<Fine> getFines() throws ServiceException {
+    public List<Fine> getFines(int begin, int size) throws ServiceException {
         FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
         try{
-            return fineDAO.getFines();
+            return fineDAO.getFines(begin,size);
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public List<Fine> getUserFines(String userId) throws ServiceException {
+    public List<Fine> getUserFines(String userId, int begin, int size) throws ServiceException {
         FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
         try{
             Validator.isNumber(userId);
-            return fineDAO.getUserFines(Integer.parseInt(userId));
+            return fineDAO.getUserFines(Integer.parseInt(userId),begin,size);
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }catch (InputException e){
@@ -100,10 +100,40 @@ public class FineServiceImpl implements FineService {
     }
 
     @Override
-    public List<Fine> getUnpaidFines() throws ServiceException {
+    public List<Fine> getUnpaidFines(int begin, int size) throws ServiceException {
         FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
         try{
-            return fineDAO.getUnpaidFines();
+            return fineDAO.getUnpaidFines(begin,size);
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int finesCount() throws ServiceException {
+        FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
+        try{
+            return fineDAO.finesCount();
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int userFinesCount(int id) throws ServiceException {
+        FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
+        try{
+            return fineDAO.userFinesCount(id);
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int unpaidFinesCount() throws ServiceException {
+        FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
+        try{
+            return fineDAO.unpaidFinesCount();
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }

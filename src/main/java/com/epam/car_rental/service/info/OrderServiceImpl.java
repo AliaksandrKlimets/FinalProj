@@ -17,10 +17,10 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Override
-    public List<Order> getOrders() throws ServiceException {
+    public List<Order> getOrders(int begin, int size) throws ServiceException {
         OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
         try{
-            return orderDAO.getOrders();
+            return orderDAO.getOrders(begin,size);
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }
@@ -115,15 +115,35 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getUserOrders(String userId) throws ServiceException {
+    public List<Order> getUserOrders(String userId, int begin, int size) throws ServiceException {
         OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
         try{
             Validator.isNumber(userId);
-            return orderDAO.getUserOrders(Integer.parseInt(userId));
+            return orderDAO.getUserOrders(Integer.parseInt(userId), begin, size);
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }catch (InputException e){
             throw new InvalidParametersException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int ordersCount() throws ServiceException {
+        OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
+        try{
+            return orderDAO.ordersCount();
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int userOrdersCount(int id) throws ServiceException {
+        OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
+        try{
+            return orderDAO.userOrdersCount(id);
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
         }
     }
 }

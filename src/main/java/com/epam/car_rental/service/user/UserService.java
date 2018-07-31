@@ -6,7 +6,7 @@ import com.epam.car_rental.service.ServiceException;
 import java.util.List;
 
 public interface UserService {
-    List<User> getUsers() throws ServiceException;
+    List<User> getUsers(int begin, int size) throws ServiceException;
 
     User getUser(String login, String password) throws ServiceException;
 
@@ -29,5 +29,7 @@ public interface UserService {
     long getUserIdByLogin(String login) throws ServiceException;
 
     User getUserByLogin(String login) throws ServiceException;
+
+    int usersCount() throws ServiceException;
 
 }

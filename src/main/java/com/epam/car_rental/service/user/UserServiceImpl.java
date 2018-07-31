@@ -17,10 +17,10 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     @Override
-    public List<User> getUsers() throws ServiceException {
+    public List<User> getUsers(int begin, int size) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
-            return userDAO.getUsers();
+            return userDAO.getUsers(begin,size);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         }
@@ -184,6 +184,16 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e.getMessage());
         }catch (InputException e){
             throw new InvalidParametersException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int usersCount() throws ServiceException {
+        UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
+        try{
+            return userDAO.usersCount();
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
         }
     }
 }

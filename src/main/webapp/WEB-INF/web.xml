@@ -75,6 +75,15 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Settings</servlet-name>
+        <jsp-file>/jsp/settings.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Settings</servlet-name>
+        <url-pattern>/settings</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>NoCacheFilter</filter-name>
         <filter-class>com.epam.car_rental.filter.NoCacheFilter</filter-class>

@@ -23,12 +23,14 @@ public class CarDAOImpl implements CarDAO {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public List<Car> getCars() throws DAOException {
+    public List<Car> getCars(int begin, int size) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String getCar = bundle.getString(CAR_GET_CARS);
             PreparedStatement statement = connection.prepareStatement(getCar);
+            statement.setInt(1,size);
+            statement.setInt(2,begin);
             ResultSet resultSet = statement.executeQuery();
 
             return DAOUtil.getCarListFromDB(resultSet);
@@ -146,8 +148,14 @@ public class CarDAOImpl implements CarDAO {
         statement.setString(1, car.getModel());
         ResultSet set = statement.executeQuery();
 
+        int carId=0;
+
+        while(set.next()){
+            carId = set.getInt(1);
+        }
+
         statement = connection.prepareStatement(addServiceCost);
-        statement.setInt(1, set.getInt(1));
+        statement.setInt(1, carId);
         statement.setDouble(2, car.getCostPerDay());
         statement.setDouble(3, car.getTwoToSevenDays());
         statement.setDouble(4, car.getEightToFifteen());
@@ -158,14 +166,17 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public List<Car> getCarsByType(Car.Type type) throws DAOException {
+    public List<Car> getCarsByType(Car.Type type, int begin, int size) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String getCarByType = bundle.getString(CAR_GET_CARS_BY_TYPE);
             PreparedStatement statement = connection.prepareStatement(getCarByType);
-            ResultSet resultSet = statement.executeQuery();
             statement.setString(1, type.toString());
+            statement.setInt(2,size);
+            statement.setInt(3,begin);
+            ResultSet resultSet = statement.executeQuery();
+
             return DAOUtil.getCarListFromDB(resultSet);
         } catch (SQLException e) {
             LOGGER.error("Error while getting car list by model", e);
@@ -175,4 +186,41 @@ public class CarDAOImpl implements CarDAO {
         }
     }
 
+
+    @Override
+    public int itemsCount() throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String count = bundle.getString(CAR_ITEMS_COUNT);
+            return DAOUtil.getCount(count, connection);
+        }catch (SQLException e){
+            LOGGER.error("Cannot count items");
+            throw new DAOException("Cannot count items");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public int itemsByTypeCount(Car.Type type) throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String count = bundle.getString(CAR_ITEMS_COUNT_BY_TYPE);
+            PreparedStatement statement = connection.prepareStatement(count);
+            statement.setString(1,type.toString());
+            ResultSet set = statement.executeQuery();
+            int result = 0;
+            while (set.next()){
+                result = set.getInt(1);
+            }
+            return result;
+        }catch (SQLException e){
+            LOGGER.error("Cannot count items");
+            throw new DAOException("Cannot count items");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
 }

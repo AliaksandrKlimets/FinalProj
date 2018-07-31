@@ -85,8 +85,9 @@ public class DAOUtil {
 
     public static List<Car> getCarListFromDB(ResultSet resultSet) throws SQLException {
         List<Car> carList = new ArrayList<>();
+        Car car;
         while (resultSet.next()) {
-            Car car = new Car();
+            car = new Car();
             int column = 1;
             car.setCarId(resultSet.getInt(column++));
             car.setModel(resultSet.getString(column++));
@@ -221,6 +222,27 @@ public class DAOUtil {
         statement.setString(1, value);
         statement.setInt(2, id);
         statement.executeUpdate();
+    }
+
+    public static int getCount(String query, Connection connection) throws SQLException{
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet set = statement.executeQuery();
+        int count = 0;
+        while(set.next()){
+            count = set.getInt(1);
+        }
+        return count;
+    }
+
+    public static int getParamCount(int id, String query, Connection connection) throws SQLException{
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,id);
+        ResultSet set = statement.executeQuery();
+        int count = 0;
+        while(set.next()){
+            count = set.getInt(1);
+        }
+        return count;
     }
 
 }

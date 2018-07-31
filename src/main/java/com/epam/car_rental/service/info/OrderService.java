@@ -6,7 +6,7 @@ import com.epam.car_rental.service.ServiceException;
 import java.util.List;
 
 public interface OrderService {
-    List<Order> getOrders() throws ServiceException;
+    List<Order> getOrders(int begin, int size) throws ServiceException;
 
     Order getOrder(String orderId) throws ServiceException;
 
@@ -20,5 +20,9 @@ public interface OrderService {
 
     void addDeclineReason(String orderId, String reason) throws ServiceException;
 
-    List<Order> getUserOrders(String userId) throws ServiceException;
+    List<Order> getUserOrders(String userId, int begin, int size) throws ServiceException;
+
+    int ordersCount() throws ServiceException;
+
+    int userOrdersCount(int id) throws ServiceException;
 }

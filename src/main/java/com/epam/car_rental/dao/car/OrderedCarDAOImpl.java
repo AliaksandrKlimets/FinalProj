@@ -78,12 +78,12 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
     }
 
     @Override
-    public List<OrderedCar> getActualCarOrders(int carId) throws DAOException {
+    public List<OrderedCar> getActualCarOrders(int carId, int begin, int size) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String carOrders = bundle.getString(ORDERED_CAR_GET_ACTUAL_CAR_ORDERS);
-            return getOrderedList(carId, carOrders, connection);
+            return getOrderedList(carId, begin, size, carOrders, connection);
         } catch (SQLException e) {
             LOGGER.error("Error while getting actual ordered car list by id",e);
             throw new DAOException("Error while getting actual ordered car list by id");
@@ -93,12 +93,14 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
     }
 
     @Override
-    public List<OrderedCar> getOrderedCars() throws DAOException {
+    public List<OrderedCar> getOrderedCars(int begin, int size) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String getCars = bundle.getString(ORDERED_CAR_GET_CARS);
             PreparedStatement statement = connection.prepareStatement(getCars);
+            statement.setInt(1,size);
+            statement.setInt(2,begin);
             ResultSet resultSet = statement.executeQuery();
             return DAOUtil.createOrderedCarListFromDB(resultSet);
         } catch (SQLException e) {
@@ -110,12 +112,12 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
     }
 
     @Override
-    public List<OrderedCar> getCarOrders(int id) throws DAOException {
+    public List<OrderedCar> getCarOrders(int id, int begin, int size) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String carOrders = bundle.getString(ORDERED_CAR_GET_CAR_ORDERS);
-            return getOrderedList(id, carOrders, connection);
+            return getOrderedList(id, begin, size, carOrders, connection);
         } catch (SQLException e) {
             LOGGER.error("Error while getting ordered car by id",e);
             throw new DAOException("Error while getting ordered car by id");
@@ -124,10 +126,57 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
         }
     }
 
-    private List<OrderedCar> getOrderedList(int carId, String query, Connection connection) throws SQLException {
+    private List<OrderedCar> getOrderedList(int carId,int begin, int size, String query, Connection connection) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, carId);
+        statement.setInt(2, size);
+        statement.setInt(3, begin);
         ResultSet resultSet = statement.executeQuery();
         return DAOUtil.createOrderedCarListFromDB(resultSet);
+    }
+
+    @Override
+    public int actualCarOrdersCount(int id) throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String count = bundle.getString(ORDERED_CAR_ACTUAL_COUNT);
+            return DAOUtil.getParamCount(id,count,connection);
+        }catch (SQLException e){
+            LOGGER.error("Cannot count actual ordered car items", e);
+            throw new DAOException("Cannot count actual ordered car items");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public int itemsCount() throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String count = bundle.getString(ORDERED_CAR_COUNT);
+            return DAOUtil.getCount(count,connection);
+        }catch (SQLException e){
+            LOGGER.error("Cannot count ordered car items",e);
+            throw new DAOException("Cannot count ordered car items");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public int carOrdersCount(int id) throws DAOException {
+        Connection connection = null;
+        try{
+            connection = connectionPool.getConnection();
+            String count = bundle.getString(ORDERED_CAR_CAR_COUNT);
+            return DAOUtil.getParamCount(id,count,connection);
+        }catch (SQLException e){
+            LOGGER.error("Cannot count ordered car items", e);
+            throw new DAOException("Cannot count ordered car items");
+        }finally {
+            connectionPool.closeConnection(connection);
+        }
     }
 }

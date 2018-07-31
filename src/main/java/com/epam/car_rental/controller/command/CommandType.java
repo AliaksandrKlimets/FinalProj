@@ -28,6 +28,7 @@ public enum CommandType {
     ORDER_ADDING,
     USER_DELETING,
     USER_FINES,
-    USER_ORDER;
+    USER_ORDERS
+
 
 }

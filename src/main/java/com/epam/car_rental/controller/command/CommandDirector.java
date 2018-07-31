@@ -49,7 +49,7 @@ public class CommandDirector {
         commands.put(CommandType.ORDER_ADDING, new CommandRights(rights, new OrderAdding()));
         commands.put(CommandType.USER_DELETING, new CommandRights(rights, new UserDeleting()));
         commands.put(CommandType.USER_FINES, new CommandRights(rights, new UserFines()));
-        commands.put(CommandType.USER_ORDER, new CommandRights(rights, new UserOrders()));
+        commands.put(CommandType.USER_ORDERS, new CommandRights(rights, new UserOrders()));
 
         nonRoleCommands.put(CommandType.LOCALE_CHANGING, new LocaleChanging());
         nonRoleCommands.put(CommandType.AUTHORIZATION, new Authorization());

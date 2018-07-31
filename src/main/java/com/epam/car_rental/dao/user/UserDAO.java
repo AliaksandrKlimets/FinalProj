@@ -9,7 +9,7 @@ import com.epam.car_rental.service.user.UserNotFoundException;
 import java.util.List;
 
 public interface UserDAO {
-    List<User> getUsers() throws DAOException;
+    List<User> getUsers(int begin, int size) throws DAOException;
 
     User getUser(String login, String password) throws DAOException;
 
@@ -32,4 +32,6 @@ public interface UserDAO {
     long getUserIdByLogin(String login) throws DAOException;
 
     User getUserByLogin(String login) throws DAOException;
+
+    int usersCount() throws DAOException;
 }
