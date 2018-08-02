@@ -37,14 +37,20 @@ public class UserOrders implements Command {
             int currentPage = Integer.parseInt(pageNumber);
             User currentUser = (User) user;
             int size = orderService.userOrdersCount(currentUser.getUserId());
-            String command = CommandType.USER_ORDERS.toString();
-            PaginationHelper helper = ControllerUtil.createPagination(request,currentPage,size,command);
-            request.setAttribute(PAGE,helper);
+            if(size!=0) {
+                String command = CommandType.USER_ORDERS.toString();
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                request.setAttribute(PAGE, helper);
 
-            List<Order> orderList = orderService.getUserOrders(""+currentUser.getUserId(),helper.getBegin(), 10);
-            request.setAttribute(USER_ORDERS, orderList);
+                List<Order> orderList = orderService.getUserOrders("" + currentUser.getUserId(), helper.getBegin(), 10);
+                request.setAttribute(USER_ORDERS, orderList);
 
-            request.getRequestDispatcher("/home").forward(request, response);
+                request.getRequestDispatcher("/home").forward(request, response);
+            }else {
+                request.setAttribute("noItems",1);
+                request.getRequestDispatcher("/home").forward(request, response);
+            }
+
         }catch (InputException e){
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }catch (ServiceException e){

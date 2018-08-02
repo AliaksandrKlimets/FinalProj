@@ -16,4 +16,7 @@ public final class ControlConst {
     public static final String USER_FINES = "userFines";
     public static final String ORDERS = "orders";
     public static final String FINES = "fines";
+    public static final String USERS = "users";
+    public static final String ADD_PARAM = "add_param";
+    public static final String ENTITY = "entity";
 }

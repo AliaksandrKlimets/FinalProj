@@ -16,7 +16,7 @@ body{
     width: 400px;
     border-radius: 4px;
     margin-right: 10px;
-    background-color: #f4f4f4;
+    background-color: lightgray;
 }
 
 .index-left {
@@ -61,7 +61,7 @@ body{
 .index-side-elem {
     border-radius: 0 0 10px 10px;
     background-color: #f4f4f4;
-    height: 290px;
+    height: 250px;
     padding: 0;
     margin: 0;
 

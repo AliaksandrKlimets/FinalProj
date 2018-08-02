@@ -31,12 +31,14 @@
         <li class="side-bar-item">
             <form class="" action="${pageContext.request.contextPath}/rental">
                 <input type="hidden" name="command" value="SHOW_ALL_USERS">
+                <input type="hidden" name="number" value="1">
                 <input type="submit"  value="${users}">
             </form>
         </li>
         <li class="side-bar-item">
             <form class="" action="${pageContext.request.contextPath}/rental">
                 <input type="hidden" name="command" value="SHOW_ALL_CARS">
+                <input type="hidden" name="number" value="1">
                 <input type="submit"  value="${cars}">
             </form>
         </li>
@@ -56,7 +58,8 @@
         </li>
         <li class="side-bar-item">
             <form class="" action="${pageContext.request.contextPath}/rental">
-                <input type="hidden" name="command" value="ADD_CAR">
+                <input type="hidden" name="command" value="ADDING_HELP">
+                <input type="hidden" name="add_param" value="car">
                 <input type="submit"  value="${addCar}">
             </form>
         </li>

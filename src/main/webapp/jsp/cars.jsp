@@ -16,24 +16,42 @@
 
 </head>
 <body>
-<c:if test="${sessionScope.user.role eq 'ADMIN'}">
-    <jsp:forward page="${pageContext.request.contextPath}/home"/>
-</c:if>
 <c:choose>
-    <c:when test="${not empty sessionScope.user}">
+    <c:when test="${sessionScope.user.role eq 'USER'}">
         <jsp:include page="/WEB-INF/jsp/header/userHeader.jsp"/>
     </c:when>
-    <c:when test="${empty sessionScope.user}">
-        <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
+    <c:when test="${sessionScope.user.role eq 'ADMIN'}">
+        <jsp:include page="/WEB-INF/jsp/header/adminHeader.jsp"/>
     </c:when>
+    <c:otherwise>
+        <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
+    </c:otherwise>
 </c:choose>
 <div class="content">
-       <jsp:include page="/WEB-INF/jsp/sidebar/userSideBar.jsp"/>
-        <c:if test="${ not empty requestScope.carList}">
-            <c:forEach  items="${requestScope.carList}" var="car" >
-                <c:out value="${car.carId}"/>
-            </c:forEach>
-        </c:if>
+    <c:choose>
+        <c:when test="${sessionScope.user.role eq 'USER'}">
+            <c:if test="${ not empty requestScope.carList}">
+                <c:forEach items="${requestScope.carList}" var="car">
+                    <c:out value="${car.carId}"/>
+                </c:forEach>
+            </c:if>
+        </c:when>
+        <c:when test="${ sessionScope.user.role eq 'ADMIN'}">
+            <jsp:include page="/WEB-INF/jsp/sidebar/adminSideBar.jsp"/>
+            <c:if test="${ not empty requestScope.carList}">
+                <c:forEach items="${requestScope.carList}" var="car">
+                    <c:out value="${car.carId}"/>
+                </c:forEach>
+            </c:if>
+        </c:when>
+        <c:otherwise>
+            <c:if test="${ not empty requestScope.carList}">
+                <c:forEach items="${requestScope.carList}" var="car">
+                    <c:out value="${car.carId}"/>
+                </c:forEach>
+            </c:if>
+        </c:otherwise>
+    </c:choose>
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>

@@ -65,7 +65,7 @@
                    pattern="^[a-zA-Z\._\d]{7,18}$" required>
 
             <label class="input-label">${name}:</label><br>
-            <input type="text" name="name" placeholder="${holdername}" minlength="7" maxlength="20"
+            <input type="text" name="name" placeholder="${holdername}" minlength="3" maxlength="20"
                    pattern="^[a-zA-Zа-яА-Я]{3,20}$" title="${inputtitle}" required>
 
             <label class="input-label">${surname}:</label><br>

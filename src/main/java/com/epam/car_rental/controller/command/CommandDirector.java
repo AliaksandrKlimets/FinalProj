@@ -40,6 +40,7 @@ public class CommandDirector {
         commands.put(CommandType.ORDER_DELETING, new CommandRights(rights, new OrderDeleting()));
         commands.put(CommandType.SHOW_ALL_CARS, new CommandRights(rights, new ShowAllCars()));
         commands.put(CommandType.LOG_OFF, new CommandRights(rights, new LogOff()));
+        commands.put(CommandType.ADDING_HELP, new CommandRights(rights, new AddingHelper()));
 
         rights = new ArrayList<>();
         rights.add(User.Role.USER);

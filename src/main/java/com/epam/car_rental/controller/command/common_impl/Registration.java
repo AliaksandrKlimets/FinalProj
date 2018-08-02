@@ -6,17 +6,18 @@ import com.epam.car_rental.service.ServiceException;
 import com.epam.car_rental.service.ServiceFactory;
 import com.epam.car_rental.service.user.UserExistException;
 import com.epam.car_rental.service.user.UserService;
+import com.epam.car_rental.util.ControllerUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 
 import static com.epam.car_rental.controller.constant.EntityAttributes.*;
 import static com.epam.car_rental.controller.constant.PageUrl.HOME_PAGE;
+import static com.epam.car_rental.controller.constant.PageUrl.REGISTRATION_PAGE;
 
 public class Registration implements Command {
     private static final Logger LOGGER = Logger.getLogger(Registration.class);
@@ -49,10 +50,10 @@ public class Registration implements Command {
             response.sendRedirect(HOME_PAGE);
         }catch (UserExistException e){
             LOGGER.error(e.getMessage());
-            System.out.println(e.getMessage());
+            ControllerUtil.updateWithMessage(request,response,e.getMessage(),REGISTRATION_PAGE);
         }catch (ServiceException e){
             LOGGER.error(e.getMessage());
-            System.out.println(e.getMessage());
+            ControllerUtil.updateWithMessage(request,response,e.getMessage(),REGISTRATION_PAGE);
         }
     }
 }

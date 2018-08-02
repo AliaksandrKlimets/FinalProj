@@ -21,6 +21,7 @@ public enum CommandType {
     ORDER_DELETING,
     REGISTRATION,
     SHOW_ALL_CARS,
+    ADDING_HELP,
 
     CHANGING_EMAIL,
     CHANGING_PASSWORD,
@@ -29,6 +30,4 @@ public enum CommandType {
     USER_DELETING,
     USER_FINES,
     USER_ORDERS
-
-
 }

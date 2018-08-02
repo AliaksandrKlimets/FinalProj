@@ -44,7 +44,8 @@ public class Authorization implements Command {
             LOGGER.error(e.getMessage());
             ControllerUtil.updateWithMessage(request,response,e.getMessage(),LOGIN_PAGE);
         }catch (ServiceException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
+            ControllerUtil.updateWithMessage(request,response,e.getMessage(),LOGIN_PAGE);
         }
     }
 }

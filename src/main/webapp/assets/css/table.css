@@ -1,0 +1,32 @@
+table{
+    border: 1px solid black;
+    width: 1000px;
+    border-collapse: collapse;
+    background-color: #f3f3f3;
+    font-family: calibri;
+}
+th{
+    height: 60px;
+    border: 1px solid black;
+}
+
+.button{
+    vertical-align: middle;
+}
+
+.button input[type="submit"]{
+    width: 130px;
+    margin: 15px 5px 0 5px;
+    height: 35px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+}
+
+.button input[type="submit"]:hover{
+    background-color: rgba(24, 33, 52, 0.6);
+    cursor: pointer;
+}
