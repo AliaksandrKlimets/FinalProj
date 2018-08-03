@@ -62,9 +62,7 @@
                     </c:forEach>
                 </c:when>
                 <c:when test="${not empty requestScope.fines}">
-                    <c:forEach items="${requestScope.fines}" var="fine">
-                        <c:out value="${fine.fineId}"/>
-                    </c:forEach>
+                    <jsp:include page="/WEB-INF/jsp/table/finesTable.jsp"/>
                 </c:when>
                 <c:when test="${not empty requestScope.users}">
                     <jsp:include page="/WEB-INF/jsp/table/usersTable.jsp"/>

@@ -27,35 +27,41 @@
                     <ahs:full-name name="${sessionScope.user.name}" surname="${sessionScope.user.surname}"/></h3>
                 </th>
                 <th style="width: 100px; text-align: right;"><h3
-                        style="font-family: calibri; font-size: 25px; font-weight: normal;"><ahs:ages date="${sessionScope.user.birthDate}"/> y. o.</h3></th>
+                        style="font-family: calibri; font-size: 25px; font-weight: normal;"><ahs:ages
+                        date="${sessionScope.user.birthDate}"/> y. o.</h3></th>
             </tr>
         </table>
         <h3 style="font-family: calibri; font-size: 19px; font-weight: normal; width: 250px; margin-top: 0;">${personal}:</h3>
         <table style="width: 600px; margin-top: 20px; background-color: lightblue;">
-            <tr >
+            <tr>
                 <th class="table-user-cell"><h3
-                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">E-mail:</h3></th>
+                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">E-mail:</h3>
+                </th>
                 <th class="table-user-cell"><h3
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${sessionScope.user.email}</h3>
                 </th>
             </tr>
-            <tr >
+            <tr>
                 <th class="table-user-cell"><h3
-                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${phone}</h3></th>
+                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${phone}</h3>
+                </th>
                 <th class="table-user-cell"><h3
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${sessionScope.user.phone}</h3>
                 </th>
             </tr>
-            <tr >
+            <tr>
                 <th class="table-user-cell"><h3
-                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${birth}</h3></th>
+                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${birth}</h3>
+                </th>
                 <th class="table-user-cell"><h3
-                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;"><ahs:date-locale date="${sessionScope.user.birthDate}" locale="${sessionScope.lang}"/></h3>
+                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">
+                    <ahs:date-locale date="${sessionScope.user.birthDate}" locale="${sessionScope.lang}"/></h3>
                 </th>
             </tr>
-            <tr >
+            <tr>
                 <th class="table-user-cell"><h3
-                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${regDate}</h3></th>
+                        style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${regDate}</h3>
+                </th>
                 <th class="table-user-cell"><h3
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">
                     <ahs:date-locale date="${sessionScope.user.registrationDate}" locale="${sessionScope.lang}"/></h3>

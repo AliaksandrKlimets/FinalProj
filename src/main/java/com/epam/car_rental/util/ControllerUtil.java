@@ -59,4 +59,7 @@ public class ControllerUtil {
         requestDispatcher.forward(request, response);
     }
 
+    public static String createAddressWithPaging(HttpServletRequest request, String command, String page){
+        return request.getContextPath() + CONTROLLER_COMMAND + command + PAGE + page;
+    }
 }

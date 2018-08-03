@@ -25,9 +25,10 @@ public class AddingHelper implements Command {
         String id = request.getParameter(ID);
         String name = request.getParameter(NAME);
         try {
-            Validator.isNumber(id);
+
             request.setAttribute(ADD_PARAM, addParam);
             if (id != null) {
+                Validator.isNumber(id);
                 request.setAttribute(ID, id);
             }
             if (name != null) {

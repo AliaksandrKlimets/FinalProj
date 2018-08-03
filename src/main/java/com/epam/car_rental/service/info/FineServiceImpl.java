@@ -51,10 +51,11 @@ public class FineServiceImpl implements FineService {
     }
 
     @Override
-    public void changePaymentState(String fineId, String state) throws ServiceException {
+    public void changePaymentState(String fineId, String state, String number) throws ServiceException {
         FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
         try{
             Validator.isNumber(fineId);
+            Validator.isNumber(number);
             FineValidator.isPaymentState(state);
             fineDAO.changePaymentState(Integer.parseInt(fineId),Fine.State.valueOf(state));
         }catch (DAOException e){

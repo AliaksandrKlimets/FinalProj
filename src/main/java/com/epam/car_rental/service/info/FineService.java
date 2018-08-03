@@ -12,7 +12,7 @@ public interface FineService {
 
     Fine getFine(String fineId) throws ServiceException;
 
-    void changePaymentState(String fineId, String state) throws ServiceException;
+    void changePaymentState(String fineId, String state, String number) throws ServiceException;
 
     void deleteFine(String fineId) throws ServiceException;
 

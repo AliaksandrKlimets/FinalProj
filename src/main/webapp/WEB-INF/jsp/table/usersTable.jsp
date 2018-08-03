@@ -11,36 +11,48 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css">
 
+    <fmt:setLocale value="${sessionScope.lang}"/>
+    <fmt:setBundle basename="locale.locale" var="loc"/>
+
+    <fmt:message bundle="${loc}" key="locale.register.label.login" var="login"/>
+    <fmt:message bundle="${loc}" key="locale.register.label.name" var="name"/>
+    <fmt:message bundle="${loc}" key="locale.register.label.surname" var="surname"/>
+    <fmt:message bundle="${loc}" key="locale.register.label.phone" var="phone"/>
+    <fmt:message bundle="${loc}" key="locale.register.label.email" var="email"/>
+    <fmt:message bundle="${loc}" key="locale.register.label.birth" var="bitrh"/>
+    <fmt:message bundle="${loc}" key="locale.action" var="action"/>
+    <fmt:message bundle="${loc}" key="locale.action.add.fine" var="fine"/>
+
 </head>
 <body>
 <div style="min-height: 500px; width: 1000px; padding: 0; margin: 0;">
     <table>
         <tr>
-            <th>id</th>
-            <th>Логин</th>
-            <th style="width: 150px;">Имя</th>
-            <th>Фамилия</th>
-            <th style="width: 200px;">E-mail</th>
-            <th>Телефон</th>
-            <th style="width: 100px;">Дата рождения</th>
-            <th style="width: 100px;">Действие</th>
+            <th style="width: 30px;">id</th>
+            <th style="width: 130px;">${login}</th>
+            <th style="width: 130px;">${name}</th>
+            <th style="width: 180px;">${surname}</th>
+            <th style="width: 220px;">${email}</th>
+            <th style="width: 100px;">${phone}</th>
+            <th style="width: 100px;">${bitrh}</th>
+            <th style="width: 100px;">${action}</th>
         </tr>
         <c:forEach items="${requestScope.users}" var="user">
             <tr>
                 <th>${user.userId}</th>
                 <th>${user.login}</th>
-                <th style="width: 120px;">${user.name}</th>
+                <th>${user.name}</th>
                 <th>${user.surname}</th>
-                <th style="width: 200px;">${user.email}</th>
-                <th style="width: 100px;">${user.phone}</th>
-                <th style="width: 100px;"><ahs:date-locale locale="ru" date="${user.birthDate}"/></th>
-                <th style="width: 100px;">
-                    <form class="button" action="/rental" method="get">
+                <th>${user.email}</th>
+                <th>${user.phone}</th>
+                <th><ahs:date-locale locale="ru" date="${user.birthDate}"/></th>
+                <th>
+                    <form class="button" action="${pageContext.request.contextPath}/rental" method="get">
                         <input type="hidden" name="command" value="ADDING_HELP">
                         <input type="hidden" name="add_param" value="fine">
                         <input type="hidden" name="id" value="${user.userId}">
                         <input type="hidden" name="name" value="${user.login}">
-                        <input type="submit" value="Добавить штраф">
+                        <input type="submit" value="${fine}">
                     </form>
                 </th>
 
