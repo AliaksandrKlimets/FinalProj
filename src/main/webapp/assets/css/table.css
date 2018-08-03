@@ -2,6 +2,7 @@ table{
     width: 1000px;
     border-collapse: collapse;
     background-color: #ffffff;
+    border: 1px solid #bdd4dd;
     font-family: calibri;
 }
 th{
@@ -17,7 +18,7 @@ th{
     color: #ffffff;
     font-weight: bold;
     font-size: 18px;
-    height: 70px    ;
+    height: 70px ;
 }
 
 .button{
@@ -39,7 +40,7 @@ th{
 }
 
 tr:hover{
-    background-color: #f4f4f4;
+    background-color: #dddddd;
 }
 
 .thead:hover{

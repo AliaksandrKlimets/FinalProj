@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static com.epam.car_rental.controller.constant.ControlConst.LANG;
+import static com.epam.car_rental.controller.constant.PageUrl.LOGIN_PAGE;
 import static com.epam.car_rental.controller.constant.PageUrl.MAIN_PAGE;
 
 public class LogOff implements Command {
@@ -21,6 +22,6 @@ public class LogOff implements Command {
         String lang = (String) session.getAttribute(LANG);
         session.invalidate();
         request.getSession().setAttribute(LANG, lang);
-        response.sendRedirect(MAIN_PAGE);
+        response.sendRedirect(LOGIN_PAGE);
     }
 }

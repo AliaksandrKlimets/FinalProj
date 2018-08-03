@@ -23,6 +23,8 @@
     <fmt:message bundle="${loc}" key="locale.fine.paid" var="paid"/>
     <fmt:message bundle="${loc}" key="locale.fine.unpaid" var="unpaid"/>
     <fmt:message bundle="${loc}" key="locale.fine.pay" var="pay"/>
+    <fmt:message bundle="${loc}" key="locale.register.label.login" var="login"/>
+    <fmt:message bundle="${loc}" key="locale.car.model" var="model"/>
     <fmt:message bundle="${loc}" key="locale.fine.all.fines" var="allFines"/>
     <fmt:message bundle="${loc}" key="locale.fine.unpaid.fines" var="unpaidFines"/>
     <fmt:message bundle="${loc}" key="locale.cost.byn" var="byn"/>
@@ -52,8 +54,8 @@
     <table>
         <tr class="thead">
             <th style="width: 50px;">id</th>
-            <th style="width: 150px;">${userId}</th>
-            <th style="width: 150px;">${carId}</th>
+            <th style="width: 150px;">${login}</th>
+            <th style="width: 150px;">${model}</th>
             <th style="width: 200px;">${bill}</th>
             <th style="width: 300px;">${cause}</th>
             <th width="120px">${date}</th>
@@ -62,8 +64,8 @@
         <c:forEach items="${requestScope.fines}" var="fine">
             <tr>
                 <th style="width: 30px;">${fine.fineId}</th>
-                <th>${fine.userId}</th>
-                <th style="width: 120px;">${fine.carId}</th>
+                <th><ahs:login-by-id userId="${fine.userId}"/></th>
+                <th style="width: 120px;"><ahs:model-by-id carId="${fine.carId}"/></th>
                 <th>${fine.repairBill} ${byn}</th>
                 <th style="width: 200px;">${fine.cause}</th>
                 <th style="width: 100px;"><ahs:date-locale locale="ru" date="${fine.dueDate}"/></th>
@@ -82,14 +84,14 @@
                                 </th>
                             </c:when>
                             <c:when test="${fine.state eq 'PAID'}">
-                                <th style="background-color: lightskyblue; width: 150px; height: 50px;">${paid}</th>
+                                <th style="background-color: lightskyblue; width: 150px; height: 69px; text-align: center;">${paid}</th>
                             </c:when>
                         </c:choose>
                     </c:when>
                     <c:when test="${sessionScope.user.role eq 'USER'}">
                         <c:choose>
                             <c:when test="${fine.state eq 'UNPAID'}">
-                                <th style="background-color: black; width: 150px; height: 50px; text-align: center;">${unpaid}</th>
+                                <th style="background-color: lightskyblue; width: 150px; height: 50px; text-align: center;">${unpaid}</th>
                             </c:when>
                             <c:when test="${fine.state eq 'PAID'}">
                                 <th style="background-color: lightskyblue; width: 150px; height: 50px; text-align: center;">${paid}</th>

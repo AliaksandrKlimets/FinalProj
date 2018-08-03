@@ -50,4 +50,26 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>login-by-id</name>
+        <tag-class>com.epam.car_rental.tag.LoginTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>userId</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>model-by-id</name>
+        <tag-class>com.epam.car_rental.tag.ModelTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>carId</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

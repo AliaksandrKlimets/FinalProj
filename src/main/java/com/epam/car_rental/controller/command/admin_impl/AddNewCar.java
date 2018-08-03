@@ -45,7 +45,6 @@ public class AddNewCar implements Command {
             car.setImage(image);
             car.setAddInfo(addInfo);
             carService.addCar(car,capacity,carType,fuelType,day,twoToSeven,eightToFifteen,more);
-            System.out.println("HERE");
             response.sendRedirect("/adding");
         }catch (InvalidParametersException e){
             ControllerUtil.updateWithMessage(request,response,e.getMessage(),"/rental?command=ADDING_HELP&add_param=car");

@@ -28,7 +28,7 @@
     cursor: pointer;
 }
 
-.car-adding input[type="text"]{
+.car-adding input[type="text"], .car-adding input[type="date"]{
     width: 470px;
     height: 40px;
     outline: none;

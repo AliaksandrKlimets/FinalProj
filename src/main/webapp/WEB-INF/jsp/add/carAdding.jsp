@@ -72,10 +72,10 @@
 
             <label class="input-label">${cost}:</label><br>
 
-            <input style="width: 65px;" type="text" name="day" placeholder="1" pattern="[\d]+\.{0,1}[\d]{0,1}" required>
-            <input style="width: 65px;" type="text" name="twoToSeven" placeholder="2-7" pattern="[\d]+\.{0,1}[\d]{0,1}" required>
-            <input style="width: 65px;" type="text" name="eightToFifteen" placeholder="8-15" pattern="[\d]+\.{0,1}[\d]{0,1}" required>
-            <input style="width: 67px;" type="text" name="sixteenAndMore" placeholder="16+" pattern="[\d]+\.{0,1}[\d]{0,1}" required>
+            <input style="width: 73px;" type="text" name="day" placeholder="1" pattern="[\d]+\.{0,1}[\d]{0,1}" required>
+            <input style="width: 73px;" type="text" name="twoToSeven" placeholder="2-7" pattern="[\d]+\.{0,1}[\d]{0,1}" required>
+            <input style="width: 73px;" type="text" name="eightToFifteen" placeholder="8-15" pattern="[\d]+\.{0,1}[\d]{0,1}" required>
+            <input style="width: 73px;" type="text" name="sixteenAndMore" placeholder="16+" pattern="[\d]+\.{0,1}[\d]{0,1}" required><br><br>
 
             <input type="submit" value="${addCar}">
             <h1 style="font-size: 15px;color: white; width: 200px; margin-left: 200px;">${requestScope.error}</h1>

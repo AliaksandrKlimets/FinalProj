@@ -15,6 +15,7 @@
     <fmt:message bundle="${loc}" key="locale.phone" var="phone"/>
     <fmt:message bundle="${loc}" key="locale.birth" var="birth"/>
     <fmt:message bundle="${loc}" key="locale.registration.date" var="regDate"/>
+    <fmt:message bundle="${loc}" key="locale.user.ages" var="age"/>
 
 </head>
 <body>
@@ -27,8 +28,8 @@
                     <ahs:full-name name="${sessionScope.user.name}" surname="${sessionScope.user.surname}"/></h3>
                 </th>
                 <th style="width: 100px; text-align: right;"><h3
-                        style="font-family: calibri; font-size: 25px; font-weight: normal;"><ahs:ages
-                        date="${sessionScope.user.birthDate}"/> y. o.</h3></th>
+                        style="font-family: calibri; font-size: 25px; font-weight: normal;">${age}: <ahs:ages
+                        date="${sessionScope.user.birthDate}"/></h3></th>
             </tr>
         </table>
         <h3 style="font-family: calibri; font-size: 19px; font-weight: normal; width: 250px; margin-top: 15px; color: white;">${personal}:</h3>
