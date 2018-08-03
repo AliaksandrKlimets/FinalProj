@@ -1,7 +1,7 @@
 .header {
 
     height: 65px;
-    background-color: #4a5664;
+    background-color: #2b3035;
 }
 
 .header-content {
@@ -59,7 +59,7 @@ a {
     font-size: 19px;
     padding: 19px;
     border: 0px;
-    background-color: #4a5664;
+    background-color: #2b3035;
     text-align: left;
     color: #f4f4f4;
     font-weight: normal;
@@ -76,7 +76,7 @@ a {
     padding: 19px 0 19px 0;
     width: auto;
     border: 0px;
-    background-color: #4a5664;
+    background-color: #2b3035;
     text-align: right;
     color: #f4f4f4;
     font-weight: normal;

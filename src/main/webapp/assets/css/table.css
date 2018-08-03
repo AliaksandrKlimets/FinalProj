@@ -1,13 +1,23 @@
 table{
-    border: 1px solid black;
     width: 1000px;
     border-collapse: collapse;
-    background-color: #f3f3f3;
+    background-color: #ffffff;
     font-family: calibri;
 }
 th{
-    height: 75px;
-    border: 1px solid black;
+    height: 50px;
+    border-bottom: 2px solid #f4f4f4;
+    padding-left: 8px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.thead{
+    background-color: #2b3035;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    height: 70px    ;
 }
 
 .button{
@@ -18,14 +28,22 @@ th{
     width: 130px;
     margin: 15px 5px 0 5px;
     height: 35px;
-    background-color: green;
-    color: white;
+    background-color: #1AAEB9;
+    color: #ffffff;
     text-align: center;
     font-family: calibri;
-
+    font-weight: bold;
     border-radius: 4px;
     outline: none;
     border: none;
+}
+
+tr:hover{
+    background-color: #f4f4f4;
+}
+
+.thead:hover{
+    background-color: #2b3035;
 }
 
 .button input[type="submit"]:hover{
@@ -36,7 +54,7 @@ th{
 .head-button input[type="submit"]{
     width: 260px;
     height: 50px;
-    background-color: #3e4753;
+    background-color: #2b3035;
     color: white;
     font-family: calibri;
     font-size: 18px;
@@ -49,4 +67,18 @@ th{
 .head-button input[type="submit"]:hover{
     background-color: rgba(24, 33, 52, 0.6);
     cursor: pointer;
+}
+
+.user-info-head{
+    width: 600px;
+    border: 0;
+}
+
+.user-info-head tr{
+    background-color: #41484e;
+    width: 600px;
+    border: none;
+}
+.user-info-head tr:hover{
+    background-color: #41484e;
 }

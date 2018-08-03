@@ -44,7 +44,7 @@ public class UserFines implements Command {
                 request.setAttribute(PAGE, helper);
 
                 List<Fine> fineList = fineService.getUserFines("" + currentUser.getUserId(), helper.getBegin(), 10);
-                request.setAttribute(USER_FINES, fineList);
+                request.setAttribute(FINES, fineList);
 
                 request.getRequestDispatcher("/home").forward(request, response);
             }else {

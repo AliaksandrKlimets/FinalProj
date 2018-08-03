@@ -27,7 +27,7 @@
 <body>
 <div style="min-height: 500px; width: 1000px; padding: 0; margin: 0;">
     <table>
-        <tr>
+        <tr class="thead">
             <th style="width: 30px;">id</th>
             <th style="width: 130px;">${login}</th>
             <th style="width: 130px;">${name}</th>
@@ -35,7 +35,7 @@
             <th style="width: 220px;">${email}</th>
             <th style="width: 100px;">${phone}</th>
             <th style="width: 100px;">${bitrh}</th>
-            <th style="width: 100px;">${action}</th>
+            <th style="width: 100px; text-align: center;">${action}</th>
         </tr>
         <c:forEach items="${requestScope.users}" var="user">
             <tr>

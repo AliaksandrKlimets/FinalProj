@@ -7,6 +7,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/table.css">
     <fmt:setLocale value="${sessionScope.lang}"/>
     <fmt:setBundle basename="locale.locale" var="loc"/>
 
@@ -18,10 +19,9 @@
 </head>
 <body>
 <div class="content">
-    <div class="per-info"
-         style="min-height: 200px; width: 600px; background-color: #f1f1f1; margin-left: 20px; padding: 15px; border-radius: 6px;">
-        <table style="width: 600px;">
-            <tr>
+    <div style="min-height: 200px; width: 600px; background-color: #41484e; margin-left: 20px; padding: 15px; border-radius: 6px;">
+        <table class="user-info-head">
+            <tr style="color: white;">
                 <th style="width: 400px; text-align: left;"><h3
                         style="font-family: calibri; font-size: 25px; font-weight: normal;">
                     <ahs:full-name name="${sessionScope.user.name}" surname="${sessionScope.user.surname}"/></h3>
@@ -31,9 +31,9 @@
                         date="${sessionScope.user.birthDate}"/> y. o.</h3></th>
             </tr>
         </table>
-        <h3 style="font-family: calibri; font-size: 19px; font-weight: normal; width: 250px; margin-top: 0;">${personal}:</h3>
-        <table style="width: 600px; margin-top: 20px; background-color: lightblue;">
-            <tr>
+        <h3 style="font-family: calibri; font-size: 19px; font-weight: normal; width: 250px; margin-top: 15px; color: white;">${personal}:</h3>
+        <table style="width: 600px; margin-top: 20px; background-color: white;">
+            <tr class="user-info-row">
                 <th class="table-user-cell"><h3
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">E-mail:</h3>
                 </th>
@@ -41,7 +41,7 @@
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${sessionScope.user.email}</h3>
                 </th>
             </tr>
-            <tr>
+            <tr class="user-info-row">
                 <th class="table-user-cell"><h3
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${phone}</h3>
                 </th>
@@ -49,7 +49,7 @@
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${sessionScope.user.phone}</h3>
                 </th>
             </tr>
-            <tr>
+            <tr class="user-info-row">
                 <th class="table-user-cell"><h3
                         style="font-family: calibri; font-size:17px; font-weight: normal; height: 10px;">${birth}</h3>
                 </th>

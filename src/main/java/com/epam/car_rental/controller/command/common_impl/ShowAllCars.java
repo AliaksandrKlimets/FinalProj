@@ -36,19 +36,22 @@ public class ShowAllCars implements Command {
             Validator.isNumber(number);
             int currentPage = Integer.parseInt(number);
             int size = carService.itemsCount();
+            if (size != 0) {
+                String command = CommandType.SHOW_ALL_CARS.toString();
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                request.setAttribute(PAGE, helper);
+                List<Car> carList = carService.getCars(helper.getBegin(), 10);
 
-            String command = CommandType.SHOW_ALL_CARS.toString();
-            PaginationHelper helper = ControllerUtil.createPagination(request,currentPage,size,command);
-            request.setAttribute(PAGE,helper);
-            List<Car> carList = carService.getCars(helper.getBegin(),10);
 
+                request.setAttribute(CARLIST, carList);
 
-            request.setAttribute(CARLIST,carList);
-
-            request.getRequestDispatcher("/cars").forward(request, response);
-        }catch (InputException e){
+                request.getRequestDispatcher("/cars").forward(request, response);
+            }else {
+                request.getRequestDispatcher("/cars").forward(request, response);
+            }
+        } catch (InputException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

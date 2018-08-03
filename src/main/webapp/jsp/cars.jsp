@@ -30,6 +30,9 @@
 <div class="content">
     <c:choose>
         <c:when test="${sessionScope.user.role eq 'USER'}">
+            <c:if test="${empty requestScope.carList}">
+                <h1>Список пуст</h1>
+            </c:if>
             <c:if test="${ not empty requestScope.carList}">
                 <c:forEach items="${requestScope.carList}" var="car">
                     <c:out value="${car.carId}"/>
@@ -38,13 +41,17 @@
         </c:when>
         <c:when test="${ sessionScope.user.role eq 'ADMIN'}">
             <jsp:include page="/WEB-INF/jsp/sidebar/adminSideBar.jsp"/>
+            <c:if test="${empty requestScope.carList}">
+                <h1>Список пуст</h1>
+            </c:if>
             <c:if test="${ not empty requestScope.carList}">
-                <c:forEach items="${requestScope.carList}" var="car">
-                    <c:out value="${car.carId}"/>
-                </c:forEach>
+                <jsp:include page="/WEB-INF/jsp/table/carTable.jsp"/>
             </c:if>
         </c:when>
         <c:otherwise>
+            <c:if test="${empty requestScope.carList}">
+                <h1>Список пуст</h1>
+            </c:if>
             <c:if test="${ not empty requestScope.carList}">
                 <c:forEach items="${requestScope.carList}" var="car">
                     <c:out value="${car.carId}"/>

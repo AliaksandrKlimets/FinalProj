@@ -4,12 +4,12 @@ import com.epam.car_rental.entity.Car;
 import com.epam.car_rental.service.validation.InputException;
 
 public class CarValidator {
-    private static final String MODEL_REGEX = "[\\d]+\\.{0,1}[\\d]{1}";
+    private static final String MODEL_REGEX = "[a-zA-Z\\d\\.\\s]{3,30}";
     private static final String YEAR_REGEX = "(19|20)[\\d]{2}";
     private static final String CAPACITY_REGEX = "[\\d]+\\.{0,1}[\\d]{0,1}";
     private static final String CONSUMPTION_REGEX = "[\\d]+\\.{0,1}[\\d]{0,1}-[\\d]+\\.{0,1}[\\d]{0,1}";
-    private static final String INFO_REGEX = "[a-zA-Zа-я-Я\\d\\s,]*";
-    private static final String TRANSMISSION_REGEX = "[a-zA-Zа-я-Я]+";
+    private static final String INFO_REGEX = "[a-zA-Zа-яА-Я\\d\\s,]*";
+    private static final String TRANSMISSION_REGEX = "[a-zA-Zа-яA-Я\\s]+";
     private static final String TYPE_REGEX = "^COUPE$|^HATCHBACK$|^UNIVERSAL$|^PICKUP$|^CROSSOVER$";
     private static final String FUEL_REGEX = "^PETROL$|^DIESEL$|^GAS$";
 

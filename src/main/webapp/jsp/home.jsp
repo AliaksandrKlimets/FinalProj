@@ -39,10 +39,8 @@
                         <c:out value="${order.orderId}"/>
                     </c:forEach>
                 </c:when>
-                <c:when test="${not empty requestScope.userFines}">
-                    <c:forEach items="${requestScope.userFines}" var="fine">
-                        <c:out value="${fine.fineId}"/>
-                    </c:forEach>
+                <c:when test="${not empty requestScope.fines}">
+                    <jsp:include page="/WEB-INF/jsp/table/finesTable.jsp"/>
                 </c:when>
                 <c:otherwise>
                     <jsp:include page="/WEB-INF/jsp/table/user-table.jsp"/>

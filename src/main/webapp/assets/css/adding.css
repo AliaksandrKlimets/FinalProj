@@ -1,0 +1,51 @@
+.car-adding{
+    width: 600px;
+    min-height: 600px;
+    border: 1px solid black;
+    background-color: #2b3035;
+    padding: 20px 0 0 0px;
+    border-radius: 5px;
+}
+
+.car-adding input[type="submit"]{
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    background-color: #ffffff;
+    font-family: calibri;
+    font-weight: normal;
+    font-size: 18px;
+    border-radius: 9px;
+    margin-left: 175px;
+    margin-bottom: 20px;
+    outline: none;
+    border: 0;
+    color: black;
+}
+
+.car-adding input[type="submit"]:hover{
+    background-color: #f3f3f3;
+    cursor: pointer;
+}
+
+.car-adding input[type="text"]{
+    width: 470px;
+    height: 40px;
+    outline: none;
+    border: 0;
+    padding-left: 15px;
+    margin: 15px 0 20px 50px;
+    border-radius: 4px;
+}
+
+.car-adding input[type="radio"]{
+    margin:10px 15px 10px 60px;
+    outline: none;
+
+}
+
+.radio-label{
+    font-family: calibri;
+    font-size: 18px;
+    color: white;
+}

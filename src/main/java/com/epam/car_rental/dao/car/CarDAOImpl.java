@@ -136,6 +136,7 @@ public class CarDAOImpl implements CarDAO {
         PreparedStatement statement = connection.prepareStatement(add);
         statement.setString(1, car.getModel());
         statement.setString(2, car.getYear());
+        statement.setString(3, car.getConsumption());
         statement.setDouble(4, car.getEngineCapacity());
         statement.setString(5, car.getType().toString());
         statement.setString(6, car.getTransmission());
