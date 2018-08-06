@@ -1,4 +1,4 @@
-package com.epam.car_rental.controller.command.admin_impl;
+package com.epam.car_rental.controller.command.user_impl;
 
 import com.epam.car_rental.controller.command.Command;
 import com.epam.car_rental.controller.command.CommandType;
@@ -20,24 +20,20 @@ import static com.epam.car_rental.controller.constant.EntityAttributes.CHANGE;
 import static com.epam.car_rental.controller.constant.EntityAttributes.ID;
 import static com.epam.car_rental.controller.constant.EntityAttributes.REASON;
 
-public class ChangeOrderState implements Command {
-    private static final Logger LOGGER = Logger.getLogger(ChangeOrderState.class);
+public class OrderDeleting implements Command {
+    private static final Logger LOGGER = Logger.getLogger(OrderDeleting.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String change = request.getParameter(CHANGE);
         String number = request.getParameter(NUMBER);
-        String reason = request.getParameter(REASON);
         String id = request.getParameter(ID);
+        String userId = request.getParameter("userId");
 
         OrderService orderService = ServiceFactory.getInstance().getOrderService();
         try{
             Validator.isNumber(number);
-            orderService.changeOrderState(id,change);
-            if(reason != null){
-                orderService.addDeclineReason(id,reason);
-            }
-            String address = ControllerUtil.createAddressWithPaging(request,CommandType.SHOW_ALL_ORDERS.toString(),number);
+            orderService.deleteOrder(id, userId);
+            String address = ControllerUtil.createAddressWithPaging(request,CommandType.USER_ORDERS.toString(),number);
             response.sendRedirect(address);
         }catch (NotNumberException e){
             LOGGER.error(e.getMessage());

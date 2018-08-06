@@ -30,6 +30,7 @@ public class CommandDirector {
         commands.put(CommandType.FINE_DELETING, new CommandRights(rights, new FineDeleting()));
         commands.put(CommandType.SHOW_ALL_FINES, new CommandRights(rights, new ShowAllFines()));
         commands.put(CommandType.SHOW_ALL_ORDERS, new CommandRights(rights, new ShowAllOrders()));
+        commands.put(CommandType.SHOW_NEW_ORDERS, new CommandRights(rights, new ShowNewOrders()));
         commands.put(CommandType.SHOW_ALL_USERS, new CommandRights(rights, new ShowAllUsers()));
         commands.put(CommandType.SHOW_CAR_ORDERS, new CommandRights(rights, new ShowCarOrders()));
         commands.put(CommandType.SHOW_UNPAID_FINES, new CommandRights(rights, new ShowUnpaidFines()));
@@ -37,13 +38,13 @@ public class CommandDirector {
         rights = new ArrayList<>();
         rights.add(User.Role.USER);
         rights.add(User.Role.ADMIN);
-        commands.put(CommandType.ORDER_DELETING, new CommandRights(rights, new OrderDeleting()));
         commands.put(CommandType.SHOW_ALL_CARS, new CommandRights(rights, new ShowAllCars()));
         commands.put(CommandType.LOG_OFF, new CommandRights(rights, new LogOff()));
         commands.put(CommandType.ADDING_HELP, new CommandRights(rights, new AddingHelper()));
 
         rights = new ArrayList<>();
         rights.add(User.Role.USER);
+        commands.put(CommandType.ORDER_DELETING, new CommandRights(rights, new OrderDeleting()));
         commands.put(CommandType.CHANGING_EMAIL, new CommandRights(rights, new ChangingEmail()));
         commands.put(CommandType.CHANGING_PASSWORD, new CommandRights(rights, new ChangingPassword()));
         commands.put(CommandType.CHANGING_PHONE, new CommandRights(rights, new ChangingPhone()));

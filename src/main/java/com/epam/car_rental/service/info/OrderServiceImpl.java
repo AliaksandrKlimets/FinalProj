@@ -42,11 +42,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrder(String orderId) throws ServiceException {
+    public void deleteOrder(String orderId, String userId) throws ServiceException {
         OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
         try{
             Validator.isNumber(orderId);
-            orderDAO.deleteOrder(Integer.parseInt(orderId));
+            Validator.isNumber(userId);
+            orderDAO.deleteOrder(Integer.parseInt(orderId), Integer.parseInt(userId));
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }catch (InputException e){
@@ -142,6 +143,26 @@ public class OrderServiceImpl implements OrderService {
         OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
         try{
             return orderDAO.userOrdersCount(id);
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Order> getNewOrders(int begin, int size) throws ServiceException {
+        OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
+        try{
+            return orderDAO.getNewOrders(begin,size);
+        }catch (DAOException e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int newOrderCount() throws ServiceException {
+        OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
+        try{
+            return orderDAO.newOrderCount();
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }

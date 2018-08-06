@@ -10,7 +10,7 @@ public interface OrderService {
 
     Order getOrder(String orderId) throws ServiceException;
 
-    void deleteOrder(String orderId) throws ServiceException;
+    void deleteOrder(String orderId, String userId) throws ServiceException;
 
     void addOrder(Order order, String userId, String carId, String expiryDate, String start, String end) throws ServiceException;
 
@@ -25,4 +25,8 @@ public interface OrderService {
     int ordersCount() throws ServiceException;
 
     int userOrdersCount(int id) throws ServiceException;
+
+    List<Order> getNewOrders(int begin, int size) throws ServiceException;
+
+    int newOrderCount() throws ServiceException;
 }

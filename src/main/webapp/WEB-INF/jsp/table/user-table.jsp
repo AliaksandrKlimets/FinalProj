@@ -27,7 +27,7 @@
                         style="font-family: calibri; font-size: 25px; font-weight: normal;">
                     <ahs:full-name name="${sessionScope.user.name}" surname="${sessionScope.user.surname}"/></h3>
                 </th>
-                <th style="width: 100px; text-align: right;"><h3
+                <th style="width: 200px; text-align: right;"><h3
                         style="font-family: calibri; font-size: 25px; font-weight: normal;">${age}: <ahs:ages
                         date="${sessionScope.user.birthDate}"/></h3></th>
             </tr>

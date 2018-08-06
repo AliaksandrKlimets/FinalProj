@@ -1,6 +1,7 @@
 package com.epam.car_rental.controller.command.common_impl;
 
 import com.epam.car_rental.controller.command.Command;
+import com.epam.car_rental.controller.command.CommandType;
 import com.epam.car_rental.entity.User;
 import com.epam.car_rental.service.ServiceException;
 import com.epam.car_rental.service.ServiceFactory;
@@ -39,7 +40,13 @@ public class Authorization implements Command {
         try{
             User user = userService.getUser(login,password);
             session.setAttribute(USER,user);
-            response.sendRedirect(HOME_PAGE);
+            if(user.getRole().toString().equals("ADMIN")){
+                String address = ControllerUtil.createAddressWithPaging(request,CommandType.SHOW_NEW_ORDERS.toString(),""+1);
+                response.sendRedirect(address);
+            }else {
+                String address = ControllerUtil.createAddressWithPaging(request,CommandType.USER_ORDERS.toString(),1+"");
+                response.sendRedirect(address);
+            }
         }catch (UserNotFoundException e){
             LOGGER.error(e.getMessage());
             ControllerUtil.updateWithMessage(request,response,e.getMessage(),LOGIN_PAGE);

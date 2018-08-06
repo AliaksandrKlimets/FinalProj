@@ -24,4 +24,6 @@ public final class EntityAttributes {
     public static final String TWO_TO_SEVEN = "twoToSeven";
     public static final String EIGHT_TO_FIFTEEN = "eightToFifteen";
     public static final String MORE = "sixteenAndMore";
+    public static final String CHANGE = "change";
+    public static final String REASON = "reason";
 }

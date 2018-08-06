@@ -11,6 +11,7 @@ public enum CommandType {
     FINE_DELETING,
     SHOW_ALL_FINES,
     SHOW_ALL_ORDERS,
+    SHOW_NEW_ORDERS,
     SHOW_ALL_USERS,
     SHOW_CAR_ORDERS,
     SHOW_UNPAID_FINES,

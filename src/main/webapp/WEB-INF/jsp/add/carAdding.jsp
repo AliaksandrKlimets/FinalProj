@@ -50,19 +50,23 @@
             <input type="text" name="capacity" placeholder="${capacity}" pattern="[\d]+\.{0,1}[\d]{0,1}" required><br>
 
             <label class="input-label">${catType}:</label><br>
-            <input type="radio" value="PICKUP" name="carType" checked><label class="radio-label">${pickup}</label><br>
-            <input type="radio" value="HATCHBACK" name="carType"><label class="radio-label">${hatchback}</label><br>
-            <input type="radio" value="COUPE" name="carType"><label class="radio-label">${coupe}</label><br>
-            <input type="radio" value="CROSSOVER" name="carType"><label class="radio-label">${universal}</label><br>
-            <input type="radio" value="UNIVERSAL" name="carType"><label class="radio-label">${crossover}</label><br>
+            <select name="carType">
+                <option value="PICKUP">${pickup}</option>
+                <option value="HATCHBACK">${hatchback}</option>
+                <option value="COUPE">${coupe}</option>
+                <option value="CROSSOVER">${universal}</option>
+                <option value="UNIVERSAL">${crossover}</option>
+            </select><br>
 
             <label class="input-label">${transmission}:</label><br>
             <input type="text" name="transmission" placeholder="${transmission}" pattern="[a-zA-Zа-яА-Я]+" required ><br>
 
             <label class="input-label">${fuelType}:</label><br>
-            <input type="radio" value="DIESEL" name="fuelType" checked><label class="radio-label">${diedel}</label><br>
-            <input type="radio" value="PETROL" name="fuelType"><label class="radio-label">${petrol}</label><br>
-            <input type="radio" value="GAS" name="fuelType"><label class="radio-label">${gas}</label><br>
+            <select name="fuelType">
+                <option value="DIESEL">${diedel}</option>
+                <option value="PETROL">${petrol}</option>
+                <option value="GAS">${gas}</option>
+            </select><br>
 
             <label class="input-label">${image}:</label><br>
             <input type="text" name="image" placeholder="${image}" required><br>

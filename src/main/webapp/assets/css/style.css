@@ -1,10 +1,8 @@
-body{
+body {
     background-color: #f4f4f4;
 }
 
-
-
-.content{
+.content {
     min-height: 650px;
     width: 1400px;
     margin: 40px auto 40px auto;
@@ -206,18 +204,34 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="date"]:hover
     font-family: calibri;
 }
 
-.personal-info{
+.personal-info {
     width: 650px;
     height: 400px;
 }
 
-.personal-info-item{
+.personal-info-item {
     height: 49px;
     font-family: calibri;
     font-size: 19px;
 }
 
-.table-user-cell{
+.table-user-cell {
     text-align: left;
     padding: 5px 0 0 5px;
+}
+
+.table-user-cell-content {
+    font-family: calibri;
+    font-size: 17px;
+    font-weight: normal;
+    height: 10px;
+}
+
+.user-table {
+    min-height: 200px;
+    width: 600px;
+    background-color: #41484e;
+    margin-left: 20px;
+    padding: 15px;
+    border-radius: 6px;
 }

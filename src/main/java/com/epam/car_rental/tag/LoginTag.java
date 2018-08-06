@@ -42,7 +42,7 @@ public class LoginTag extends TagSupport {
             statement.setInt(1,Integer.parseInt(userId));
             ResultSet set = statement.executeQuery();
             if(!set.isBeforeFirst()){
-                login = "null";
+                login = "Отсутствует";
             }else{
                 while (set.next()){
                     login = set.getString(1);

@@ -12,7 +12,7 @@ public interface OrderDAO {
 
     Order getOrder(int orderId) throws DAOException, EntityNotFoundException;
 
-    void deleteOrder(int orderId) throws DAOException;
+    void deleteOrder(int orderId, int userId) throws DAOException;
 
     void addOrder(Order order) throws DAOException;
 
@@ -27,4 +27,8 @@ public interface OrderDAO {
     int ordersCount() throws DAOException;
 
     int userOrdersCount(int id) throws DAOException;
+
+    List<Order> getNewOrders(int begin, int size) throws DAOException;
+
+    int newOrderCount() throws DAOException;
 }

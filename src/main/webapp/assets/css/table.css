@@ -8,7 +8,7 @@ table{
 th{
     height: 50px;
     border-bottom: 2px solid #f4f4f4;
-    padding-left: 8px;
+    padding-left: 10px;
     text-align: left;
     font-weight: normal;
 }
@@ -82,4 +82,61 @@ tr:hover{
 }
 .user-info-head tr:hover{
     background-color: #41484e;
+}
+
+.order-item{
+    width: 920px;
+    height: 220px;
+    background-color: white;
+
+    padding: 0;
+    margin: 0 0 40px 0;
+}
+
+.order-table{
+    width: 900px;
+    min-height: 10px;
+    border: 0;
+}
+
+.order-table th{
+    height: 40px;
+    font-family: calibri;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 9px 0 9px 10px;
+    width: 200px;
+
+}
+
+.order-table tr:hover{
+    background-color: white;
+}
+
+.order-table .thead:hover{
+    background-color: #2b3035;
+}
+
+.order-button input[type="submit"]{
+    width: 200px;
+    height: 35px;
+    font-family: calibri;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    border: 0;
+}
+.order-button input[type="submit"]:hover{
+    color: white;
+}
+
+.order-select{
+    width: 200px;
+    height: 40px;
+    margin-right: 20px;
+    outline: none;
+    cursor: pointer;
 }

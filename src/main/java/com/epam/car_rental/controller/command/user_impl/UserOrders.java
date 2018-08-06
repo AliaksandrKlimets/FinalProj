@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.epam.car_rental.controller.constant.ControlConst.*;
@@ -43,11 +44,11 @@ public class UserOrders implements Command {
                 request.setAttribute(PAGE, helper);
 
                 List<Order> orderList = orderService.getUserOrders("" + currentUser.getUserId(), helper.getBegin(), 10);
-                request.setAttribute(USER_ORDERS, orderList);
+                request.setAttribute(ORDERS, orderList);
 
                 request.getRequestDispatcher("/home").forward(request, response);
             }else {
-                request.setAttribute("noItems",1);
+                request.setAttribute(ORDERS, new ArrayList<>());
                 request.getRequestDispatcher("/home").forward(request, response);
             }
 

@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.epam.car_rental.controller.constant.ControlConst.*;
@@ -32,16 +33,20 @@ public class ShowAllOrders implements Command {
             Validator.isNumber(pageNumber);
             int currentPage = Integer.parseInt(pageNumber);
             int size = orderService.ordersCount();
+            if(size!=0) {
+                String command = CommandType.SHOW_ALL_ORDERS.toString();
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                request.setAttribute(PAGE, helper);
 
-            String command = CommandType.SHOW_ALL_ORDERS.toString();
-            PaginationHelper helper = ControllerUtil.createPagination(request,currentPage,size,command);
-            request.setAttribute(PAGE,helper);
-
-            List<Order> orderList = orderService.getOrders(helper.getBegin(), 10);
-            request.setAttribute(ORDERS, orderList);
+                List<Order> orderList = orderService.getOrders(helper.getBegin(), 5);
+                request.setAttribute(ORDERS, orderList);
 
 
-            request.getRequestDispatcher("/home").forward(request, response);
+                request.getRequestDispatcher("/home").forward(request, response);
+            }else {
+                request.setAttribute(ORDERS, new ArrayList<>());
+                request.getRequestDispatcher("/home").forward(request, response);
+            }
         }catch (InputException e){
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }catch (ServiceException e){

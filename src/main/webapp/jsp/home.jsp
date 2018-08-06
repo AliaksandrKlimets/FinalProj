@@ -11,6 +11,7 @@
     <fmt:setBundle basename="locale.locale" var="loc"/>
 
     <fmt:message bundle="${loc}" key="locale.home.title" var="title"/>
+    <fmt:message bundle="${loc}" key="locale.nothing.to.show" var="nothing"/>
     <title>${title}</title>
 
 </head>
@@ -32,12 +33,10 @@
             <jsp:include page="/WEB-INF/jsp/sidebar/userSideBar.jsp"/>
             <c:choose>
                 <c:when test="${not empty requestScope.noItems}">
-                    <h1>Список пуст</h1>
+                    <h1>${nothing}</h1>
                 </c:when>
-                <c:when test="${not empty requestScope.userOrders}">
-                    <c:forEach items="${requestScope.userOrders}" var="order">
-                        <c:out value="${order.orderId}"/>
-                    </c:forEach>
+                <c:when test="${ requestScope.orders ne null}">
+                    <jsp:include page="/WEB-INF/jsp/table/ordersTable.jsp"/>
                 </c:when>
                 <c:when test="${not empty requestScope.fines}">
                     <jsp:include page="/WEB-INF/jsp/table/finesTable.jsp"/>
@@ -52,14 +51,12 @@
             <c:choose>
 
                 <c:when test="${not empty requestScope.noItems}">
-                    <h1>Список пуст</h1>
+                    <h1>${nothing}</h1>
                 </c:when>
-                <c:when test="${not empty requestScope.orders}">
-                    <c:forEach items="${requestScope.orders}" var="order">
-                        <c:out value="${order.orderId}"/>
-                    </c:forEach>
+                <c:when test="${ requestScope.orders ne null}">
+                    <jsp:include page="/WEB-INF/jsp/table/ordersTable.jsp"/>
                 </c:when>
-                <c:when test="${not empty requestScope.fines}">
+                <c:when test="${requestScope.fines ne null}">
                     <jsp:include page="/WEB-INF/jsp/table/finesTable.jsp"/>
                 </c:when>
                 <c:when test="${not empty requestScope.users}">

@@ -51,6 +51,7 @@ public final class SQLQuery {
     public static final String FINE_COUNT_UNPAID_FINE = "fine.count.unpaid.fines";
 
     public static final String ORDER_GET_ORDER = "order.get.order";
+    public static final String ORDER_GET_NEW_ORDER = "order.get.new.orders";
     public static final String ORDER_GET_ORDERS = "order.get.orders";
     public static final String ORDER_GET_USER_ORDERS = "order.get.user.orders";
     public static final String ORDER_CHANGE_PAYMENT_STATE = "order.change.payment.state";
@@ -59,5 +60,6 @@ public final class SQLQuery {
     public static final String ORDER_ADD_ORDER = "order.add.order";
     public static final String ORDER_DELETE_ORDER = "order.delete.order";
     public static final String ORDER_ITEMS_COUNT = "order.items.count";
+    public static final String ORDER_NEW_ITEMS_COUNT = "order.new.items.count";
     public static final String ORDER_USER_ITEMS_COUNT = "order.user.items.count";
 }
