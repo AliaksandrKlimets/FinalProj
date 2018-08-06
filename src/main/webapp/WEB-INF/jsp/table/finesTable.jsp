@@ -28,13 +28,14 @@
     <fmt:message bundle="${loc}" key="locale.fine.all.fines" var="allFines"/>
     <fmt:message bundle="${loc}" key="locale.fine.unpaid.fines" var="unpaidFines"/>
     <fmt:message bundle="${loc}" key="locale.cost.byn" var="byn"/>
+    <fmt:message bundle="${loc}" key="locale.delete" var="delete"/>
     <fmt:message bundle="${loc}" key="locale.nothing.to.show" var="nothing"/>
-
+    <fmt:message bundle="${loc}" key="locale.confirm.delete.fine" var="confirm"/>
+    <script src="${pageContext.request.contextPath}/assets/js/confirm.js"></script>
 </head>
 <body>
 <div style="min-height: 500px; width: 1000px; padding: 0; margin: 0;">
-    <c:choose>
-        <c:when test="${sessionScope.user.role eq 'ADMIN'}">
+        <c:if test="${sessionScope.user.role eq 'ADMIN'}">
             <div style="width: 650px; height: 70px;">
                 <ul>
                     <li style="margin: 0; padding: 0;">
@@ -52,24 +53,8 @@
                         </form>
                     </li>
                 </ul>
-
             </div>
-        </c:when>
-        <c:when test="${sessionScope.user.role eq 'USER'}">
-            <div style="width: 650px; height: 70px;">
-                <ul>
-                    <li style="margin: 0; padding: 0;">
-                        <form class="head-button">
-                            <input type="hidden" name="command" value="USER_FINES">
-                            <input type="hidden" name="number" value="1">
-                            <input type="submit" value="${allFines}">
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </c:when>
-    </c:choose>
-
+        </c:if>
     <c:choose>
         <c:when test="${fn:length(requestScope.fines) gt 0}">
             <table>
@@ -102,6 +87,15 @@
                                                 <input type="hidden" name="number" value="${requestScope.page.current}">
                                                 <input type="submit" value="${pay}">
                                             </form>
+
+                                            <form class="button" action="${pageContext.request.contextPath}/rental"
+                                                  method="post">
+                                                <input type="hidden" name="command" value="FINE_DELETING">
+                                                <input type="hidden" name="id" value="${fine.fineId}">
+                                                <input type="hidden" name="number" value="${requestScope.page.current}">
+                                                <input type="submit" onclick="return confirmAction('${confirm}')"
+                                                       style="background-color: #A61200;" value="${delete}">
+                                            </form>
                                         </th>
                                     </c:when>
                                     <c:when test="${fine.state eq 'PAID'}">
@@ -112,7 +106,7 @@
                             <c:when test="${sessionScope.user.role eq 'USER'}">
                                 <c:choose>
                                     <c:when test="${fine.state eq 'UNPAID'}">
-                                        <th style="background-color: lightskyblue; width: 150px; height: 50px; text-align: center;">${unpaid}</th>
+                                        <th style="background-color: darkred; color: white; width: 150px; height: 50px; text-align: center;">${unpaid}</th>
                                     </c:when>
                                     <c:when test="${fine.state eq 'PAID'}">
                                         <th style="background-color: lightskyblue; width: 150px; height: 50px; text-align: center;">${paid}</th>
@@ -126,7 +120,7 @@
             </table>
         </c:when>
         <c:otherwise>
-            <h1>${nothing}</h1>
+            <h1 style="font-family: Calibri; margin-left: 19px; font-size: 19px;">${nothing}</h1>
         </c:otherwise>
     </c:choose>
 

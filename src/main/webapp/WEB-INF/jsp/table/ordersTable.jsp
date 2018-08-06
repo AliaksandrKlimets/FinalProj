@@ -30,8 +30,11 @@
     <fmt:message bundle="${loc}" key="locale.order.status.decline" var="declined"/>
     <fmt:message bundle="${loc}" key="locale.order.pay" var="pay"/>
     <fmt:message bundle="${loc}" key="locale.order.waiting" var="wait"/>
+    <fmt:message bundle="${loc}" key="locale.nothing.to.show" var="nothing"/>
     <fmt:message bundle="${loc}" key="locale.order.unpaid" var="unpaid"/>
-
+    <fmt:message bundle="${loc}" key="locale.confirm.decline.order" var="confirmDecline"/>
+    <fmt:message bundle="${loc}" key="locale.confirm.delete.order" var="confirmDelete"/>
+    <script src="${pageContext.request.contextPath}/assets/js/confirm.js"></script>
 
 </head>
 <body>
@@ -104,7 +107,7 @@
                                     <input type="hidden" name="change" value="DECLINE">
                                     <input type="hidden" name="id" value="${order.orderId}">
                                     <input type="hidden" name="number" value="${requestScope.page.current}">
-                                    <input type="submit" onclick="return dec()" style="background-color: darkred;" value="${decline}">
+                                    <input type="submit" onclick="return confirmAction('${confirmDecline}')" style="background-color: darkred;" value="${decline}">
                                 </form></li>
                             </ul>
                         </c:when>
@@ -146,7 +149,7 @@
                                     <input type="hidden" name="number" value="${requestScope.page.current}">
                                     <input type="hidden" name="id" value="${order.orderId}">
                                     <input type="hidden" name="userId" value="${sessionScope.user.userId}">
-                                    <input type="submit" onclick="return del()" style="background-color: green;" value="${decline}">
+                                    <input type="submit" onclick="return confirmAction('${confirmDelete}')" style="background-color: green;" value="${decline}">
                                 </form></li>
                             </ul>
                         </c:when>
@@ -181,22 +184,9 @@
     </c:forEach>
 </c:when>
 <c:otherwise>
-    <h1>${nothing}</h1>
+    <h1 style="font-family: Calibri; margin-left: 19px; font-size: 19px;">${nothing}</h1>
 </c:otherwise>
 </c:choose>
-    <script >
-        function del(){
-            if(confirm('Вы уверены, что хотите отменить заявку? Отмена заявки навсегда удалит ее из нашей базы данных.')){
-                return true;
-            }else return false;
-        }
-
-        function dec(){
-            if(confirm('Вы уверены, что хотите отменить пользовательскую заявку? Подумайте, есть ли на то причины.')){
-                return true;
-            }else return false;
-        }
-    </script>
 <c:if test="${not empty requestScope.page}">
     <jsp:include page="/WEB-INF/jsp/pagination.jsp"/>
 </c:if>

@@ -21,13 +21,17 @@ th{
     height: 70px ;
 }
 
+.thead th{
+    border-bottom: 0;
+}
+
 .button{
     vertical-align: middle;
 }
 
 .button input[type="submit"]{
     width: 130px;
-    margin: 15px 5px 0 5px;
+    margin: 5px 5px 0 5px;
     height: 35px;
     background-color: #1AAEB9;
     color: #ffffff;
@@ -40,7 +44,7 @@ th{
 }
 
 tr:hover{
-    background-color: #dddddd;
+    background-color: #f9f9f9;
 }
 
 .thead:hover{

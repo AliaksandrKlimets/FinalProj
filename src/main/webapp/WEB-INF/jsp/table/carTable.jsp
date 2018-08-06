@@ -20,7 +20,8 @@
     <fmt:message bundle="${loc}" key="locale.action" var="action"/>
     <fmt:message bundle="${loc}" key="locale.delete" var="delete"/>
     <fmt:message bundle="${loc}" key="locale.cost.byn" var="byn"/>
-
+    <fmt:message bundle="${loc}" key="locale.confirm.delete.car" var="confirm"/>
+    <script src="${pageContext.request.contextPath}/assets/js/confirm.js"></script>
 </head>
 <body>
 <div style="min-height: 500px; width: 1000px; padding: 0; margin: 0;">
@@ -36,15 +37,7 @@
             <th style="width: 100px;">16+</th>
             <th style="width: 100px; text-align: center;">${action}</th>
         </tr>
-        <script >
-            function del(){
-                if(confirm('Вы уверены, что хотите удалить автомобиль из базы? Удаление автомобиля может негативно сказаться на работе сервиса')){
-                    if(confirm('Точно-точно-точно?')){
-                        return true;
-                    }else  return false;
-                }else return false;
-            }
-        </script>
+
         <c:forEach items="${requestScope.carList}" var="car">
             <tr>
                 <th>${car.carId}</th>
@@ -60,7 +53,7 @@
                         <input type="hidden" name="command" value="CAR_DELETING">
                         <input type="hidden" name="number" value="${requestScope.page.current}">
                         <input type="hidden" name="id" value="${car.carId}">
-                        <input type="submit" onclick="return del()" value="${delete}">
+                        <input type="submit" onclick="return confirmAction('${confirm}')" value="${delete}">
                     </form>
                     <h3>${requestScope.error}</h3>
                 </th>
