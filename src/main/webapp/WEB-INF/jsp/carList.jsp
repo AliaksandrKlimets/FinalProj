@@ -29,6 +29,7 @@
     <fmt:message bundle="${loc}" key="locale.car.type.pickup" var="pickup"/>
     <fmt:message bundle="${loc}" key="locale.car.type.universal" var="universal"/>
     <fmt:message bundle="${loc}" key="locale.car.type.hatchback" var="hatchback"/>
+    <fmt:message bundle="${loc}" key="locale.all" var="all"/>
 
 </head>
 <body>
@@ -39,7 +40,7 @@
                 <form class="head-button">
                     <input type="hidden" name="command" value="SHOW_ALL_CARS">
                     <input type="hidden" name="number" value="1">
-                    <input type="submit" style="width: 163px" value="Все">
+                    <input type="submit" style="width: 163px" value="${all}">
                 </form>
             </li>
             <li style="margin: 0; padding: 0;">

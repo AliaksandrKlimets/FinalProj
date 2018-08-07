@@ -7,11 +7,7 @@ import com.epam.car_rental.entity.Order;
 import com.epam.car_rental.util.DAOUtil;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.*;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -89,17 +85,7 @@ public class OrderDAOImpl implements OrderDAO {
         try {
             connection = connectionPool.getConnection();
             String add = bundle.getString(ORDER_ADD_ORDER);
-            String check= bundle.getString(CAR_GET_CAR);
-            PreparedStatement statement = connection.prepareStatement(check);
-            statement.setInt(1,order.getCarId());
-            ResultSet set = statement.executeQuery();
-
-            if(!set.isBeforeFirst()){
-                LOGGER.error("Car not found");
-                throw new EntityNotFoundException("Car not found");
-            }
-
-            statement = connection.prepareStatement(add);
+            PreparedStatement statement = connection.prepareStatement(add);
             statement.setInt(1, order.getUserId());
             statement.setInt(2, order.getCarId());
             statement.setString(3, order.getPassportNumber());

@@ -103,7 +103,7 @@
                                         <option value="Слишком молод(а)">Слишком молод(а)</option>
                                         <option value="Ты мне не нравишься">Ты мне не нравишься</option>
                                         <option value="Плохая репутация в нашей фирме">Плохая репутация в нашей фирме</option>
-                                        <option value="Плохая репутация в нашей фирме">Близок срок истечения</option>
+                                        <option value="Близок срок истечения действия паспорта">Близок срок истечения действия паспорта</option>
                                     </select>
                                     <input type="hidden" name="command" value="CHANGE_ORDER_STATE">
                                     <input type="hidden" name="change" value="DECLINE">
@@ -161,19 +161,28 @@
                                 <li > <form><label style="color: black; font-size: 18px;">${payment}: ${unpaid}</label></form></li>
                             </ul>
                         </c:when>
+                        <c:when test="${order.orderState eq 'ACCEPT' and order.paymentState eq 'PAID'}">
+                            <ul style="padding: 0;">
+                                <li > <form><label style="color: black; font-size: 18px;">${orderState}: ${accepted}</label></form></li>
+                                <li > <form><label style="color: black; font-size: 18px;">${payment}: ${paid}</label></form></li>
+                            </ul>
+                        </c:when>
                         <c:otherwise>
                                 <ul style="padding: 0;">
-                                    <li > <form><label style="color: black; font-size: 18px;">${orderState}: ${accepted}</label></form></li>
-                                    <li > <form><label style="color: black; font-size: 18px;">${payment}: ${paid}</label></form></li>
+                                    <li > <form><label style="color: black; font-size: 18px;">${orderState}: ${declined}</label></form></li>
+                                    <li > <form><label style="color: black; font-size: 18px;">${reason}: ${order.declineReason}</label></form></li>
                                 </ul>
                         </c:otherwise>
                     </c:choose>
                 </c:if>
         </div>
             <c:choose>
-            <c:when test="${order.orderState eq 'ACCEPT'}">
+            <c:when test="${order.orderState eq 'ACCEPT' and order.paymentState eq 'PAID'}">
                     <div style="width: 20px; height: 220px; background-color: forestgreen;"></div>
             </c:when>
+                <c:when test="${order.orderState eq 'ACCEPT'}">
+                    <div style="width: 20px; height: 220px; background-color: dodgerblue;"></div>
+                </c:when>
             <c:when test="${order.orderState eq 'DECLINE'}">
                     <div style="width: 20px; height: 220px; background-color: #A61200;"></div>
             </c:when>

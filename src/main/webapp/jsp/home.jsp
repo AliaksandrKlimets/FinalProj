@@ -62,7 +62,9 @@
                 <c:when test="${not empty requestScope.users}">
                     <jsp:include page="/WEB-INF/jsp/table/usersTable.jsp"/>
                 </c:when>
-
+                <c:when test="${requestScope.carOrders ne null}">
+                    <jsp:include page="/WEB-INF/jsp/table/carOrdersTable.jsp"/>
+                </c:when>
             </c:choose>
         </c:when>
     </c:choose>

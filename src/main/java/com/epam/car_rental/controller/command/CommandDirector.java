@@ -33,6 +33,7 @@ public class CommandDirector {
         commands.put(CommandType.SHOW_NEW_ORDERS, new CommandRights(rights, new ShowNewOrders()));
         commands.put(CommandType.SHOW_ALL_USERS, new CommandRights(rights, new ShowAllUsers()));
         commands.put(CommandType.SHOW_CAR_ORDERS, new CommandRights(rights, new ShowCarOrders()));
+        commands.put(CommandType.SHOW_ACTUAL_CAR_ORDERS, new CommandRights(rights, new ShowActualCarOrders()));
         commands.put(CommandType.SHOW_UNPAID_FINES, new CommandRights(rights, new ShowUnpaidFines()));
 
         rights = new ArrayList<>();

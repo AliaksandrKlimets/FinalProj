@@ -1,35 +1,102 @@
-16:22:56,596 ERROR http-nio-8080-exec-3 UserDAOImpl:getUser:58 - Cannot find user
-16:22:56,600 ERROR http-nio-8080-exec-3 Authorization:execute:51 - Cannot find user
-16:35:44,675 ERROR http-nio-8080-exec-40 UserDAOImpl:getUser:58 - Cannot find user
-16:35:44,679 ERROR http-nio-8080-exec-40 Authorization:execute:51 - Cannot find user
-16:36:52,238 ERROR http-nio-8080-exec-32 UserDAOImpl:getUser:58 - Cannot find user
-16:36:52,242 ERROR http-nio-8080-exec-32 Authorization:execute:51 - Cannot find user
-16:38:07,468 ERROR http-nio-8080-exec-37 UserDAOImpl:getUser:58 - Cannot find user
-16:38:07,472 ERROR http-nio-8080-exec-37 Authorization:execute:51 - Cannot find user
-16:43:52,939 ERROR http-nio-8080-exec-49 UserDAOImpl:addUser:201 - User exist
-16:43:52,943 ERROR http-nio-8080-exec-49 Registration:execute:52 - User exist
-16:45:50,293 ERROR http-nio-8080-exec-63 Authorization:execute:54 - Incorrect username
-16:46:46,034 ERROR http-nio-8080-exec-61 Authorization:execute:54 - Incorrect username
-18:31:16,686 ERROR http-nio-8080-exec-80 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:31:16,692 ERROR http-nio-8080-exec-80 ChangingEmail:execute:36 - Email exist, cannot change email
-18:38:58,537 ERROR http-nio-8080-exec-86 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:38:58,545 ERROR http-nio-8080-exec-86 ChangingEmail:execute:41 - Email exist, cannot change email
-18:40:01,672 ERROR http-nio-8080-exec-77 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:40:01,680 ERROR http-nio-8080-exec-77 ChangingEmail:execute:41 - Email exist, cannot change email
-18:42:28,556 ERROR http-nio-8080-exec-99 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:42:28,563 ERROR http-nio-8080-exec-99 ChangingEmail:execute:41 - Email exist, cannot change email
-18:47:53,423 ERROR http-nio-8080-exec-103 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:47:53,433 ERROR http-nio-8080-exec-103 ChangingEmail:execute:41 - Email exist, cannot change email
-18:49:17,878 ERROR http-nio-8080-exec-107 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:49:17,884 ERROR http-nio-8080-exec-107 ChangingEmail:execute:41 - Email exist, cannot change email
-18:50:40,435 ERROR http-nio-8080-exec-123 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:50:40,447 ERROR http-nio-8080-exec-123 ChangingEmail:execute:41 - Email exist, cannot change email
-18:52:09,967 ERROR http-nio-8080-exec-125 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:52:09,975 ERROR http-nio-8080-exec-125 ChangingEmail:execute:41 - Email exist, cannot change email
-18:54:20,786 ERROR http-nio-8080-exec-142 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
-18:54:20,794 ERROR http-nio-8080-exec-142 ChangingEmail:execute:39 - Email exist, cannot change email
-19:17:46,371 ERROR http-nio-8080-exec-175 UserDAOImpl:getUser:58 - Cannot find user
-19:17:46,384 ERROR http-nio-8080-exec-175 Authorization:execute:50 - Cannot find user
-19:19:22,000 ERROR http-nio-8080-exec-186 UserDAOImpl:getUser:58 - Cannot find user
-19:19:22,004 ERROR http-nio-8080-exec-186 Authorization:execute:50 - Cannot find user
-19:21:16,702 ERROR http-nio-8080-exec-185 ChangingPassword:execute:41 - Incorrect password, cannot update pass
+23:39:08,052 ERROR http-nio-8080-exec-150 OrderDAOImpl:actualCarOrdersCount:150 - Cannot count actual ordered car items
+java.sql.SQLException: Parameter index out of range (1 > number of parameters, which is 0).
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:897)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:886)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:860)
+	at com.mysql.jdbc.PreparedStatement.checkBounds(PreparedStatement.java:3327)
+	at com.mysql.jdbc.PreparedStatement.setInternal(PreparedStatement.java:3312)
+	at com.mysql.jdbc.PreparedStatement.setInternal(PreparedStatement.java:3351)
+	at com.mysql.jdbc.PreparedStatement.setInt(PreparedStatement.java:3302)
+	at com.epam.car_rental.util.DAOUtil.getParamCount(DAOUtil.java:239)
+	at com.epam.car_rental.dao.car.OrderedCarDAOImpl.actualCarOrdersCount(OrderedCarDAOImpl.java:148)
+	at com.epam.car_rental.service.car.CarServiceImpl.actualCarOrdersCount(CarServiceImpl.java:230)
+	at com.epam.car_rental.controller.command.admin_impl.ShowActualCarOrders.execute(ShowActualCarOrders.java:46)
+	at com.epam.car_rental.controller.Controller.doGet(Controller.java:34)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.epam.car_rental.filter.AccessFilter.doFilter(AccessFilter.java:40)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.epam.car_rental.filter.CharsetFilter.doFilter(CharsetFilter.java:18)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.epam.car_rental.filter.NoCacheFilter.doFilter(NoCacheFilter.java:21)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:217)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:518)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1091)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:673)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+23:39:08,056 ERROR http-nio-8080-exec-150 ShowActualCarOrders:execute:63 - Cannot count actual ordered car items
+23:43:55,936 ERROR http-nio-8080-exec-172 OrderDAOImpl:actualCarOrdersCount:150 - Cannot count actual ordered car items
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'begin_date > now())' at line 1
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:943)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2487)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1858)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1966)
+	at com.epam.car_rental.util.DAOUtil.getParamCount(DAOUtil.java:240)
+	at com.epam.car_rental.dao.car.OrderedCarDAOImpl.actualCarOrdersCount(OrderedCarDAOImpl.java:148)
+	at com.epam.car_rental.service.car.CarServiceImpl.actualCarOrdersCount(CarServiceImpl.java:230)
+	at com.epam.car_rental.controller.command.admin_impl.ShowActualCarOrders.execute(ShowActualCarOrders.java:46)
+	at com.epam.car_rental.controller.Controller.doGet(Controller.java:34)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.epam.car_rental.filter.AccessFilter.doFilter(AccessFilter.java:40)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.epam.car_rental.filter.CharsetFilter.doFilter(CharsetFilter.java:18)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.epam.car_rental.filter.NoCacheFilter.doFilter(NoCacheFilter.java:21)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:217)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:518)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1091)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:673)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+23:43:55,944 ERROR http-nio-8080-exec-172 ShowActualCarOrders:execute:63 - Cannot count actual ordered car items

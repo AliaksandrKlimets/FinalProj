@@ -37,10 +37,7 @@
         </c:when>
         <c:when test="${ sessionScope.user.role eq 'ADMIN'}">
             <jsp:include page="/WEB-INF/jsp/sidebar/adminSideBar.jsp"/>
-            <c:if test="${empty requestScope.carList}">
-                <h1>Список пуст</h1>
-            </c:if>
-            <c:if test="${ not empty requestScope.carList}">
+                <c:if test="${requestScope.carList ne null}">
                 <jsp:include page="/WEB-INF/jsp/table/carTable.jsp"/>
             </c:if>
         </c:when>
