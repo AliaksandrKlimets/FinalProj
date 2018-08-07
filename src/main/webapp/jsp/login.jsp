@@ -36,7 +36,7 @@
 <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
 <div class="content">
     <div class="input-data-form">
-        <form class="login" action="${pageContext.request.contextPath}/rental" method="post">
+        <form class="login" action="${pageContext.request.contextPath}/rental" method="post" style=" padding-top: 49px;">
             <input type="hidden" name="command" value="AUTHORIZATION">
             <label class="input-label">${login}:</label><br>
             <input type="text" name="login" placeholder="${holderlogin}" title="${inputtitle}" minlength="4"
@@ -47,9 +47,11 @@
                    maxlength="18"
                    pattern="^[a-zA-Z\._\d]{7,18}$" required>
             <input type="submit" name="enter" value="${signin}">
-            <h2 style="font-family: calibri; font-size: 17px; color: #f4f4f4; margin: 20px 0 10px 0;  text-align: center;">
+            <c:if test="${not empty requestScope.error}">
+            <h2 style="font-family: calibri; font-size: 17px; color:white; margin: 20px 0 10px 0; width: 400px; height: 40px; text-align: center;">
                 ${requestScope.error}
             </h2>
+            </c:if>
             <hr class="input-separator">
             <div class="reg-link">
                 <a href="${pageContext.request.contextPath}/registration">${registration}</a>

@@ -21,7 +21,6 @@ import static com.epam.car_rental.controller.constant.ControlConst.LANG;
 import static com.epam.car_rental.controller.constant.EntityAttributes.LOGIN;
 import static com.epam.car_rental.controller.constant.EntityAttributes.PASSWORD;
 import static com.epam.car_rental.controller.constant.EntityAttributes.USER;
-import static com.epam.car_rental.controller.constant.PageUrl.HOME_PAGE;
 import static com.epam.car_rental.controller.constant.PageUrl.LOGIN_PAGE;
 
 public class Authorization implements Command {
@@ -49,10 +48,10 @@ public class Authorization implements Command {
             }
         }catch (UserNotFoundException e){
             LOGGER.error(e.getMessage());
-            ControllerUtil.updateWithMessage(request,response,e.getMessage(),LOGIN_PAGE);
+            ControllerUtil.updateWithMessage(request,response,"Неправильные логин или пароль",LOGIN_PAGE);
         }catch (ServiceException e){
             LOGGER.error(e.getMessage());
-            ControllerUtil.updateWithMessage(request,response,e.getMessage(),LOGIN_PAGE);
+            ControllerUtil.updateWithMessage(request,response,"Проверьте корректность введеных данных",LOGIN_PAGE);
         }
     }
 }

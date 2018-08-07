@@ -12,7 +12,7 @@ public interface UserService {
 
     void changeLogin(String userId, String login) throws ServiceException;
 
-    void changePassword(String userId, String newPassword) throws ServiceException;
+    void changePassword(String userId,String oldPassword, String newPassword) throws ServiceException;
 
     void changeName(String id, String name) throws ServiceException;
 

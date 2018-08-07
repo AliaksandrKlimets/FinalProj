@@ -60,13 +60,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(String userId, String newPassword) throws ServiceException {
+    public void changePassword(String userId,String oldPassword, String newPassword) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
             Validator.isNumber(userId);
             UserValidator.isPassword(newPassword);
-            userDAO.changePassword(Integer.parseInt(userId), newPassword);
-        } catch (DAOException e) {
+            UserValidator.isPassword(oldPassword);
+            userDAO.changePassword(Integer.parseInt(userId),oldPassword, newPassword);
+        }catch (EntityNotFoundException e){
+            throw new UserNotFoundException(e.getMessage());
+        }catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
             throw new InvalidParametersException(e.getMessage());

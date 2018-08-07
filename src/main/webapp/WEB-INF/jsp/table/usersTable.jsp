@@ -52,7 +52,7 @@
                         <input type="hidden" name="add_param" value="fine">
                         <input type="hidden" name="id" value="${user.userId}">
                         <input type="hidden" name="name" value="${user.login}">
-                        <input type="submit" value="${fine}">
+                        <input type="submit" style="margin-top: 17px;" value="${fine}">
                     </form>
                 </th>
 

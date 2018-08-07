@@ -33,7 +33,9 @@
             <input type="hidden" name="command" value="ORDER_ADDING">
             <input type="hidden" name="id" value="${requestScope.id}">
             <input type="hidden" name="userId" value="${sessionScope.user.userId}">
-
+            <c:if test="${not empty requestScope.error}">
+            <h1 style="font-size: 19px;color: white; width: 200px; height: 50px; margin-left: 200px; margin-top: 10px; text-align: center;">${requestScope.error}</h1><br>
+            </c:if>
             <label class="input-label">${user}: ${sessionScope.user.login}</label><br><br>
             <label class="input-label">${car}: <ahs:model-by-id carId="${requestScope.id}"/></label><br><br>
 
@@ -53,7 +55,7 @@
             <input  id="serviceEnd" type="date"  onclick="return getSecondTime()" name="serviceEnd" required><br><br>
 
             <input type="submit" value="${add}">
-            <h1 style="font-size: 15px;color: white; width: 200px; height: 50px; margin-left: 200px; margin-top: 10px; text-align: center;">${requestScope.error}</h1>
+
         </form>
     </div>
 </div>

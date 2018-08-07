@@ -1,0 +1,35 @@
+16:22:56,596 ERROR http-nio-8080-exec-3 UserDAOImpl:getUser:58 - Cannot find user
+16:22:56,600 ERROR http-nio-8080-exec-3 Authorization:execute:51 - Cannot find user
+16:35:44,675 ERROR http-nio-8080-exec-40 UserDAOImpl:getUser:58 - Cannot find user
+16:35:44,679 ERROR http-nio-8080-exec-40 Authorization:execute:51 - Cannot find user
+16:36:52,238 ERROR http-nio-8080-exec-32 UserDAOImpl:getUser:58 - Cannot find user
+16:36:52,242 ERROR http-nio-8080-exec-32 Authorization:execute:51 - Cannot find user
+16:38:07,468 ERROR http-nio-8080-exec-37 UserDAOImpl:getUser:58 - Cannot find user
+16:38:07,472 ERROR http-nio-8080-exec-37 Authorization:execute:51 - Cannot find user
+16:43:52,939 ERROR http-nio-8080-exec-49 UserDAOImpl:addUser:201 - User exist
+16:43:52,943 ERROR http-nio-8080-exec-49 Registration:execute:52 - User exist
+16:45:50,293 ERROR http-nio-8080-exec-63 Authorization:execute:54 - Incorrect username
+16:46:46,034 ERROR http-nio-8080-exec-61 Authorization:execute:54 - Incorrect username
+18:31:16,686 ERROR http-nio-8080-exec-80 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:31:16,692 ERROR http-nio-8080-exec-80 ChangingEmail:execute:36 - Email exist, cannot change email
+18:38:58,537 ERROR http-nio-8080-exec-86 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:38:58,545 ERROR http-nio-8080-exec-86 ChangingEmail:execute:41 - Email exist, cannot change email
+18:40:01,672 ERROR http-nio-8080-exec-77 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:40:01,680 ERROR http-nio-8080-exec-77 ChangingEmail:execute:41 - Email exist, cannot change email
+18:42:28,556 ERROR http-nio-8080-exec-99 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:42:28,563 ERROR http-nio-8080-exec-99 ChangingEmail:execute:41 - Email exist, cannot change email
+18:47:53,423 ERROR http-nio-8080-exec-103 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:47:53,433 ERROR http-nio-8080-exec-103 ChangingEmail:execute:41 - Email exist, cannot change email
+18:49:17,878 ERROR http-nio-8080-exec-107 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:49:17,884 ERROR http-nio-8080-exec-107 ChangingEmail:execute:41 - Email exist, cannot change email
+18:50:40,435 ERROR http-nio-8080-exec-123 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:50:40,447 ERROR http-nio-8080-exec-123 ChangingEmail:execute:41 - Email exist, cannot change email
+18:52:09,967 ERROR http-nio-8080-exec-125 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:52:09,975 ERROR http-nio-8080-exec-125 ChangingEmail:execute:41 - Email exist, cannot change email
+18:54:20,786 ERROR http-nio-8080-exec-142 UserDAOImpl:changeEmail:161 - Email exist, cannot change email
+18:54:20,794 ERROR http-nio-8080-exec-142 ChangingEmail:execute:39 - Email exist, cannot change email
+19:17:46,371 ERROR http-nio-8080-exec-175 UserDAOImpl:getUser:58 - Cannot find user
+19:17:46,384 ERROR http-nio-8080-exec-175 Authorization:execute:50 - Cannot find user
+19:19:22,000 ERROR http-nio-8080-exec-186 UserDAOImpl:getUser:58 - Cannot find user
+19:19:22,004 ERROR http-nio-8080-exec-186 Authorization:execute:50 - Cannot find user
+19:21:16,702 ERROR http-nio-8080-exec-185 ChangingPassword:execute:41 - Incorrect password, cannot update pass

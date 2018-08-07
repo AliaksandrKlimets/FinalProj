@@ -19,7 +19,7 @@
     <fmt:message bundle="${loc}" key="locale.fine.due.date" var="date"/>
     <fmt:message bundle="${loc}" key="locale.fine.fine.to.user" var="user"/>
     <fmt:message bundle="${loc}" key="locale.add.fine" var="add"/>
-
+    <script src="${pageContext.request.contextPath}/assets/js/date.js"></script>
 
 </head>
 <body>
@@ -43,7 +43,7 @@
             <input type="text" name="bill" placeholder="${bill}" pattern="[\d]+\.{0,1}[\d]{0,1}" required><br>
 
             <label class="input-label">${date}:</label><br>
-            <input type="date" name="dueDate" min="2018-08-03" required><br><br>
+            <input id="min" type="date" name="dueDate" onclick="getMinDeadlineDate()" required><br><br>
 
             <input type="submit" value="${add}">
             <h1 style="font-size: 15px;color: white; width: 200px; margin-left: 200px;">${requestScope.error}</h1>

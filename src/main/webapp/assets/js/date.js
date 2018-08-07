@@ -44,3 +44,18 @@ function getMax(){
 
     document.getElementById("max").max=yyyy+'-'+mm+'-'+dd;
 }
+
+function getMinDeadlineDate(){
+    var date = new Date();
+    var yyyy = date.getFullYear();
+    var mm = date.getMonth();
+    var dd  = date.getDate();
+
+    var date = new Date(yyyy,mm,dd+7);
+
+    var yyyy = date.getFullYear();
+    var mm = date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1); // getMonth() is zero-based
+    var dd  = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+
+    document.getElementById("min").min=yyyy+'-'+mm+'-'+dd;
+}

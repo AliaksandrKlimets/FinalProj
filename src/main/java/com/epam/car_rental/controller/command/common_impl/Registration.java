@@ -50,10 +50,10 @@ public class Registration implements Command {
             response.sendRedirect(HOME_PAGE);
         }catch (UserExistException e){
             LOGGER.error(e.getMessage());
-            ControllerUtil.updateWithMessage(request,response,e.getMessage(),REGISTRATION_PAGE);
+            ControllerUtil.updateWithMessage(request,response,"Пользователь с таким логином или почтой уже зарегистрирован",REGISTRATION_PAGE);
         }catch (ServiceException e){
             LOGGER.error(e.getMessage());
-            ControllerUtil.updateWithMessage(request,response,e.getMessage(),REGISTRATION_PAGE);
+            ControllerUtil.updateWithMessage(request,response,"Проверьте корректность введенных данных",REGISTRATION_PAGE);
         }
     }
 }

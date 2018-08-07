@@ -15,7 +15,7 @@ public interface UserDAO {
 
     void changeLogin(int userId, String login) throws DAOException;
 
-    void changePassword(int userId, String newPassword) throws DAOException;
+    void changePassword(int userId, String oldPassword, String newPassword) throws DAOException;
 
     void changeName(int id, String name) throws DAOException;
 

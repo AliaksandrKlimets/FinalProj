@@ -43,6 +43,7 @@
 
     <fmt:message bundle="${loc}" key="locale.register.title" var="title"/>
     <fmt:message bundle="${loc}" key="locale.required.title" var="inputtitle"/>
+    <script src="${pageContext.request.contextPath}/assets/js/date.js"></script>
     <title>${title}</title>
 
 </head>
@@ -55,6 +56,13 @@
     <div class="input-data-form" style="height: 850px;">
         <form class="login" action="${pageContext.request.contextPath}/rental" method="post" style="height: 800px; ">
             <input type="hidden" name="command" value="REGISTRATION">
+
+            <c:if test="${not empty requestScope.error}">
+                <h2 style="font-family: calibri; font-size: 17px; color:white; margin: 20px 0 10px 0; width: 400px; height: 40px; text-align: center;">
+                        ${requestScope.error}
+                </h2>
+            </c:if><br>
+
             <label class="input-label">${login}:</label><br>
             <input type="text" name="login" title="${inputtitle}" placeholder="${holderlogin}" minlength="4"
                    maxlength="20"
@@ -81,7 +89,7 @@
                    pattern="^(29|33|25)[\d]{7}$" title="${inputtitle}" required>
 
             <label class="input-label">${bitrh}:</label><br>
-            <input type="date" name="birth-date" max="2000-01-01" title="${inputtitle}" required>
+            <input id="max" type="date" onclick="return getMax()" name="birth-date" max="2000-01-01" title="${inputtitle}" required>
 
             <input type="submit" name="enter" value="${registration}">
 

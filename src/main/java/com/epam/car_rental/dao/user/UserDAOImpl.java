@@ -99,13 +99,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void changePassword(int userId, String newPassword) throws DAOException {
+    public void changePassword(int userId, String oldPassword, String newPassword) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String changePass = bundle.getString(USER_UPDATE_PASSWORD);
             newPassword = DAOUtil.createPassword(newPassword);
-            DAOUtil.changeInDB(userId, newPassword, changePass, connection);
+            oldPassword = DAOUtil.createPassword(oldPassword);
+            PreparedStatement statement = connection.prepareStatement(changePass);
+            statement.setString(1,newPassword);
+            statement.setInt(2,userId);
+            statement.setString(3,oldPassword);
+            int upd = statement.executeUpdate();
+            if(upd==0){
+                throw new EntityNotFoundException("Incorrect password, cannot update pass");
+            }
         } catch (SQLException e) {
             LOGGER.error("Cannot update users password", e);
             throw new DAOException("Cannot update users password");

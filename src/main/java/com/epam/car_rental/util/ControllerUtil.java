@@ -66,6 +66,13 @@ public class ControllerUtil {
         requestDispatcher.forward(request, response);
     }
 
+    public static void updateParamWithMessage(HttpServletRequest request, HttpServletResponse response, String message, String errorPageUrl, String param) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher;
+        request.setAttribute(param, message);
+        requestDispatcher = request.getRequestDispatcher(errorPageUrl);
+        requestDispatcher.forward(request, response);
+    }
+
     public static String createAddressWithPaging(HttpServletRequest request, String command, String page){
         return request.getContextPath() + CONTROLLER_COMMAND + command + PAGE + page;
     }

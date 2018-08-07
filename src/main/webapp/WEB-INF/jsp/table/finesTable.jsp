@@ -85,7 +85,7 @@
                                                 <input type="hidden" name="command" value="CHANGE_FINE_PAYMENT_STATE">
                                                 <input type="hidden" name="id" value="${fine.fineId}">
                                                 <input type="hidden" name="number" value="${requestScope.page.current}">
-                                                <input type="submit" value="${pay}">
+                                                <input type="submit" style="margin-top: 20px;" value="${pay}">
                                             </form>
 
                                             <form class="button" action="${pageContext.request.contextPath}/rental"
