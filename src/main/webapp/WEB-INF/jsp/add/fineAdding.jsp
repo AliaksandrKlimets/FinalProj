@@ -20,6 +20,7 @@
     <fmt:message bundle="${loc}" key="locale.fine.fine.to.user" var="user"/>
     <fmt:message bundle="${loc}" key="locale.add.fine" var="add"/>
 
+
 </head>
 <body>
 <div class="content">

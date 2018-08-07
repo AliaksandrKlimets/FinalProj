@@ -53,7 +53,7 @@
                         <input type="hidden" name="command" value="CAR_DELETING">
                         <input type="hidden" name="number" value="${requestScope.page.current}">
                         <input type="hidden" name="id" value="${car.carId}">
-                        <input type="submit" onclick="return confirmAction('${confirm}')" value="${delete}">
+                        <input type="submit"  onclick="return confirmAction('${confirm}')" value="${delete}">
                     </form>
                     <h3>${requestScope.error}</h3>
                 </th>

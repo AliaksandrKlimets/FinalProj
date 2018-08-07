@@ -39,6 +39,7 @@ public class CommandDirector {
         rights.add(User.Role.USER);
         rights.add(User.Role.ADMIN);
         commands.put(CommandType.SHOW_ALL_CARS, new CommandRights(rights, new ShowAllCars()));
+        commands.put(CommandType.SHOW_ALL_CARS_BY_TYPE, new CommandRights(rights, new ShowAllCarsByType()));
         commands.put(CommandType.LOG_OFF, new CommandRights(rights, new LogOff()));
         commands.put(CommandType.ADDING_HELP, new CommandRights(rights, new AddingHelper()));
 
@@ -83,6 +84,11 @@ public class CommandDirector {
         }
         final boolean showCars = commandName.equalsIgnoreCase(CommandType.SHOW_ALL_CARS.toString());
         if (showCars) {
+            return;
+        }
+
+        final boolean showCarsByType = commandName.equalsIgnoreCase(CommandType.SHOW_ALL_CARS_BY_TYPE.toString());
+        if (showCarsByType) {
             return;
         }
 

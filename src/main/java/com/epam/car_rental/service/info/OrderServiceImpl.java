@@ -6,6 +6,7 @@ import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.info.OrderDAO;
 import com.epam.car_rental.entity.Order;
 import com.epam.car_rental.service.ServiceException;
+import com.epam.car_rental.service.car.CarNotFoundException;
 import com.epam.car_rental.service.validation.InputException;
 import com.epam.car_rental.service.validation.InvalidParametersException;
 import com.epam.car_rental.service.validation.validator.OrderValidator;
@@ -67,6 +68,8 @@ public class OrderServiceImpl implements OrderService {
             order.setServiceStart(Date.valueOf(start));
             order.setServiceEnd(Date.valueOf(end));
             orderDAO.addOrder(order);
+        }catch (EntityNotFoundException e){
+            throw new CarNotFoundException(e.getMessage());
         }catch (DAOException e){
             throw new ServiceException(e.getMessage());
         }catch (InputException e){

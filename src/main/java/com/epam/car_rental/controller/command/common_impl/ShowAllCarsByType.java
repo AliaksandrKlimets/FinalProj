@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,26 +22,27 @@ import java.util.List;
 import static com.epam.car_rental.controller.constant.ControlConst.CARLIST;
 import static com.epam.car_rental.controller.constant.ControlConst.NUMBER;
 import static com.epam.car_rental.controller.constant.ControlConst.PAGE;
+import static com.epam.car_rental.controller.constant.EntityAttributes.TYPE;
 
-public class ShowAllCars implements Command {
-    private static final Logger LOGGER = Logger.getLogger(ShowAllCars.class);
+public class ShowAllCarsByType implements Command {
+
+    private static final Logger LOGGER = Logger.getLogger(ShowAllCarsByType.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String number = request.getParameter(NUMBER);
+        String type = request.getParameter(TYPE);
 
         CarService carService = ServiceFactory.getInstance().getCarService();
         try {
             Validator.isNumber(number);
             int currentPage = Integer.parseInt(number);
-            int size = carService.itemsCount();
+            int size = carService.itemsByTypeCount(type);
             if (size != 0) {
-                String command = CommandType.SHOW_ALL_CARS.toString();
+                String command = CommandType.SHOW_ALL_CARS_BY_TYPE.toString();
                 PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
                 request.setAttribute(PAGE, helper);
-                List<Car> carList = carService.getCars(helper.getBegin(), 7);
-
+                List<Car> carList = carService.getCarsByType(type,helper.getBegin(), 7);
 
                 request.setAttribute(CARLIST, carList);
 

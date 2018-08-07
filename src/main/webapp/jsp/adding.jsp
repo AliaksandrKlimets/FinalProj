@@ -6,7 +6,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>Добавление</title>
+    <fmt:setLocale value="${sessionScope.lang}"/>
+    <fmt:setBundle basename="locale.locale" var="loc"/>
+    <fmt:message bundle="${loc}" key="locale.add.title" var="title"/>
+    <title>${title}</title>
 </head>
 <body>
 <c:if test="${empty sessionScope.user}">
@@ -35,6 +38,9 @@
         </c:when>
         <c:when test="${sessionScope.user.role eq 'USER'}">
             <jsp:include page="/WEB-INF/jsp/sidebar/userSideBar.jsp"/>
+            <c:if test="${requestScope.add_param eq 'order'}">
+                <jsp:include page="/WEB-INF/jsp/add/orderAdding.jsp"/>
+            </c:if>
         </c:when>
     </c:choose>
 </div>

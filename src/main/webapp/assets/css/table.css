@@ -144,3 +144,79 @@ tr:hover{
     outline: none;
     cursor: pointer;
 }
+
+
+.car-item{
+    width: 1000px;
+    min-height: 250px;
+    margin: 0 0 20px 0;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 2px solid #2b3035;
+
+}
+
+.car-item-content{
+    float: right;
+    width: 550px;
+    height: 300px;
+
+}
+
+.car-item-header{
+    font-size: 23px;
+    font-family: calibri;
+    width: 440px;
+    text-align: center;
+    margin:0;
+    background-color: #2b3035;
+    color: #ffffff;
+    height: 40px;
+    padding: 13px 0 0px 0;
+    font-weight: normal;
+
+}
+.car-item-img{
+    padding:0;
+    margin: 0;
+    width: 450px;
+    height: 330px;
+    background-color: #2b3035;
+}
+
+.car-table{
+    width: 550px;
+}
+
+.car-th{
+    height: 26px;
+    background-color: #2b3035;
+    border-bottom: 0;
+    color: white;
+}
+
+.car-tr th{
+    height: 27px;
+}
+
+
+.rent-button{
+    float: right;
+    margin: 0 20px 20px 0;
+}
+
+.rent-button input[type="submit"]{
+    width: 130px;
+    height: 38px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: green;
+    color: white;
+    outline: none;
+    border: 0;
+}
+
+.rent-button input[type="submit"]:hover{
+    cursor: pointer;
+    color: #f4f4f4;
+}

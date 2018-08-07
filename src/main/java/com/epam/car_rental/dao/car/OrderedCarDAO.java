@@ -13,7 +13,7 @@ public interface OrderedCarDAO {
 
     void addCarToOrderedCarList(OrderedCar orderedCar) throws DAOException;
 
-    void deleteCarFromOrderedCarList(int carId) throws DAOException;
+    void deleteCarFromOrderedCarList(int carId, String begin, String end) throws DAOException;
 
     List<OrderedCar> getActualCarOrders(int carId, int begin, int size) throws DAOException;
 

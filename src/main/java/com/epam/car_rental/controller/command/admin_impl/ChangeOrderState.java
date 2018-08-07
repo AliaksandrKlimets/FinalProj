@@ -2,8 +2,10 @@ package com.epam.car_rental.controller.command.admin_impl;
 
 import com.epam.car_rental.controller.command.Command;
 import com.epam.car_rental.controller.command.CommandType;
+import com.epam.car_rental.entity.Order;
 import com.epam.car_rental.service.ServiceException;
 import com.epam.car_rental.service.ServiceFactory;
+import com.epam.car_rental.service.car.CarService;
 import com.epam.car_rental.service.info.OrderService;
 import com.epam.car_rental.service.validation.NotNumberException;
 import com.epam.car_rental.service.validation.validator.Validator;
@@ -31,9 +33,14 @@ public class ChangeOrderState implements Command {
         String id = request.getParameter(ID);
 
         OrderService orderService = ServiceFactory.getInstance().getOrderService();
+        CarService carService = ServiceFactory.getInstance().getCarService();
         try{
             Validator.isNumber(number);
             orderService.changeOrderState(id,change);
+            if(change.equalsIgnoreCase("DECLINE")){
+                Order order = orderService.getOrder(id);
+                carService.deleteCarFromOrderedCarList(order.getCarId()+"", order.getServiceStart().toString(),order.getServiceEnd().toString());
+            }
             if(reason != null){
                 orderService.addDeclineReason(id,reason);
             }

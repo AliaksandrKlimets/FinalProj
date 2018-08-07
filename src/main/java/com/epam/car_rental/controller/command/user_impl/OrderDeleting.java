@@ -2,8 +2,10 @@ package com.epam.car_rental.controller.command.user_impl;
 
 import com.epam.car_rental.controller.command.Command;
 import com.epam.car_rental.controller.command.CommandType;
+import com.epam.car_rental.entity.Order;
 import com.epam.car_rental.service.ServiceException;
 import com.epam.car_rental.service.ServiceFactory;
+import com.epam.car_rental.service.car.CarService;
 import com.epam.car_rental.service.info.OrderService;
 import com.epam.car_rental.service.validation.NotNumberException;
 import com.epam.car_rental.service.validation.validator.Validator;
@@ -30,9 +32,13 @@ public class OrderDeleting implements Command {
         String userId = request.getParameter("userId");
 
         OrderService orderService = ServiceFactory.getInstance().getOrderService();
+        CarService carService = ServiceFactory.getInstance().getCarService();
         try{
             Validator.isNumber(number);
+            Order order = orderService.getOrder(id);
+
             orderService.deleteOrder(id, userId);
+            carService.deleteCarFromOrderedCarList(order.getCarId()+"", order.getServiceStart().toString(),order.getServiceEnd().toString());
             String address = ControllerUtil.createAddressWithPaging(request,CommandType.USER_ORDERS.toString(),number);
             response.sendRedirect(address);
         }catch (NotNumberException e){

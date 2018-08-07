@@ -22,6 +22,7 @@ public enum CommandType {
     ORDER_DELETING,
     REGISTRATION,
     SHOW_ALL_CARS,
+    SHOW_ALL_CARS_BY_TYPE,
     ADDING_HELP,
 
     CHANGING_EMAIL,

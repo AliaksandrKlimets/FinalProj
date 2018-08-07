@@ -3,6 +3,7 @@ package com.epam.car_rental.service.car;
 import com.epam.car_rental.dao.DAOException;
 import com.epam.car_rental.dao.DAOFactory;
 import com.epam.car_rental.dao.EntityExistException;
+import com.epam.car_rental.dao.EntityNotFoundException;
 import com.epam.car_rental.dao.car.CarDAO;
 import com.epam.car_rental.dao.car.DateNotAvailableException;
 import com.epam.car_rental.dao.car.OrderedCarDAO;
@@ -36,7 +37,9 @@ public class CarServiceImpl implements CarService {
         try {
             Validator.isNumber(id);
             return carDAO.getCar(Integer.parseInt(id));
-        } catch (DAOException e) {
+        }catch (EntityNotFoundException e){
+            throw new CarNotFoundException(e.getMessage());
+        }catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {
             throw new InvalidParametersException(e.getMessage());
@@ -139,11 +142,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteCarFromOrderedCarList(String carId) throws ServiceException {
+    public void deleteCarFromOrderedCarList(String carId, String begin, String end) throws ServiceException {
         OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
         try {
             Validator.isNumber(carId);
-            orderedCarDAO.deleteCarFromOrderedCarList(Integer.parseInt(carId));
+            orderedCarDAO.deleteCarFromOrderedCarList(Integer.parseInt(carId),begin,end);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         } catch (InputException e) {

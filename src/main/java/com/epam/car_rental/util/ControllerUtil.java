@@ -1,12 +1,19 @@
 package com.epam.car_rental.util;
 
+import com.epam.car_rental.dao.DAOException;
+import com.epam.car_rental.entity.Car;
 import com.epam.car_rental.entity.PaginationHelper;
+import com.epam.car_rental.service.ServiceException;
+import com.epam.car_rental.service.ServiceFactory;
+import com.epam.car_rental.service.car.CarNotFoundException;
+import com.epam.car_rental.service.car.CarService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 
 public class ControllerUtil {
 
@@ -61,5 +68,26 @@ public class ControllerUtil {
 
     public static String createAddressWithPaging(HttpServletRequest request, String command, String page){
         return request.getContextPath() + CONTROLLER_COMMAND + command + PAGE + page;
+    }
+
+    public static double createServiceCost(String carId, String serviceStart, String serviceEnd) throws  ServiceException {
+        CarService carService = ServiceFactory.getInstance().getCarService();
+        Car car = carService.getCar(carId);
+        final long day = 86_400_000L;
+
+        long difference = Date.valueOf(serviceEnd).getTime()-Date.valueOf(serviceStart).getTime();
+        long fullDays = difference/day;
+
+        if(fullDays<2){
+            return fullDays * car.getCostPerDay();
+        }else if(fullDays >= 2 && fullDays<8){
+            return fullDays * car.getTwoToSevenDays();
+        }else if(fullDays >= 8 && fullDays < 16){
+            return fullDays * car.getEightToFifteen();
+        }else {
+            return fullDays * car.getSixteenAndMore();
+        }
+
+
     }
 }

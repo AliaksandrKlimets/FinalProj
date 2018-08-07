@@ -89,7 +89,17 @@ public class OrderDAOImpl implements OrderDAO {
         try {
             connection = connectionPool.getConnection();
             String add = bundle.getString(ORDER_ADD_ORDER);
-            PreparedStatement statement = connection.prepareStatement(add);
+            String check= bundle.getString(CAR_GET_CAR);
+            PreparedStatement statement = connection.prepareStatement(check);
+            statement.setInt(1,order.getCarId());
+            ResultSet set = statement.executeQuery();
+
+            if(!set.isBeforeFirst()){
+                LOGGER.error("Car not found");
+                throw new EntityNotFoundException("Car not found");
+            }
+
+            statement = connection.prepareStatement(add);
             statement.setInt(1, order.getUserId());
             statement.setInt(2, order.getCarId());
             statement.setString(3, order.getPassportNumber());

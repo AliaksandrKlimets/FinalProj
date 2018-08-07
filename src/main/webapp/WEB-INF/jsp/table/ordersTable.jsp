@@ -34,6 +34,7 @@
     <fmt:message bundle="${loc}" key="locale.order.unpaid" var="unpaid"/>
     <fmt:message bundle="${loc}" key="locale.confirm.decline.order" var="confirmDecline"/>
     <fmt:message bundle="${loc}" key="locale.confirm.delete.order" var="confirmDelete"/>
+    <fmt:message bundle="${loc}" key="locale.cost.byn" var="byn"/>
     <script src="${pageContext.request.contextPath}/assets/js/confirm.js"></script>
 
 </head>
@@ -83,7 +84,7 @@
                     <th><ahs:model-by-id carId="${order.carId}"/></th>
                     <th><ahs:date-locale date="${order.serviceStart}" locale="ru"/></th>
                     <th><ahs:date-locale date="${order.serviceEnd}" locale="ru"/></th>
-                    <th>${order.serviceCost}</th>
+                    <th>${order.serviceCost} ${byn}</th>
                 </tr>
             </table>
                 <c:if test="${sessionScope.user.role eq 'ADMIN'}">
@@ -102,6 +103,7 @@
                                         <option value="Слишком молод(а)">Слишком молод(а)</option>
                                         <option value="Ты мне не нравишься">Ты мне не нравишься</option>
                                         <option value="Плохая репутация в нашей фирме">Плохая репутация в нашей фирме</option>
+                                        <option value="Плохая репутация в нашей фирме">Близок срок истечения</option>
                                     </select>
                                     <input type="hidden" name="command" value="CHANGE_ORDER_STATE">
                                     <input type="hidden" name="change" value="DECLINE">

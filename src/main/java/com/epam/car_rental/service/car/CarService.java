@@ -3,6 +3,7 @@ package com.epam.car_rental.service.car;
 import com.epam.car_rental.dao.car.DateNotAvailableException;
 import com.epam.car_rental.entity.Car;
 import com.epam.car_rental.entity.OrderedCar;
+import com.epam.car_rental.service.DateNotAvailableServiceException;
 import com.epam.car_rental.service.ServiceException;
 
 import java.util.List;
@@ -30,11 +31,11 @@ public interface CarService {
 
     void addCarToOrderedCarList(OrderedCar orderedCar) throws ServiceException;
 
-    void deleteCarFromOrderedCarList(String carId) throws ServiceException;
+    void deleteCarFromOrderedCarList(String carId, String begin, String end) throws ServiceException;
 
     List<OrderedCar> getActualCarOrders(String carId, int begin, int size) throws ServiceException;
 
-    void isDateAvailable(String begin, String end) throws ServiceException, DateNotAvailableException;
+    void isDateAvailable(String begin, String end) throws ServiceException;
 
     int orderedItemsCount() throws ServiceException;
 

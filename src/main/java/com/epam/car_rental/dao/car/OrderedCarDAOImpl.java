@@ -63,12 +63,16 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
     }
 
     @Override
-    public void deleteCarFromOrderedCarList(int carId) throws DAOException {
+    public void deleteCarFromOrderedCarList(int carId, String begin, String end) throws DAOException {
         Connection connection = null;
         try {
             connection = connectionPool.getConnection();
             String deleteCar = bundle.getString(ORDERED_CAR_DELETE_CAR_ORDER);
-            DAOUtil.deleteEntity(carId, deleteCar, connection);
+            PreparedStatement statement = connection.prepareStatement(deleteCar);
+            statement.setInt(1,carId);
+            statement.setDate(2,Date.valueOf(begin));
+            statement.setDate(3,Date.valueOf(end));
+            statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error("Error while deleting ordered car list from db",e);
             throw new DAOException("Error while deleting ordered car list from db");

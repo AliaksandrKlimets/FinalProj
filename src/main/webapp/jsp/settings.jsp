@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header-style.css">
     <fmt:setLocale value="${sessionScope.lang}"/>
     <fmt:setBundle basename="locale.locale" var="loc"/>
-
-    <fmt:message bundle="${loc}" key="locale.home.title" var="title"/>
+    <fmt:message bundle="${loc}" key="locale.settings.title" var="title"/>
     <title>${title}</title>
 
 </head>
