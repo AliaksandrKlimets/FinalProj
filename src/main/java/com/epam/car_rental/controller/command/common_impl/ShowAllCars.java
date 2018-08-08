@@ -39,7 +39,7 @@ public class ShowAllCars implements Command {
             int size = carService.itemsCount();
             if (size != 0) {
                 String command = CommandType.SHOW_ALL_CARS.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command, 7);
                 request.setAttribute(PAGE, helper);
                 List<Car> carList = carService.getCars(helper.getBegin(), 7);
 

@@ -35,7 +35,7 @@ public class ShowAllOrders implements Command {
             int size = orderService.ordersCount();
             if(size!=0) {
                 String command = CommandType.SHOW_ALL_ORDERS.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command, 5);
                 request.setAttribute(PAGE, helper);
 
                 List<Order> orderList = orderService.getOrders(helper.getBegin(), 5);

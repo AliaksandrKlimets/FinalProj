@@ -54,8 +54,8 @@
                 <option value="PICKUP">${pickup}</option>
                 <option value="HATCHBACK">${hatchback}</option>
                 <option value="COUPE">${coupe}</option>
-                <option value="CROSSOVER">${universal}</option>
-                <option value="UNIVERSAL">${crossover}</option>
+                <option value="UNIVERSAL">${universal}</option>
+                <option value="CROSSOVER">${crossover}</option>
             </select><br>
 
             <label class="input-label">${transmission}:</label><br>

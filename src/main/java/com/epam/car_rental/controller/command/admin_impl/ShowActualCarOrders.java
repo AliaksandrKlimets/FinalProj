@@ -46,7 +46,7 @@ public class ShowActualCarOrders implements Command {
             int sizeAct = carService.actualCarOrdersCount(Integer.parseInt(carId));
             if(sizeAct!=0){
                 String command = CommandType.SHOW_ACTUAL_CAR_ORDERS.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, sizeAct, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, sizeAct, command, 10);
                 request.setAttribute(PAGE, helper);
 
                 List<OrderedCar> orderedCarList = carService.getActualCarOrders(carId, helper.getBegin(), 10);

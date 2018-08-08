@@ -17,7 +17,7 @@ public interface OrderedCarDAO {
 
     List<OrderedCar> getActualCarOrders(int carId, int begin, int size) throws DAOException;
 
-    void isDateAvailable(Date begin, Date end) throws DAOException;
+    void isDateAvailable(int carId, Date begin, Date end) throws DAOException;
 
     int itemsCount() throws DAOException;
 

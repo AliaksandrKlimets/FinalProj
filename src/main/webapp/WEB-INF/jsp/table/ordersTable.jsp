@@ -69,7 +69,9 @@
         <div style="float: right;">
             <table class="order-table">
                 <tr class="thead">
+                    <c:if test="${sessionScope.user.role eq 'ADMIN'}">
                     <th>id</th>
+                    </c:if>
                     <th>${user}</th>
                     <th style="width: 350px;">${data}</th>
                     <th>${car}</th>
@@ -78,7 +80,9 @@
                     <th>${cost}</th>
                 </tr>
                 <tr>
+                    <c:if test="${sessionScope.user.role eq 'ADMIN'}">
                     <th>${order.orderId}</th>
+                    </c:if>
                     <th><ahs:login-by-id userId="${order.userId}"/></th>
                     <th>${order.passportNumber}<br>${order.identificationNumber}<br><ahs:date-locale date="${order.dateOfExpiry}" locale="ru"/></th>
                     <th><ahs:model-by-id carId="${order.carId}"/></th>

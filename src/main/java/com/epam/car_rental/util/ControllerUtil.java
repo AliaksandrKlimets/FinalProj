@@ -17,19 +17,18 @@ import java.sql.Date;
 
 public class ControllerUtil {
 
-    private static final int ROWS_ON_PAGE = 10;
     private static final String ERROR = "error";
     private static final String CONTROLLER_COMMAND = "/rental?command=";
     private static final String PAGE = "&number=";
 
-    public static PaginationHelper createPagination(HttpServletRequest request, int current, int size, String command) {
+    public static PaginationHelper createPagination(HttpServletRequest request, int current, int size, String command, int rowsOnPage) {
         String controllerURL = request.getContextPath() + CONTROLLER_COMMAND + command + PAGE;
         int first = 1;
 
         PaginationHelper page = new PaginationHelper();
 
-        int lastPage = size / ROWS_ON_PAGE;
-        if (size % ROWS_ON_PAGE != 0) {
+        int lastPage = size / rowsOnPage;
+        if (size % rowsOnPage != 0) {
             lastPage++;
         }
         page.setLast(lastPage);
@@ -44,10 +43,10 @@ public class ControllerUtil {
         page.setNext(next);
 
 
-        int begin = ROWS_ON_PAGE * prev;
+        int begin = rowsOnPage * prev;
         page.setBegin(begin);
 
-        int end = ROWS_ON_PAGE * current;
+        int end = rowsOnPage * current;
         end = end > size ? size : end;
         page.setEnd(end);
 

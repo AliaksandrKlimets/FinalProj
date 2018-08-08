@@ -100,3 +100,6 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in 
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
 23:43:55,944 ERROR http-nio-8080-exec-172 ShowActualCarOrders:execute:63 - Cannot count actual ordered car items
+14:28:19,913 ERROR http-nio-8080-exec-1 OrderDAOImpl:isDateAvailable:34 - No available date
+14:32:53,455 ERROR http-nio-8080-exec-6 OrderDAOImpl:isDateAvailable:35 - No available date
+14:35:33,823 ERROR http-nio-8080-exec-17 OrderDAOImpl:isDateAvailable:35 - No available date

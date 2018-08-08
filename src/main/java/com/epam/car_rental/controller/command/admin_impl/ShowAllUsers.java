@@ -36,7 +36,7 @@ public class ShowAllUsers implements Command {
             int size = userService.usersCount();
             if(size!=0) {
                 String command = CommandType.SHOW_ALL_USERS.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command, 10);
                 request.setAttribute(PAGE, helper);
 
                 List<User> users = userService.getUsers(helper.getBegin(), 10);

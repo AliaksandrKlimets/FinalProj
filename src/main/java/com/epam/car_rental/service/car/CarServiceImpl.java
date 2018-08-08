@@ -168,12 +168,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void isDateAvailable(String begin, String end) throws ServiceException {
+    public void isDateAvailable(String carId,String begin, String end) throws ServiceException {
         OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
         try {
             Validator.isDate(begin);
             Validator.isDate(end);
-            orderedCarDAO.isDateAvailable(Date.valueOf(begin), Date.valueOf(end));
+            Validator.isNumber(carId);
+            orderedCarDAO.isDateAvailable(Integer.parseInt(carId),Date.valueOf(begin), Date.valueOf(end));
         } catch (DateNotAvailableException e) {
             throw new DateNotAvailableServiceException(e.getMessage());
         } catch (DAOException e) {

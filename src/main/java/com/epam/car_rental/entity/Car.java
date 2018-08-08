@@ -22,7 +22,7 @@ public class Car {
 
 
     public enum Type {
-        COUPE("Купе"), HATCHBACK("Хэтчбек"), UNIVERSAL("Универсал"), PICKUP("Пикап"), CROSSOVER("Сроссовер");
+        COUPE("Купе"), HATCHBACK("Хэтчбек"), UNIVERSAL("Универсал"), PICKUP("Пикап"), CROSSOVER("Кроссовер");
 
         Type(String value) {
             this.value = value;

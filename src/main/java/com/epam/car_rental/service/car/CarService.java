@@ -35,7 +35,7 @@ public interface CarService {
 
     List<OrderedCar> getActualCarOrders(String carId, int begin, int size) throws ServiceException;
 
-    void isDateAvailable(String begin, String end) throws ServiceException;
+    void isDateAvailable(String carId, String begin, String end) throws ServiceException;
 
     int orderedItemsCount() throws ServiceException;
 

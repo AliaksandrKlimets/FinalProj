@@ -40,7 +40,7 @@ public class UserFines implements Command {
             int size = fineService.userFinesCount(currentUser.getUserId());
             if(size!=0) {
                 String command = CommandType.USER_FINES.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command, 10);
                 request.setAttribute(PAGE, helper);
 
                 List<Fine> fineList = fineService.getUserFines("" + currentUser.getUserId(), helper.getBegin(), 10);

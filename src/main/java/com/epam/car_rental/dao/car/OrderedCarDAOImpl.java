@@ -19,7 +19,7 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void isDateAvailable(Date begin, Date end) throws DAOException{
+    public void isDateAvailable(int carId, Date begin, Date end) throws DAOException{
         Connection connection = null;
         try{
             connection = connectionPool.getConnection();
@@ -29,6 +29,7 @@ public class OrderedCarDAOImpl implements OrderedCarDAO {
             statement.setDate(2,end);
             statement.setDate(3,begin);
             statement.setDate(4,end);
+            statement.setInt(5,carId);
             ResultSet set = statement.executeQuery();
             if(set.isBeforeFirst()){
                 LOGGER.error("No available date");

@@ -43,7 +43,7 @@ public class OrderAdding implements Command {
                 ControllerUtil.updateWithMessage(request,response,"Данные введены неправильно",
                         "/rental?command=ADDING_HELP&add_param=order&id="+carId);
             }
-            carService.isDateAvailable(serviceStart,serviceEnd);
+            carService.isDateAvailable(carId,serviceStart,serviceEnd);
             Order order = new Order();
             order.setServiceCost(ControllerUtil.createServiceCost(carId,serviceStart,serviceEnd));
             order.setPassportNumber(passport);

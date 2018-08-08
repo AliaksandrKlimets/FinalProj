@@ -36,7 +36,7 @@ public class ShowAllFines implements Command {
 
             if(size!=0) {
                 String command = CommandType.SHOW_ALL_FINES.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command, 10);
                 request.setAttribute(PAGE, helper);
 
                 List<Fine> fineList = fineService.getFines(helper.getBegin(), 10);

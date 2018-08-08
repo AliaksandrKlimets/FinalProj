@@ -36,7 +36,7 @@ public class ShowUnpaidFines implements Command {
             int size = fineService.unpaidFinesCount();
             if(size!=0){
             String command = CommandType.SHOW_UNPAID_FINES.toString();
-            PaginationHelper helper = ControllerUtil.createPagination(request,currentPage,size,command);
+            PaginationHelper helper = ControllerUtil.createPagination(request,currentPage,size,command, 10);
             request.setAttribute(PAGE,helper);
 
             List<Fine> fineList = fineService.getUnpaidFines(helper.getBegin(),10);

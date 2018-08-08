@@ -37,7 +37,7 @@ public class ShowNewOrders implements Command {
             int size = orderService.newOrderCount();
             if (size != 0) {
                 String command = CommandType.SHOW_NEW_ORDERS.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command, 5);
                 request.setAttribute(PAGE, helper);
 
                 List<Order> orderList = orderService.getNewOrders(helper.getBegin(), 5);

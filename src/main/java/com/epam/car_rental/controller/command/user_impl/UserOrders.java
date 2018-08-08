@@ -40,7 +40,7 @@ public class UserOrders implements Command {
             int size = orderService.userOrdersCount(currentUser.getUserId());
             if(size!=0) {
                 String command = CommandType.USER_ORDERS.toString();
-                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command);
+                PaginationHelper helper = ControllerUtil.createPagination(request, currentPage, size, command, 10);
                 request.setAttribute(PAGE, helper);
 
                 List<Order> orderList = orderService.getUserOrders("" + currentUser.getUserId(), helper.getBegin(), 10);
