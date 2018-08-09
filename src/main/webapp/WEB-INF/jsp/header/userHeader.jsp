@@ -33,11 +33,14 @@
         <div class="left-content">
             <ul>
                 <a href="${pageContext.request.contextPath}/main"><li class="hov">${main}</li></a>
-                <li style="padding-top: 0;"><form action="${pageContext.request.contextPath}/rental" method="get">
+                <li style="padding-top: 0;">
+                    <form action="${pageContext.request.contextPath}/rental" method="get">
                     <input type="hidden" name="command" value="SHOW_ALL_CARS">
                     <input type="hidden" name="number" value="1">
                     <input type="submit" value="${park}">
-                </form></li>
+                </form>
+
+                </li>
                 <a href="${pageContext.request.contextPath}/rules"><li class="hov">${rules}</li></a>
                 <li style="margin-left: 100px; width: 350px; text-align: center;">${you}: <ahs:full-name name="${sessionScope.user.name}" surname="${sessionScope.user.surname}"/></li>
             </ul>

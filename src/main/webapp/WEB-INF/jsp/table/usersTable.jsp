@@ -60,7 +60,10 @@
         </c:forEach>
 
     </table>
-    <jsp:include page="/WEB-INF/jsp/pagination.jsp"/>
+    <c:if test="${not empty requestScope.page}">
+        <jsp:include page="/WEB-INF/jsp/pagination.jsp"/>
+    </c:if>
+
 </div>
 </body>
 </html>

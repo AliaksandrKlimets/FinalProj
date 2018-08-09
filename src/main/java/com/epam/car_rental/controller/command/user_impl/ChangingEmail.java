@@ -26,13 +26,13 @@ public class ChangingEmail implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userId = request.getParameter(ID);
         String newEmail = request.getParameter("newEmail");
 
         UserService userService = ServiceFactory.getInstance().getUserService();
         try {
-            userService.changeEmail(userId, newEmail);
             User user = (User)request.getSession().getAttribute(USER);
+            String userId = user.getUserId()+"";
+            userService.changeEmail(userId, newEmail);
             user.setEmail(newEmail);
             request.getSession().setAttribute(USER,user);
             response.sendRedirect(HOME_PAGE);

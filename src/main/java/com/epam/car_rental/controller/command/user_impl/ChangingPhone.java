@@ -24,13 +24,13 @@ public class ChangingPhone implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userId = request.getParameter(ID);
         String newPhone = request.getParameter("newPhone");
 
         UserService userService = ServiceFactory.getInstance().getUserService();
         try {
-            userService.changePhone(userId,newPhone);
             User user = (User)request.getSession().getAttribute(USER);
+            String userId = user.getUserId()+"";
+            userService.changePhone(userId,newPhone);
             user.setPhone(newPhone);
             request.getSession().setAttribute(USER,user);
             response.sendRedirect(HOME_PAGE);

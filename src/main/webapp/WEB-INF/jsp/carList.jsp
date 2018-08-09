@@ -137,7 +137,7 @@
                         <div style="width: 550px; height: 70px;">
                             <c:choose>
                             <c:when test="${not empty sessionScope.user}">
-                                <form class="rent-button" action="${pageContext.request.contextPath}/rental" method="get">
+                                <form class="rent-button" action="${pageContext.request.contextPath}/rental" method="post">
                                     <input type="hidden" name="command" value="ADDING_HELP">
                                     <input type="hidden" name="add_param" value="order">
                                     <input type="hidden" name="id" value="${car.carId}">

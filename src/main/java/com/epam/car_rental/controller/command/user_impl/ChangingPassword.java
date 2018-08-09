@@ -26,12 +26,13 @@ public class ChangingPassword implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userId = request.getParameter(ID);
         String newPass = request.getParameter("newPass");
         String oldPass = request.getParameter("oldPass");
 
         UserService userService = ServiceFactory.getInstance().getUserService();
         try {
+            User user = (User)request.getSession().getAttribute(USER);
+            String userId = user.getUserId()+"";
             userService.changePassword(userId, oldPass, newPass);
             response.sendRedirect(HOME_PAGE);
         } catch (InvalidParametersException e) {

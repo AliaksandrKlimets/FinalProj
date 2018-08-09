@@ -17,6 +17,16 @@
         <location>/login</location>
     </error-page>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/notFoundPage.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/login</location>
+    </error-page>
+
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.epam.car_rental.controller.Controller</servlet-class>
@@ -36,14 +46,14 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Adding</servlet-name>
-        <jsp-file>/jsp/adding.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Adding</servlet-name>
-        <url-pattern>/adding</url-pattern>
-    </servlet-mapping>
+            <servlet>
+                <servlet-name>Adding</servlet-name>
+                <jsp-file>/jsp/adding.jsp</jsp-file>
+            </servlet>
+            <servlet-mapping>
+                <servlet-name>Adding</servlet-name>
+                <url-pattern>/adding</url-pattern>
+            </servlet-mapping>
 
     <servlet>
         <servlet-name>Main</servlet-name>

@@ -46,7 +46,6 @@
     <div class="settings">
         <form class="change-form" action="${pageContext.request.contextPath}/rental" method="post">
             <input type="hidden" name="command" value="CHANGING_EMAIL">
-            <input type="hidden" name="id" value="${sessionScope.user.userId}">
             <div class="change-label">
                 <label style="color: white; font-size: 23px; font-family: calibri;">${changeEmail}</label>
             </div>
@@ -65,7 +64,6 @@
 
         <form class="change-form" action="${pageContext.request.contextPath}/rental" method="post">
             <input type="hidden" name="command" value="CHANGING_PHONE">
-            <input type="hidden" name="id" value="${sessionScope.user.userId}">
             <div class="change-label">
                 <label style="color: white; font-size: 23px; font-family: calibri;">${changePhone}</label>
             </div>
@@ -84,7 +82,6 @@
 
         <form class="change-form" action="${pageContext.request.contextPath}/rental" method="post">
             <input type="hidden" name="command" value="CHANGING_PASSWORD">
-            <input type="hidden" name="id" value="${sessionScope.user.userId}">
             <div class="change-label">
                 <label style="color: white; font-size: 23px; font-family: calibri;">${changePass}</label>
             </div>
