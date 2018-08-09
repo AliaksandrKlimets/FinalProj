@@ -16,6 +16,12 @@ public class UserValidator {
     private static final String INCORRECT_PHONE = "Incorrect phone";
 
 
+    /**
+     *
+     * @param login User login
+     * @throws InputException if input data is incorrect
+     */
+
     public static void isLogin(String login) throws InputException {
         boolean isValid = login == null || !login.matches(LOGIN_REGEX);
         if (isValid) {
@@ -23,12 +29,25 @@ public class UserValidator {
         }
     }
 
+    /**
+     *
+     * @param password Password
+     * @throws InputException if input data is incorrect
+     */
+
     public static void isPassword(String password) throws InputException {
         boolean isValid = password == null || !password.matches(PASSWORD_REGEX);
         if (isValid) {
             throw new InputException(INCORRECT_PASSWORD);
         }
     }
+
+    /**
+     *
+     * @param user User entity with info
+     * @param date Date
+     * @throws InputException if input data is incorrect
+     */
 
     public static void isInputDataValid(Object user, String date) throws InputException {
         Validator.isUser(user);
@@ -42,6 +61,12 @@ public class UserValidator {
         Validator.isDate(date);
     }
 
+    /**
+     *
+     * @param name User name
+     * @throws InputException if input data is incorrect
+     */
+
     public static void isName(String name) throws InputException {
         boolean isValid = name == null || !name.matches(NAME_REGEX);
         if (isValid) {
@@ -49,12 +74,24 @@ public class UserValidator {
         }
     }
 
+    /**
+     *
+     * @param email User email
+     * @throws InputException if input data is incorrect
+     */
+
     public static void isEmail(String email) throws InputException {
         boolean isValid = email == null || !email.matches(EMAIL_REGEX);
         if (isValid) {
             throw new InputException(INCORRECT_EMAIL);
         }
     }
+
+    /**
+     *
+     * @param phone User phone
+     * @throws InputException if input data is incorrect
+     */
 
     public static void isPhone(String phone) throws InputException {
         boolean isValid = phone == null || !phone.matches(PHONE_REGEX);

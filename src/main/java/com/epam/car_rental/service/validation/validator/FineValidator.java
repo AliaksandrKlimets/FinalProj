@@ -7,11 +7,11 @@ public class FineValidator {
 
     private static final String PAYMENT_STATE_REGEX = "^PAID$|^UNPAID$";
 
-    public static void isFineDataValid(String bill, String dueDate) throws InputException, NotDateException {
-        Validator.isDouble(bill);
-        Validator.isDate(dueDate);
-    }
-
+    /**
+     *
+     * @param state payment state
+     * @throws InputException if input data is incorrect
+     */
 
     public static void isPaymentState(String state) throws InputException {
         boolean isValid = state == null || !state.matches(PAYMENT_STATE_REGEX);

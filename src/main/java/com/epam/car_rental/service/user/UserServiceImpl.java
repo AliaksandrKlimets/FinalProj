@@ -77,34 +77,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeName(String userId, String name) throws ServiceException {
-        UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
-        try {
-            Validator.isNumber(userId);
-            UserValidator.isName(name);
-            userDAO.changeName(Integer.parseInt(userId), name);
-        } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        } catch (InputException e) {
-            throw new InvalidParametersException(e.getMessage());
-        }
-    }
-
-    @Override
-    public void changeSurname(String userId, String surname) throws ServiceException {
-        UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
-        try {
-            Validator.isNumber(userId);
-            UserValidator.isName(surname);
-            userDAO.changeSurname(Integer.parseInt(userId), surname);
-        } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        } catch (InputException e) {
-            throw new InvalidParametersException(e.getMessage());
-        }
-    }
-
-    @Override
     public void changeEmail(String  userId, String email) throws ServiceException {
         UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
         try {
@@ -151,44 +123,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public void deleteUser(String userId) throws ServiceException {
-        UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
-        try{
-            Validator.isNumber(userId);
-            userDAO.deleteUser(Integer.parseInt(userId));
-        }catch (DAOException e){
-            throw new ServiceException(e.getMessage());
-        }catch (InputException e){
-            throw new InvalidParametersException(e.getMessage());
-        }
-    }
-
-    @Override
-    public long getUserIdByLogin(String login) throws ServiceException {
-        UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
-        try{
-            UserValidator.isLogin(login);
-            return userDAO.getUserIdByLogin(login);
-        }catch (DAOException e){
-            throw new ServiceException(e.getMessage());
-        }catch (InputException e){
-            throw new InvalidParametersException(e.getMessage());
-        }
-    }
-
-    @Override
-    public User getUserByLogin(String login) throws ServiceException {
-        UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
-        try{
-            UserValidator.isLogin(login);
-            return userDAO.getUserByLogin(login);
-        }catch (DAOException e){
-            throw new ServiceException(e.getMessage());
-        }catch (InputException e){
-            throw new InvalidParametersException(e.getMessage());
-        }
-    }
 
     @Override
     public int usersCount() throws ServiceException {

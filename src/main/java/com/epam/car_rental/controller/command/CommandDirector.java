@@ -62,12 +62,26 @@ public class CommandDirector {
 
     }
 
+    /**
+     * Returns {@link CommandDirector} instance.
+     *
+     * @return instance of command director
+     */
+
     public static CommandDirector getInstance() {
         if (instance == null) {
             instance = new CommandDirector();
         }
         return instance;
     }
+
+    /**
+     * Returns command implementation by command name.
+     *
+     * @param command command name
+     *
+     * @return command implementation
+     */
 
     public Command getCommand(String command) {
         CommandType commandValue = CommandType.valueOf(command);
@@ -77,6 +91,18 @@ public class CommandDirector {
             return commands.get(commandValue).getCommand();
         }
     }
+
+    /**
+     * Verifies user access rights.
+     *
+     * @param commandName
+     * {@link Command} name
+     * @param user
+     * current {@link User}
+     *
+     * @throws AccessNotAllowedException
+     * if current {@link User} does not have access rights
+     */
 
     public void checkAccess(String commandName, User user) throws AccessNotAllowedException {
         final boolean changeLocale = commandName.equalsIgnoreCase(CommandType.LOCALE_CHANGING.toString());
@@ -109,6 +135,15 @@ public class CommandDirector {
         throw new AccessNotAllowedException("Access is not allowed");
     }
 
+
+    /**
+     * Checks current {@link CommandType} status.
+     *
+     * @param value
+     * current {@link Command} name
+     *
+     * @return true if this command is authorization command; false - otherwise
+     */
 
     private boolean isNonRole(String value) {
         CommandType commandType = CommandType.valueOf(value);

@@ -38,19 +38,6 @@ public class FineServiceImpl implements FineService {
     }
 
     @Override
-    public Fine getFine(String fineId) throws ServiceException {
-        FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
-        try{
-            Validator.isNumber(fineId);
-            return fineDAO.getFine(Integer.parseInt(fineId));
-        }catch (DAOException e){
-            throw new ServiceException(e.getMessage());
-        }catch (InputException e){
-            throw new InvalidParametersException(e.getMessage());
-        }
-    }
-
-    @Override
     public void changePaymentState(String fineId, String state, String number) throws ServiceException {
         FineDAO fineDAO = DAOFactory.getInstance().getFineDAO();
         try{

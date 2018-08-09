@@ -109,16 +109,6 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<OrderedCar> getOrderedCars(int begin, int size) throws ServiceException {
-        OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
-        try {
-            return orderedCarDAO.getOrderedCars(begin,size);
-        } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        }
-    }
-
-    @Override
     public List<OrderedCar> getCarOrders(String id, int begin, int size) throws ServiceException {
         OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
         try {
@@ -199,16 +189,6 @@ public class CarServiceImpl implements CarService {
         CarDAO carDAO = DAOFactory.getInstance().getCarDAO();
         try {
             return carDAO.itemsByTypeCount(Car.Type.valueOf(type));
-        } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        }
-    }
-
-    @Override
-    public int orderedItemsCount() throws ServiceException {
-        OrderedCarDAO orderedCarDAO = DAOFactory.getInstance().getOrderedCarDAO();
-        try {
-            return orderedCarDAO.itemsCount();
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         }

@@ -77,7 +77,7 @@
                     <th>${car}</th>
                     <th>${start}</th>
                     <th>${end}</th>
-                    <th>${cost}</th>
+                    <th style="width: 190px;">${cost}</th>
                 </tr>
                 <tr>
                     <c:if test="${sessionScope.user.role eq 'ADMIN'}">
@@ -88,7 +88,7 @@
                     <th><ahs:model-by-id carId="${order.carId}"/></th>
                     <th><ahs:date-locale date="${order.serviceStart}" locale="ru"/></th>
                     <th><ahs:date-locale date="${order.serviceEnd}" locale="ru"/></th>
-                    <th>${order.serviceCost} ${byn}</th>
+                    <th style="width: 190px;">${order.serviceCost} ${byn}</th>
                 </tr>
             </table>
                 <c:if test="${sessionScope.user.role eq 'ADMIN'}">
@@ -105,7 +105,7 @@
                                 <li ><form class="order-button" action="${pageContext.request.contextPath}/rental" method="post">
                                     <select class="order-select" name="reason">
                                         <option value="Слишком молод(а)">Слишком молод(а)</option>
-                                        <option value="Ты мне не нравишься">Ты мне не нравишься</option>
+                                        <option value="Неддостаточный опыт вождения">Неддостаточный опыт вождения</option>
                                         <option value="Плохая репутация в нашей фирме">Плохая репутация в нашей фирме</option>
                                         <option value="Близок срок истечения действия паспорта">Близок срок истечения действия паспорта</option>
                                     </select>
@@ -126,6 +126,19 @@
                                         <input type="hidden" name="id" value="${order.orderId}">
                                         <input type="hidden" name="number" value="${requestScope.page.current}">
                                         <input type="submit" style="background-color: green;" value="${pay}">
+                                    </form></li>
+                                    <li ><form class="order-button" action="${pageContext.request.contextPath}/rental" method="post">
+                                        <select class="order-select" name="reason">
+                                            <option value="Слишком молод(а)">Слишком молод(а)</option>
+                                            <option value="Неддостаточный опыт вождения">Неддостаточный опыт вождения</option>
+                                            <option value="Плохая репутация в нашей фирме">Плохая репутация в нашей фирме</option>
+                                            <option value="Близок срок истечения действия паспорта">Близок срок истечения действия паспорта</option>
+                                        </select>
+                                        <input type="hidden" name="command" value="CHANGE_ORDER_STATE">
+                                        <input type="hidden" name="change" value="DECLINE">
+                                        <input type="hidden" name="id" value="${order.orderId}">
+                                        <input type="hidden" name="number" value="${requestScope.page.current}">
+                                        <input type="submit" onclick="return confirmAction('${confirmDecline}')" style="background-color: darkred;" value="${decline}">
                                     </form></li>
                                 </ul>
                             </c:if>

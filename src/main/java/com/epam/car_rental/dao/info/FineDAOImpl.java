@@ -56,30 +56,6 @@ public class FineDAOImpl implements FineDAO {
     }
 
     @Override
-    public Fine getFine(int fineId) throws DAOException, EntityNotFoundException {
-        Connection connection = null;
-        try {
-            connection = connectionPool.getConnection();
-            String getFine = bundle.getString(FINE_GET_FINE);
-            PreparedStatement statement = connection.prepareStatement(getFine);
-            statement.setInt(1, fineId);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (!resultSet.isBeforeFirst()) {
-                LOGGER.error("Cannot find fine by id");
-                throw new EntityNotFoundException("Cannot find fine by id");
-            }
-
-            return DAOUtil.createFineFromDB(resultSet);
-        } catch (SQLException e) {
-            LOGGER.error("Error while getting fine by id",e);
-            throw new DAOException("Error while getting fine by id");
-        } finally {
-            connectionPool.closeConnection(connection);
-        }
-    }
-
-    @Override
     public List<Fine> getUserFines(int userId, int begin, int size) throws DAOException {
         Connection connection = null;
         try {

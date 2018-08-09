@@ -20,6 +20,12 @@ public class DAOFactory {
     private DAOFactory() {
     }
 
+    /**
+     * Returns DAO Factory instance.
+     *
+     * @return instance of DAOFactory
+     */
+
     public static DAOFactory getInstance() {
         if (instance == null) {
             instance = new DAOFactory();
@@ -27,21 +33,51 @@ public class DAOFactory {
         return instance;
     }
 
+    /**
+     * Returns User DAO implementations.
+     *
+     * @return User DAO
+     */
+
     public UserDAO getUserDAO() {
         return userDAO;
     }
+
+    /**
+     * Returns Car DAO implementations.
+     *
+     * @return Car DAO
+     */
 
     public CarDAO getCarDAO() {
         return carDAO;
     }
 
+    /**
+     * Returns Ordered Car DAO implementations.
+     *
+     * @return Ordered Car DAO
+     */
+
     public OrderedCarDAO getOrderedCarDAO() {
         return orderedCarDAO;
     }
 
+    /**
+     * Returns Fine DAO implementations.
+     *
+     * @return Fine DAO
+     */
+
     public FineDAO getFineDAO() {
         return fineDAO;
     }
+
+    /**
+     * Returns Order DAO implementations.
+     *
+     * @return Order DAO
+     */
 
     public OrderDAO getOrderDAO() {
         return orderDAO;

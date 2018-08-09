@@ -41,12 +41,25 @@ public class ConnectionPool {
         this.poolSize = matcher.matches() ? Integer.parseInt(poolSizeStr) : 5;
     }
 
+    /**
+     * Returns {@link ConnectionPool} instance.
+     *
+     * @return instance of connection pool
+     */
+
     public static ConnectionPool getInstance() {
         if (instance == null) {
             instance = new ConnectionPool();
         }
         return instance;
     }
+
+    /**
+     * Initializes Connection Pool.
+     *
+     * @throws ConnectionPoolException
+     * if catch {@link SQLException} or {@link ClassNotFoundException}
+     */
 
     public void initPoolData() throws ConnectionPoolException {
         try {
@@ -69,11 +82,24 @@ public class ConnectionPool {
         }
     }
 
+    /** Disposes connection pool.
+     *
+     * @throws ConnectionPoolException
+     * if error occurred while connecting to the sql server
+     */
+
     public void dispose() throws ConnectionPoolException{
         clearConnectionQueue();
     }
 
-    private void clearConnectionQueue(){
+    /**
+     * Clears connection pool.
+     *
+     * @throws ConnectionPoolException
+     * if catch {@link SQLException}
+     */
+
+    private void clearConnectionQueue() throws ConnectionPoolException{
         try{
             closeConnectionQueue(givenAwayQueue);
             closeConnectionQueue(connectionQueue);
@@ -83,6 +109,15 @@ public class ConnectionPool {
             throw new ConnectionPoolException(massage,e);
         }
     }
+
+    /**
+     * Closes connection queue.
+     *
+     * @param queue
+     * connection queue to close
+     *
+     * @throws SQLException
+     */
 
     private void closeConnectionQueue(BlockingQueue<Connection> queue) throws SQLException{
         Connection connection;
@@ -94,6 +129,15 @@ public class ConnectionPool {
             connection.close();
         }
     }
+
+    /**
+     * Returns {@link Connection} from connection pool.
+     *
+     * @return {@link Connection} from {@link ConnectionPool}
+     *
+     * @throws ConnectionPoolException
+     * if catch {@link InterruptedException} or {@link SQLException}
+     */
 
     public Connection getConnection() throws ConnectionPoolException{
         Connection connection;
@@ -114,6 +158,16 @@ public class ConnectionPool {
             throw new ConnectionPoolException(massage,e);
         }
     }
+
+    /**
+     * Closes current connection.
+     *
+     * @param connection
+     * connection to close
+     *
+     * @throws ConnectionPoolException
+     * if impossible to delete connection from the given away connections pool
+     */
 
     public void closeConnection(Connection connection) throws ConnectionPoolException{
         if(!givenAwayQueue.remove(connection)){
@@ -140,6 +194,14 @@ public class ConnectionPool {
             throw new ConnectionPoolException(massage);
         }
     }
+
+    /**
+     * Reopens connection.
+     * Use {@link DriverManager}.
+     *
+     * @return reopened {@link Connection}
+     * @throws SQLException if cannot reopen connection
+     */
 
     private Connection reopenConnection() throws SQLException{
         return DriverManager.getConnection(url,user,password);

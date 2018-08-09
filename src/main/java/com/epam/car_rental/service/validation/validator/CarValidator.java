@@ -13,6 +13,19 @@ public class CarValidator {
     private static final String TYPE_REGEX = "^COUPE$|^HATCHBACK$|^UNIVERSAL$|^PICKUP$|^CROSSOVER$";
     private static final String FUEL_REGEX = "^PETROL$|^DIESEL$|^GAS$";
 
+    /**
+     * Validate input date for validity
+     * @param car Entity of Car with info
+     * @param capacity Capacity
+     * @param type Car type
+     * @param fuel Fuel type
+     * @param day Cost per day
+     * @param twoToSeven Cost from two to seven days
+     * @param eightToFifteen Cost from eight to fifteen daye
+     * @param more Cost from 16+ days
+     * @throws InputException if input data is incorrect
+     */
+
     public static void isInputDataValid(Car car, String capacity, String type, String fuel, String day, String twoToSeven, String eightToFifteen, String more) throws InputException {
         isModel(car.getModel());
         isYear(car.getYear());
@@ -28,12 +41,22 @@ public class CarValidator {
         Validator.isDouble(more);
     }
 
+    /**
+     * @param type Car type
+     * @throws InputException if input data is incorrect
+     */
+
     public static void isCarType(String type) throws InputException {
         boolean isValid = type == null || !type.matches(TYPE_REGEX);
         if (isValid) {
             throw new InputException("Car type is not valid");
         }
     }
+
+    /**
+     * @param fuel Fuel type
+     * @throws InputException if input data is incorrect
+     */
 
     private static void isFuelType(String fuel) throws InputException {
         boolean isValid = fuel == null || !fuel.matches(FUEL_REGEX);
@@ -42,6 +65,10 @@ public class CarValidator {
         }
     }
 
+    /**
+     * @param model model
+     * @throws InputException if input data is incorrect
+     */
 
     public static void isModel(String model) throws InputException {
         boolean isValid = model == null || !model.matches(MODEL_REGEX);
@@ -50,12 +77,22 @@ public class CarValidator {
         }
     }
 
+    /**
+     * @param year year
+     * @throws InputException if input data is incorrect
+     */
+
     private static void isYear(String year) throws InputException {
         boolean isValid = year == null || !year.matches(YEAR_REGEX);
         if (isValid) {
             throw new InputException("Invalid year");
         }
     }
+
+    /**
+     * @param capacity capacity
+     * @throws InputException if input data is incorrect
+     */
 
     private static void isCapacity(String capacity) throws InputException {
         boolean isValid = capacity == null || !capacity.matches(CAPACITY_REGEX);
@@ -64,6 +101,11 @@ public class CarValidator {
         }
     }
 
+    /**
+     * @param consumption consumption
+     * @throws InputException if input data is incorrect
+     */
+
     private static void isConsumption(String consumption) throws InputException {
         boolean isValid = consumption == null || !consumption.matches(CONSUMPTION_REGEX);
         if (isValid) {
@@ -71,12 +113,22 @@ public class CarValidator {
         }
     }
 
+    /**
+     * @param addInfo additional info
+     * @throws InputException if input data is incorrect
+     */
+
     private static void isAddInfo(String addInfo) throws InputException {
         boolean isValid = addInfo == null || !addInfo.matches(INFO_REGEX);
         if (isValid) {
             throw new InputException("Invalid add info");
         }
     }
+
+    /**
+     * @param transmission transmission
+     * @throws InputException if input data is incorrect
+     */
 
     private static void isTransmission(String transmission) throws InputException {
         boolean isValid = transmission == null || !transmission.matches(TRANSMISSION_REGEX);
