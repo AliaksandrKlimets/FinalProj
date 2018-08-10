@@ -36,6 +36,7 @@ public class AddingHelper implements Command {
             }
             request.getRequestDispatcher("/adding").forward(request, response);
         }catch (InputException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

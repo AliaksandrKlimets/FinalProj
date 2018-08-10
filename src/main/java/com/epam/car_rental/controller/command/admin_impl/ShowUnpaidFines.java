@@ -47,8 +47,10 @@ public class ShowUnpaidFines implements Command {
                 request.getRequestDispatcher("/home").forward(request, response);
             }
         }catch (InputException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }catch (ServiceException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

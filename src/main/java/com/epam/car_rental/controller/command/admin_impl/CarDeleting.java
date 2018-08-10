@@ -35,8 +35,10 @@ public class CarDeleting implements Command {
             carService.deleteCar(carId);
             response.sendRedirect(address);
         }catch (NotNumberException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }catch (ServiceException e){
+            LOGGER.error(e.getMessage());
             ControllerUtil.updateWithMessage(request,response,"Error", address);
         }
     }

@@ -47,9 +47,11 @@ public class AddNewCar implements Command {
             carService.addCar(car,capacity,carType,fuelType,day,twoToSeven,eightToFifteen,more);
             response.sendRedirect("/rental?command=SHOW_ALL_CARS&number=100");
         }catch (InvalidParametersException e){
-            ControllerUtil.updateWithMessage(request,response,e.getMessage(),"/rental?command=ADDING_HELP&add_param=car");
+            LOGGER.error(e.getMessage());
+            ControllerUtil.updateWithMessage(request,response,"Проверьте правильность ввода","/rental?command=ADDING_HELP&add_param=car");
         }catch (ServiceException e){
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            LOGGER.error(e.getMessage());
+            ControllerUtil.updateWithMessage(request,response,"Произошла ошибка, повторите попытку.","/rental?command=ADDING_HELP&add_param=car");
         }
     }
 }

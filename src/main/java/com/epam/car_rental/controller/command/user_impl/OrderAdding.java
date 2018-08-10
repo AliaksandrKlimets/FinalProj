@@ -59,15 +59,19 @@ public class OrderAdding implements Command {
 
             response.sendRedirect("/rental?command=USER_ORDERS&number=1");
         }catch (CarNotFoundException e){
+            LOGGER.error(e.getMessage());
             ControllerUtil.updateWithMessage(request,response,"Авто отсутствует",
                     "/rental?command=ADDING_HELP&add_param=order&id="+carId);
         }catch (DateNotAvailableServiceException e){
+            LOGGER.error(e.getMessage());
             ControllerUtil.updateWithMessage(request,response,"Данная дата уже занята",
                     "/rental?command=ADDING_HELP&add_param=order&id="+carId);
         }catch (InvalidParametersException e){
+            LOGGER.error(e.getMessage());
             ControllerUtil.updateWithMessage(request,response,"Данные введены неправильно",
                     "/rental?command=ADDING_HELP&add_param=order&id="+carId);
         }catch (ServiceException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

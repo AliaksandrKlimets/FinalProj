@@ -23,11 +23,11 @@
 <div class="side-bar">
     <ul>
 
-        <a style="margin: 0; padding: 0; width: 300px; height: 50px; color: white;" href="${pageContext.request.contextPath}/home">
+        <%--<a style="margin: 0; padding: 0; width: 300px; height: 50px; color: white;" href="${pageContext.request.contextPath}/home">
             <li class="side-bar-nav" style="color: white;">
                 ${profile}
             </li>
-        </a>
+        </a>--%>
         <li class="side-bar-item">
             <form class="" action="${pageContext.request.contextPath}/rental">
                 <input type="hidden" name="command" value="SHOW_ALL_USERS">

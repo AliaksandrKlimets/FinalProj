@@ -30,7 +30,6 @@ public enum CommandType {
     CHANGING_PASSWORD,
     CHANGING_PHONE,
     ORDER_ADDING,
-    USER_DELETING,
     USER_FINES,
     USER_ORDERS
 }

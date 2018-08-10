@@ -22,44 +22,53 @@
     <fmt:message bundle="${loc}" key="locale.register.label.birth" var="bitrh"/>
     <fmt:message bundle="${loc}" key="locale.action" var="action"/>
     <fmt:message bundle="${loc}" key="locale.action.add.fine" var="fine"/>
+    <fmt:message bundle="${loc}" key="locale.nothing.to.show" var="nothing"/>
 
 </head>
 <body>
 <div style="min-height: 500px; width: 1000px; padding: 0; margin: 0;">
-    <table>
-        <tr class="thead">
-            <th style="width: 30px;">id</th>
-            <th style="width: 130px;">${login}</th>
-            <th style="width: 130px;">${name}</th>
-            <th style="width: 180px;">${surname}</th>
-            <th style="width: 220px;">${email}</th>
-            <th style="width: 100px;">${phone}</th>
-            <th style="width: 100px;">${bitrh}</th>
-            <th style="width: 100px; text-align: center;">${action}</th>
-        </tr>
-        <c:forEach items="${requestScope.users}" var="user">
-            <tr>
-                <th>${user.userId}</th>
-                <th>${user.login}</th>
-                <th>${user.name}</th>
-                <th>${user.surname}</th>
-                <th>${user.email}</th>
-                <th>${user.phone}</th>
-                <th><ahs:date-locale locale="ru" date="${user.birthDate}"/></th>
-                <th>
-                    <form class="button" action="${pageContext.request.contextPath}/rental" method="get">
-                        <input type="hidden" name="command" value="ADDING_HELP">
-                        <input type="hidden" name="add_param" value="fine">
-                        <input type="hidden" name="id" value="${user.userId}">
-                        <input type="hidden" name="name" value="${user.login}">
-                        <input type="submit" style="margin-top: 17px;" value="${fine}">
-                    </form>
-                </th>
+    <c:choose>
+        <c:when test="${fn:length(requestScope.users) gt 0}">
+            <table>
+                <tr class="thead">
+                    <th style="width: 30px;">id</th>
+                    <th style="width: 130px;">${login}</th>
+                    <th style="width: 130px;">${name}</th>
+                    <th style="width: 180px;">${surname}</th>
+                    <th style="width: 220px;">${email}</th>
+                    <th style="width: 100px;">${phone}</th>
+                    <th style="width: 100px;">${bitrh}</th>
+                    <th style="width: 100px; text-align: center;">${action}</th>
+                </tr>
+                <c:forEach items="${requestScope.users}" var="user">
+                    <tr>
+                        <th>${user.userId}</th>
+                        <th>${user.login}</th>
+                        <th>${user.name}</th>
+                        <th>${user.surname}</th>
+                        <th>${user.email}</th>
+                        <th>${user.phone}</th>
+                        <th><ahs:date-locale locale="ru" date="${user.birthDate}"/></th>
+                        <th>
+                            <form class="button" action="${pageContext.request.contextPath}/rental" method="get">
+                                <input type="hidden" name="command" value="ADDING_HELP">
+                                <input type="hidden" name="add_param" value="fine">
+                                <input type="hidden" name="id" value="${user.userId}">
+                                <input type="hidden" name="name" value="${user.login}">
+                                <input type="submit" style="margin-top: 17px;" value="${fine}">
+                            </form>
+                        </th>
 
-            </tr>
-        </c:forEach>
+                    </tr>
+                </c:forEach>
 
-    </table>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <h1 style="font-family: Calibri; margin-left: 19px; font-size: 19px;">${nothing}</h1>
+        </c:otherwise>
+    </c:choose>
+
     <c:if test="${not empty requestScope.page}">
         <jsp:include page="/WEB-INF/jsp/pagination.jsp"/>
     </c:if>

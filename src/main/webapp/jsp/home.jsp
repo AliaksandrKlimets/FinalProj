@@ -34,13 +34,10 @@
         <c:when test="${sessionScope.user.role eq 'USER'}">
             <jsp:include page="/WEB-INF/jsp/sidebar/userSideBar.jsp"/>
             <c:choose>
-                <c:when test="${not empty requestScope.noItems}">
-                    <h1>${nothing}</h1>
-                </c:when>
                 <c:when test="${ requestScope.orders ne null}">
                     <jsp:include page="/WEB-INF/jsp/table/ordersTable.jsp"/>
                 </c:when>
-                <c:when test="${not empty requestScope.fines}">
+                <c:when test="${requestScope.fines ne null}">
                     <jsp:include page="/WEB-INF/jsp/table/finesTable.jsp"/>
                 </c:when>
                 <c:otherwise>
@@ -51,17 +48,13 @@
         <c:when test="${sessionScope.user.role eq 'ADMIN'}">
             <jsp:include page="/WEB-INF/jsp/sidebar/adminSideBar.jsp"/>
             <c:choose>
-
-                <c:when test="${not empty requestScope.noItems}">
-                    <h1>${nothing}</h1>
-                </c:when>
                 <c:when test="${ requestScope.orders ne null}">
                     <jsp:include page="/WEB-INF/jsp/table/ordersTable.jsp"/>
                 </c:when>
                 <c:when test="${requestScope.fines ne null}">
                     <jsp:include page="/WEB-INF/jsp/table/finesTable.jsp"/>
                 </c:when>
-                <c:when test="${not empty requestScope.users}">
+                <c:when test="${requestScope.users ne null}">
                     <jsp:include page="/WEB-INF/jsp/table/usersTable.jsp"/>
                 </c:when>
                 <c:when test="${requestScope.carOrders ne null}">

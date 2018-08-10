@@ -44,7 +44,7 @@ public class ShowAllFines implements Command {
 
                 request.getRequestDispatcher("/home").forward(request, response);
             }else {
-                request.setAttribute("noItems",0);
+                request.setAttribute(FINES,new ArrayList<>());
                 request.getRequestDispatcher("/home").forward(request, response);
             }
         }catch (InputException e){

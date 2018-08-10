@@ -53,8 +53,10 @@ public class UserOrders implements Command {
             }
 
         }catch (InputException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }catch (ServiceException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.epam.car_rental.controller.constant.ControlConst.*;
@@ -48,12 +49,14 @@ public class UserFines implements Command {
 
                 request.getRequestDispatcher("/home").forward(request, response);
             }else {
-                request.setAttribute("noItems",1);
+                request.setAttribute(FINES,new ArrayList<>());
                 request.getRequestDispatcher("/home").forward(request, response);
             }
         }catch (InputException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }catch (ServiceException e){
+            LOGGER.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }

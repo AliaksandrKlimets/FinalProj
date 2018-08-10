@@ -46,7 +46,7 @@
 }
 
 .side-bar-item input[type="submit"]:hover, .side-bar-nav:hover {
-    color: #f4f4f4;
+    color: #ffffff;
     background-color: #41484e;
     cursor: pointer;
 }

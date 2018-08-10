@@ -51,7 +51,6 @@ public class CommandDirector {
         commands.put(CommandType.CHANGING_PASSWORD, new CommandRights(rights, new ChangingPassword()));
         commands.put(CommandType.CHANGING_PHONE, new CommandRights(rights, new ChangingPhone()));
         commands.put(CommandType.ORDER_ADDING, new CommandRights(rights, new OrderAdding()));
-        commands.put(CommandType.USER_DELETING, new CommandRights(rights, new UserDeleting()));
         commands.put(CommandType.USER_FINES, new CommandRights(rights, new UserFines()));
         commands.put(CommandType.USER_ORDERS, new CommandRights(rights, new UserOrders()));
 
