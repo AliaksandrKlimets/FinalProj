@@ -5,8 +5,8 @@
 <head>
 
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="assets/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-16x16.png" sizes="16x16"/>
     <fmt:setLocale value="${sessionScope.lang}"/>
     <fmt:setBundle basename="locale.locale" var="loc"/>
 
@@ -33,7 +33,7 @@
     <title>${title}</title>
 </head>
 <html>
-<body>
+<body >
 <c:if test="${sessionScope.user.role eq 'ADMIN'}">
     <jsp:forward page="${pageContext.request.contextPath}/home"/>
 </c:if>
@@ -45,47 +45,35 @@
         <jsp:include page="/WEB-INF/jsp/header/header.jsp"/>
     </c:when>
 </c:choose>
-<div class="content">
-    <div class="index-side">
-        <div class="index-side-elem">
-            <h1 class="head-label-side">${sidehead1}</h1>
-            <ul style="list-style-type: disc; padding-left: 30px; margin-top: 10px;">
-                <li class="side-list">${sidefirst}</li>
-                <li class="side-list">${sidesecond}</li>
-                <li class="side-list">${sidethird}</li>
-                <li class="side-list">${sidefourth}</li>
-                <li class="side-list">${sidefifth}</li>
-            </ul>
-        </div>
-        <div class="index-side-elem" style="margin-top: 40px;">
-            <h1 class="head-label-side">${sidehead2}</h1>
-            <ul style="list-style-type: disc; padding-left: 30px; margin-top: 10px;">
-                <li class="side-list">${sidesix}</li>
-                <li class="side-list">${sideseventh}</li>
-                <li class="side-list">${sideeighth}</li>
-                <li class="side-list">${sideninth}</li>
-                <li class="side-list">${sidetenth}</li>
-            </ul>
-        </div>
+<div class="content" style="width: 100%;min-height: 650px; margin: 0 auto 0 auto; border-bottom: 1px solid
+        white; background-color: #ffffff;">
+    <div style="width: 100%; height: 600px; background-image: url(${pageContext.request.contextPath}
+            /assets/img/content3.jpg); background-size: 100%;">
     </div>
-    <div class="index-left">
-        <h1 class="head-label">${head1}</h1>
-        <p class="text-content">
-            ${text1}
-        </p>
-        <h1 class="head-label">
-            ${head2}
-        </h1>
-        <p class="text-content">
-            ${text2}
-        </p>
-        <h1 class="head-label">
-            ${head3}
-        </h1>
-        <p class="text-content">
-            ${text3}
-        </p>
-
+    <div style="width: 1250px; min-height:250px; margin: 0 auto 0 auto;">
+        <h1 style="margin: 20px auto 5px auto; width: 400px; text-align: center; font-family: calibri; font-weight:
+        normal; font-size: 33px;">${sidehead2}</h1>
+        <table class="icon-table">
+            <tr>
+                <th class="icon-cell"><img src="${pageContext.request.contextPath}/assets/img/medal.png" width="70px">
+                </th>
+                <th class="icon-cell"><img src="${pageContext.request.contextPath}/assets/img/money.png" width="70px">
+                </th>
+                <th class="icon-cell"><img src="${pageContext.request.contextPath}/assets/img/car.png" width="70px">
+                </th>
+                <th class="icon-cell"><img src="${pageContext.request.contextPath}/assets/img/oil.png" width="70px">
+                </th>
+                <th class="icon-cell"><img src="${pageContext.request.contextPath}/assets/img/list.png" width="70px">
+                </th>
+            </tr>
+            <tr>
+                <th class="icon-cell">${sidesix}</th>
+                <th class="icon-cell">${sideseventh}</th>
+                <th class="icon-cell">${sideeighth}</th>
+                <th class="icon-cell">${sideninth}</th>
+                <th class="icon-cell">${sidetenth}</th>
+            </tr>
+        </table>
     </div>
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

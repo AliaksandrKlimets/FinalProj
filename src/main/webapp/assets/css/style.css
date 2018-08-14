@@ -1,5 +1,5 @@
 body {
-    background-color: #f4f4f4;
+    background-color: #f8f8f8;
 }
 
 .content {
@@ -14,7 +14,7 @@ body {
     width: 400px;
     border-radius: 4px;
     margin-right: 10px;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
 }
 
 .index-left {
@@ -58,7 +58,7 @@ body {
 
 .index-side-elem {
     border-radius: 0 0 10px 10px;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     height: 250px;
     padding: 0;
     margin: 0;
@@ -71,6 +71,7 @@ body {
     display: list-item;
     font-size: 18px;
     height: 25px;
+    background-color: #ffffff;
 }
 
 .input-data-form {
@@ -128,6 +129,7 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="date"]:hover
     font-size: 18px;
     margin-top: 23px;
     border: 0;
+    outline: none;
 }
 
 .login input[type="submit"]:hover {
@@ -236,6 +238,22 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="date"]:hover
     padding: 15px;
     border-radius: 6px;
 }
+.icon-table{
+    margin: 20px 0 20px 0;
+    height: 250px;
+    width: 1250px;
+}
+
+.icon-cell{
+    height: 80px;
+    width: 240px;
+    text-align: center;
+    border: 0;
+    font-family: calibri;
+    font-size: 19px;
+    vertical-align: top;
+    font-weight: normal;
+}
 
 .settings{
     width: 700px;
@@ -306,3 +324,4 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="date"]:hover
     color: #f4f4f4;
     cursor: pointer;
 }
+

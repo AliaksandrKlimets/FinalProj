@@ -49,7 +49,7 @@
     <title>${title}</title>
 
 </head>
-<body>
+<body >
 <c:if test="${not empty sessionScope.user}">
     <jsp:forward page="${pageContext.request.contextPath}/home"/>
 </c:if>
@@ -103,7 +103,7 @@
 
 
     </div>
-    <div class="login-rules" style="height: 700px; margin-bottom: 200px; background-color: #f4f4f4">
+    <div class="login-rules" style="height: 700px; margin-bottom: 200px; background-color: #ffffff">
         <h1 class="head-label" style="color: white; font-weight: normal;">${loginrules}:</h1>
         <ul style="list-style-type: disc; margin: 5px 0 5px 60px;">
             <li class="side-list">${loginrule1}</li>
