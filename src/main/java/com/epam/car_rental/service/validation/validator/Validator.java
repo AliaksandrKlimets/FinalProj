@@ -9,7 +9,7 @@ import com.epam.car_rental.service.validation.NotNumberException;
 public class Validator {
     private static final String NUMBER = "\\d+";
     private static final String DATE = "[1-9][\\d]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])";
-    private static final String DOUBLE_REGEX = "[\\d]+\\.{0,1}[\\d]{0,1}";
+    private static final String DOUBLE_REGEX = "[\\d]+\\.?[\\d]{0,3}";
 
     /**
      *

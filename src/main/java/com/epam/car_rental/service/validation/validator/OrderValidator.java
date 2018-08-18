@@ -41,7 +41,7 @@ public class OrderValidator {
      * @throws InputException if input data is incorrect
      */
 
-    private static void isPassport(String passport) throws InputException {
+    public static void isPassport(String passport) throws InputException {
         boolean isValid = passport == null || !passport.matches(PASSPORT_REGEX);
         if (isValid) {
             throw new InputException("Passport number is invalid");
@@ -54,7 +54,7 @@ public class OrderValidator {
      * @throws InputException if input data is incorrect
      */
 
-    private static void isIdNumber(String idNumber) throws InputException {
+    public static void isIdNumber(String idNumber) throws InputException {
         boolean isValid = idNumber == null || !idNumber.matches(ID_NUMBER_REGEX);
         if (isValid) {
             throw new InputException("Id number is invalid");
